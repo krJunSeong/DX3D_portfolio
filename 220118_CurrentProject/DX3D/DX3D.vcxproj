@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{c41995d2-bdc6-4fca-b6d6-ad77827998e5}</ProjectGuid>
+    <RootNamespace>DX3D</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)Libraries\ImGui;$(ProjectDir)Libraries;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)Libraries\Lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <FxCompile>
+      <EntryPointName>VS</EntryPointName>
+    </FxCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Algorithm\AStar.h" />
+    <ClInclude Include="Algorithm\Heap.h" />
+    <ClInclude Include="Algorithm\Node.h" />
+    <ClInclude Include="DX3D.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="Libraries\Framework\Buffer\ConstBuffer.h" />
+    <ClInclude Include="Libraries\Framework\Buffer\GlobalBuffer.h" />
+    <ClInclude Include="Libraries\Framework\Buffer\IndexBuffer.h" />
+    <ClInclude Include="Libraries\Framework\Buffer\RowBuffer.h" />
+    <ClInclude Include="Libraries\Framework\Buffer\StructuredBuffer.h" />
+    <ClInclude Include="Libraries\Framework\Buffer\VertexBuffer.h" />
+    <ClInclude Include="Libraries\Framework\Buffer\VertexLayouts.h" />
+    <ClInclude Include="Libraries\Framework\Collision\BoxCollider.h" />
+    <ClInclude Include="Libraries\Framework\Collision\CapsuleCollider.h" />
+    <ClInclude Include="Libraries\Framework\Collision\Collider.h" />
+    <ClInclude Include="Libraries\Framework\Collision\SphereCollider.h" />
+    <ClInclude Include="Libraries\Framework\Environment\Camera.h" />
+    <ClInclude Include="Libraries\Framework\Environment\Environment.h" />
+    <ClInclude Include="Libraries\Framework\Environment\Frustum.h" />
+    <ClInclude Include="Libraries\Framework\Math\GameMath.h" />
+    <ClInclude Include="Libraries\Framework\Model\Model.h" />
+    <ClInclude Include="Libraries\Framework\Model\ModelAnimator.h" />
+    <ClInclude Include="Libraries\Framework\Model\ModelAnimatorInstancing.h" />
+    <ClInclude Include="Libraries\Framework\Model\ModelClip.h" />
+    <ClInclude Include="Libraries\Framework\Model\ModelExporter.h" />
+    <ClInclude Include="Libraries\Framework\Model\ModelInstancing.h" />
+    <ClInclude Include="Libraries\Framework\Model\ModelMesh.h" />
+    <ClInclude Include="Libraries\Framework\Model\ModelReader.h" />
+    <ClInclude Include="Libraries\Framework\Model\ModelType.h" />
+    <ClInclude Include="Libraries\Framework\Shader\ComputeShader.h" />
+    <ClInclude Include="Libraries\Framework\State\BlendState.h" />
+    <ClInclude Include="Libraries\Framework\State\DepthStacilState.h" />
+    <ClInclude Include="Libraries\Framework\Utility\Utility.h" />
+    <ClInclude Include="Manager\SceneManager.h" />
+    <ClInclude Include="Libraries\Framework\Math\Transform.h" />
+    <ClInclude Include="Libraries\Framework\Math\Vector3.h" />
+    <ClInclude Include="Libraries\Framework\Render\Material.h" />
+    <ClInclude Include="Libraries\Framework\Render\Mesh.h" />
+    <ClInclude Include="Libraries\Framework\State\RasterizerState.h" />
+    <ClInclude Include="Libraries\Framework\State\SamplerState.h" />
+    <ClInclude Include="Object\Basic\Cube.h" />
+    <ClInclude Include="Object\Basic\Grid.h" />
+    <ClInclude Include="Object\Basic\Quad.h" />
+    <ClInclude Include="Object\Basic\Sphere.h" />
+    <ClInclude Include="Object\Landscape\Box.h" />
+    <ClInclude Include="Object\Landscape\Sky.h" />
+    <ClInclude Include="Object\Landscape\Terrain.h" />
+    <ClInclude Include="Object\Landscape\TerrainEditor.h" />
+    <ClInclude Include="Object\Manager\InstancingMonsterManager.h" />
+    <ClInclude Include="Object\Manager\MonsterManager.h" />
+    <ClInclude Include="Object\Model\Amber.h" />
+    <ClInclude Include="Object\Model\Chuchu.h" />
+    <ClInclude Include="Object\Model\Gumdramon.h" />
+    <ClInclude Include="Object\Model\Horse.h" />
+    <ClInclude Include="Object\Model\InstancingChuchu.h" />
+    <ClInclude Include="Object\Model\JapanHouse.h" />
+    <ClInclude Include="Object\Model\Jean.h" />
+    <ClInclude Include="Object\Model\Mistsplitter.h" />
+    <ClInclude Include="Object\Model\RockBoss.h" />
+    <ClInclude Include="Object\Model\RockPillar.h" />
+    <ClInclude Include="Object\Model\RockShield.h" />
+    <ClInclude Include="Object\Model\Sword.h" />
+    <ClInclude Include="Object\Model\Wing.h" />
+    <ClInclude Include="Object\Model\Zombie.h" />
+    <ClInclude Include="Object\ReportCamera_211205.h" />
+    <ClInclude Include="Object\ReportCube.h" />
+    <ClInclude Include="Libraries\Framework\Render\Texture.h" />
+    <ClInclude Include="Libraries\Framework\Shader\PixelShader.h" />
+    <ClInclude Include="Libraries\Framework\Shader\Shader.h" />
+    <ClInclude Include="Libraries\Framework\Shader\VertexShader.h" />
+    <ClInclude Include="Libraries\Framework\System\Device.h" />
+    <ClInclude Include="Libraries\Framework\Utility\BinaryReader.h" />
+    <ClInclude Include="Libraries\Framework\Utility\BinaryWriter.h" />
+    <ClInclude Include="Libraries\Framework\Utility\Font.h" />
+    <ClInclude Include="Libraries\Framework\Utility\Singleton.h" />
+    <ClInclude Include="Object\ReportGrid.h" />
+    <ClInclude Include="Object\ReportRobot_211201.h" />
+    <ClInclude Include="Object\SKillBall.h" />
+    <ClInclude Include="Object\UI\Bar.h" />
+    <ClInclude Include="Programe\Program.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scenes\AstarScene.h" />
+    <ClInclude Include="Scenes\CharacterScene.h" />
+    <ClInclude Include="Scenes\CollisionScene.h" />
+    <ClInclude Include="Scenes\CubeScene.h" />
+    <ClInclude Include="Scenes\DefenceScene.h" />
+    <ClInclude Include="Scenes\FrustumScene.h" />
+    <ClInclude Include="Scenes\GridScene.h" />
+    <ClInclude Include="Scenes\InstancingScene.h" />
+    <ClInclude Include="Scenes\LightScene.h" />
+    <ClInclude Include="Scenes\ModelAnimatorInstancingScene.h" />
+    <ClInclude Include="Scenes\ModelAnimatorScene.h" />
+    <ClInclude Include="Scenes\ModelExportScene.h" />
+    <ClInclude Include="Scenes\ModelInstancingScene.h" />
+    <ClInclude Include="Scenes\ModelRenderScene.h" />
+    <ClInclude Include="Scenes\ReportScene.h" />
+    <ClInclude Include="Scenes\Scene.h" />
+    <ClInclude Include="Scenes\SphereScene.h" />
+    <ClInclude Include="Scenes\TerrainEditorScene.h" />
+    <ClInclude Include="Scenes\TerrainScene.h" />
+    <ClInclude Include="Scenes\TutorialScene.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Algorithm\AStar.cpp" />
+    <ClCompile Include="Algorithm\Heap.cpp" />
+    <ClCompile Include="Algorithm\Node.cpp" />
+    <ClCompile Include="DX3D.cpp" />
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Libraries\Framework\Buffer\ConstBuffer.cpp" />
+    <ClCompile Include="Libraries\Framework\Buffer\IndexBuffer.cpp" />
+    <ClCompile Include="Libraries\Framework\Buffer\RowBuffer.cpp" />
+    <ClCompile Include="Libraries\Framework\Buffer\StructuredBuffer.cpp" />
+    <ClCompile Include="Libraries\Framework\Buffer\VertexBuffer.cpp" />
+    <ClCompile Include="Libraries\Framework\Collision\BoxCollider.cpp" />
+    <ClCompile Include="Libraries\Framework\Collision\CapsuleCollider.cpp" />
+    <ClCompile Include="Libraries\Framework\Collision\Collider.cpp" />
+    <ClCompile Include="Libraries\Framework\Collision\SphereCollider.cpp" />
+    <ClCompile Include="Libraries\Framework\Environment\Camera.cpp" />
+    <ClCompile Include="Libraries\Framework\Environment\Environment.cpp" />
+    <ClCompile Include="Libraries\Framework\Environment\Frustum.cpp" />
+    <ClCompile Include="Libraries\Framework\Math\GameMath.cpp" />
+    <ClCompile Include="Libraries\Framework\Math\Transform.cpp" />
+    <ClCompile Include="Libraries\Framework\Model\Model.cpp" />
+    <ClCompile Include="Libraries\Framework\Model\ModelAnimator.cpp" />
+    <ClCompile Include="Libraries\Framework\Model\ModelAnimatorInstancing.cpp" />
+    <ClCompile Include="Libraries\Framework\Model\ModelClip.cpp" />
+    <ClCompile Include="Libraries\Framework\Model\ModelExporter.cpp" />
+    <ClCompile Include="Libraries\Framework\Model\ModelInstancing.cpp" />
+    <ClCompile Include="Libraries\Framework\Model\ModelMesh.cpp" />
+    <ClCompile Include="Libraries\Framework\Model\ModelReader.cpp" />
+    <ClCompile Include="Libraries\Framework\Render\Material.cpp" />
+    <ClCompile Include="Libraries\Framework\Render\Mesh.cpp" />
+    <ClCompile Include="Libraries\Framework\Shader\ComputeShader.cpp" />
+    <ClCompile Include="Libraries\Framework\State\BlendState.cpp" />
+    <ClCompile Include="Libraries\Framework\State\DepthStacilState.cpp" />
+    <ClCompile Include="Libraries\Framework\State\RasterizerState.cpp" />
+    <ClCompile Include="Libraries\Framework\State\SamplerState.cpp" />
+    <ClCompile Include="Libraries\Framework\Utility\Utility.cpp" />
+    <ClCompile Include="Manager\SceneManager.cpp" />
+    <ClCompile Include="Object\Basic\Cube.cpp" />
+    <ClCompile Include="Object\Basic\Grid.cpp" />
+    <ClCompile Include="Object\Basic\Quad.cpp" />
+    <ClCompile Include="Object\Basic\Sphere.cpp" />
+    <ClCompile Include="Object\Landscape\Box.cpp" />
+    <ClCompile Include="Object\Landscape\Sky.cpp" />
+    <ClCompile Include="Object\Landscape\Terrain.cpp" />
+    <ClCompile Include="Object\Landscape\TerrainEditor.cpp" />
+    <ClCompile Include="Object\Manager\InstancingMonsterManager.cpp" />
+    <ClCompile Include="Object\Manager\MonsterManager.cpp" />
+    <ClCompile Include="Object\Model\Amber.cpp" />
+    <ClCompile Include="Object\Model\Chuchu.cpp" />
+    <ClCompile Include="Object\Model\Gumdramon.cpp" />
+    <ClCompile Include="Object\Model\Horse.cpp" />
+    <ClCompile Include="Object\Model\InstancingChuchu.cpp" />
+    <ClCompile Include="Object\Model\JapanHouse.cpp" />
+    <ClCompile Include="Object\Model\Jean.cpp" />
+    <ClCompile Include="Object\Model\Mistsplitter.cpp" />
+    <ClCompile Include="Object\Model\RockBoss.cpp" />
+    <ClCompile Include="Object\Model\RockPillar.cpp" />
+    <ClCompile Include="Object\Model\RockShield.cpp" />
+    <ClCompile Include="Object\Model\Sword.cpp" />
+    <ClCompile Include="Object\Model\Wing.cpp" />
+    <ClCompile Include="Object\Model\Zombie.cpp" />
+    <ClCompile Include="Object\ReportCamera_211205.cpp" />
+    <ClCompile Include="Object\ReportCube.cpp" />
+    <ClCompile Include="Libraries\Framework\Render\Texture.cpp" />
+    <ClCompile Include="Libraries\Framework\Shader\PixelShader.cpp" />
+    <ClCompile Include="Libraries\Framework\Shader\Shader.cpp" />
+    <ClCompile Include="Libraries\Framework\Shader\VertexShader.cpp" />
+    <ClCompile Include="Libraries\Framework\System\Device.cpp" />
+    <ClCompile Include="Libraries\Framework\Utility\BinaryReader.cpp" />
+    <ClCompile Include="Libraries\Framework\Utility\BinaryWriter.cpp" />
+    <ClCompile Include="Libraries\Framework\Utility\Font.cpp" />
+    <ClCompile Include="Object\ReportGrid.cpp" />
+    <ClCompile Include="Object\ReportRobot_211201.cpp" />
+    <ClCompile Include="Object\SKillBall.cpp" />
+    <ClCompile Include="Object\UI\Bar.cpp" />
+    <ClCompile Include="Programe\Program.cpp" />
+    <ClCompile Include="Scenes\AstarScene.cpp" />
+    <ClCompile Include="Scenes\CharacterScene.cpp" />
+    <ClCompile Include="Scenes\CollisionScene.cpp" />
+    <ClCompile Include="Scenes\CubeScene.cpp" />
+    <ClCompile Include="Scenes\DefenceScene.cpp" />
+    <ClCompile Include="Scenes\FrustumScene.cpp" />
+    <ClCompile Include="Scenes\GridScene.cpp" />
+    <ClCompile Include="Scenes\InstancingScene.cpp" />
+    <ClCompile Include="Scenes\LightScene.cpp" />
+    <ClCompile Include="Scenes\ModelAnimatorInstancingScene.cpp" />
+    <ClCompile Include="Scenes\ModelAnimatorScene.cpp" />
+    <ClCompile Include="Scenes\ModelExportScene.cpp" />
+    <ClCompile Include="Scenes\ModelInstancingScene.cpp" />
+    <ClCompile Include="Scenes\ModelRenderScene.cpp" />
+    <ClCompile Include="Scenes\ReportScene.cpp" />
+    <ClCompile Include="Scenes\SphereScene.cpp" />
+    <ClCompile Include="Scenes\TerrainEditorScene.cpp" />
+    <ClCompile Include="Scenes\TerrainScene.cpp" />
+    <ClCompile Include="Scenes\TutorialScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DX3D.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DX3D.ico" />
+    <Image Include="small.ico" />
+    <Image Include="Textures\HeightMaps\AlphaMap.png" />
+    <Image Include="Textures\HeightMaps\ColorMap256.png" />
+    <Image Include="Textures\HeightMaps\HeightMap.png" />
+    <Image Include="Textures\HeightMaps\HeightMap256.png" />
+    <Image Include="Textures\Landscape\Box.png" />
+    <Image Include="Textures\Landscape\Bricks.png" />
+    <Image Include="Textures\Landscape\Bricks_normal.png" />
+    <Image Include="Textures\Landscape\Dirt.png" />
+    <Image Include="Textures\Landscape\Dirt2.png" />
+    <Image Include="Textures\Landscape\Dirt3.png" />
+    <Image Include="Textures\Landscape\Fieldstone_DM.tga" />
+    <Image Include="Textures\Landscape\fieldstone_NM.tga" />
+    <Image Include="Textures\Landscape\fieldstone_SM.tga" />
+    <Image Include="Textures\Landscape\Floor.png" />
+    <Image Include="Textures\Landscape\Floor_normal.png" />
+    <Image Include="Textures\Landscape\Stones.png" />
+    <Image Include="Textures\Landscape\Stones_normal.png" />
+    <Image Include="Textures\Landscape\Tree.png" />
+    <Image Include="Textures\Landscape\Wall.png" />
+    <Image Include="Textures\Landscape\Wall_normal.png" />
+    <Image Include="Textures\Landscape\Wall_specular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\AnimatorInstancing.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Bar.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Collider.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\ComputePicking.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CS</EntryPointName>
+    </FxCompile>
+    <FxCompile Include="Shaders\Grid.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Instancing.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Lighting.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\ModelTransparent.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Sky.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\TerrainEditor.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\TerrainSplatting.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Texture.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\UvShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Header.hlsli" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
