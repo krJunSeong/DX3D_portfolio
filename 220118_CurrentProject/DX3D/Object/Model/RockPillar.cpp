@@ -1,32 +1,25 @@
 #include "framework.h"
 
-RockPillar::RockPillar(int count)
+RockPillar::RockPillar()
 	:ModelInstancing("RockPillar")
 {
-	CreateObject(count);
+	bodyCollider = new CapsuleCollider(1, 1);
+	bodyCollider->tag = "RockPillarCollider";
+	bodyCollider->Load();
+
+	hpBar = new Bar(L"Textures/UI/hp_bar.png", L"Textures/UI/hp_Bar_BG.png");
+	hpBar->tag = "RockPillarHpBar";
+	hpBar->Load();
 }
 
 RockPillar::~RockPillar()
 {
-	for(CapsuleCollider* col : bodyCollideres)
-		delete col;
-}
+	delete bodyCollider;
+	delete hpBar;
 
-void RockPillar::CreateObject(int count)
-{
-	for(int i = 0; i < count; i++)
-	{
-		Transform* trf = Add();
-		trf->position = {(float)Random(0, 50), 0.0f, (float)Random(0, 50)};
-
-		CapsuleCollider* collider = new CapsuleCollider();
-		collider->isActive = true;
-		collider->tag = "PillarCollider";
-		collider->scale = {1.5f,1.5f, 1.5f};
-		collider->SetParent(trf);
-
-		bodyCollideres.push_back(collider);
-	}
+	// 捞包
+	//for(CapsuleCollider* col : bodyCollideres)
+	//	delete col;
 }
 
 void RockPillar::SetParent(Transform* trf)
@@ -37,16 +30,72 @@ void RockPillar::SetParent(Transform* trf)
 
 void RockPillar::Update()
 {
+	if(!transform->isActive) return;
+
 	ModelInstancing::Update(); 
 
-	for(CapsuleCollider* col : bodyCollideres)
-		col->UpdateWorld();
+	bodyCollider->UpdateWorld();
+	HpControll();
+
+	// 捞包
+	//for(CapsuleCollider* col : bodyCollideres)
+	//	col->UpdateWorld();
 }
 
 void RockPillar::Render()
 {
+	if (!transform->isActive) return;
 	ModelInstancing::Render();
 
-	for (CapsuleCollider* col : bodyCollideres)
-		col->Render();
+	bodyCollider->Render();
+	// 捞包
+	//for (CapsuleCollider* col : bodyCollideres)
+	//	col->Render();
+}
+
+void RockPillar::GUIRender()
+{
+	transform->GUIRender();
+	bodyCollider->GUIRender();
+	// 捞包
+	//for (CapsuleCollider* col : bodyCollideres)
+	//	col->GUIRender();
+}
+
+void RockPillar::PostRender()
+{
+	if (!transform->isActive) return;
+
+	hpBar->Render();
+}
+
+void RockPillar::Init()
+{
+	transform->isActive = true;
+	bodyCollider->isActive = true;
+
+	hp = 100.0f;
+	hpBar->SetValue(hp);
+}
+
+void RockPillar::HpControll()
+{
+	Vector3 barPos = transform->position + Vector3(0, 5.5f, 0);
+	hpBar->position = CAM->WorldToScreenPoint(barPos);
+
+	float distance = Distance(CAM->position, transform->position);
+	hpBar->scale.x = hpBarScaleRate / distance;
+	hpBar->scale.y = hpBarScaleRate / distance;
+
+	hpBar->SetValue(hp);
+
+	LerpHp();
+	hpBar->Update();
+}
+
+void RockPillar::LerpHp()
+{
+	lerpHp = LERP(lerpHp, hp, lerpSpeed * DELTA);
+
+	hpBar->SetLerpValue(lerpHp);
 }

@@ -57,14 +57,16 @@ void ReportScene::Render()
 void ReportScene::PostRender()
 {
 	InstancingMonsterManager::Get()->PostRender();
+	boss->PostRender();
 }
 
 void ReportScene::GUIRender()
 {
 	land->GUIRender();
 	jean->GUIRender();
+	boss->GUIRender();
+	//InstancingMonsterManager::Get()->GUIRender();
 	//boss->GUIRender();
-	InstancingMonsterManager::Get()->GUIRender();
 	//chuchu->GUIRender();
 }
 

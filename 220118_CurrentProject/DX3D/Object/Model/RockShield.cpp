@@ -1,23 +1,36 @@
 #include "framework.h"
 
-RockShield::RockShield(int count)
+RockShield::RockShield()
 	: ModelInstancing("RockShield")
 {
-	printf("hello world");
+	CreateObject();
 }
 
 RockShield::~RockShield()
 {
 }
 
-void RockShield::CreateObject(int count)
+void RockShield::CreateObject()
 {
+	Transform* trf = Add();
+
+	bodyCollider = new SphereCollider();
+	bodyCollider->tag = "RockShieldCollider";
+	bodyCollider->isActive = true;
+	bodyCollider->scale = {1.5f, 1.5f, 1.5f};
+	bodyCollider->SetParent(trf);
 }
 
 void RockShield::Update()
 {
+	ModelInstancing::Update();
+
+	bodyCollider->UpdateWorld();
 }
 
 void RockShield::Render()
 {
+	ModelInstancing::Render();
+	
+	bodyCollider->Render();
 }

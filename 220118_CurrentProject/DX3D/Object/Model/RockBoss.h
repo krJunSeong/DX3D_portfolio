@@ -8,21 +8,15 @@ private:
 		IDLE, RUN, ATTACK, HIT, DEATH
 	} animState;
 
-	enum class ActionState
-	{
-		IDLE, TRACE, ATTACK
-	} actionState;
-
 	UINT instanceID;
 
 	Matrix rightHand;
 
 	Transform* transform;
 
-	RockPillar* rockPillar;
-	CapsuleCollider* rockShieldColliders;
+	vector<RockPillar*> rockPillares;
+	RockShield* rockShield;
 
-	BoxCollider* attackCollider;
 	Bar* hpBar;
 
 	float hp = 100.0f;
@@ -31,13 +25,12 @@ private:
 	float hpBarScaleRate = 20.0f;
 	const float rotSpeed = 10.0f;
 	const float movespeed = 10.0f;
-
+	
+	const float rockShieldDistance = 40.0f;
 	bool isAttack;
 	bool isMove;
 	bool isJumping;
 	bool isHit;
-
-	ModelInstancing* rockShield;
 
 	class Jean* player;
 	Terrain* terrain;
@@ -52,6 +45,7 @@ private:
 	void DeathEnd();
 
 	void CreateObject();
+	void Collision(Collider* collider, float damage);
 public:
 	RockBoss();
 	~RockBoss();

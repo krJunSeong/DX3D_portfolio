@@ -6,11 +6,12 @@ private:
 	SphereCollider* bodyCollider;
 
 public:
-	RockShield(int count = 1);
+	RockShield();
 	~RockShield();
 
-	void CreateObject(int count);
+	void CreateObject();
 
 	void Update();
 	void Render();
+	void GUIRender();
 };
