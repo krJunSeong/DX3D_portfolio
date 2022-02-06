@@ -10,10 +10,10 @@ RockBoss::RockBoss()
 
 RockBoss::~RockBoss()
 {
-	//delete rockShield;
-
+	delete instancing;
 	for(RockPillar* rockPillar :  rockPillares)
 		delete rockPillar;
+
 	//delete rockShield;
 
 	//for(CapsuleCollider* col : rockPillarCollideres)
@@ -22,6 +22,8 @@ RockBoss::~RockBoss()
 
 void RockBoss::Update()
 {
+	instancing->Update();
+
 	//rockShield->Update();
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->Update();
@@ -31,6 +33,8 @@ void RockBoss::Update()
 
 void RockBoss::Render()
 {
+	instancing->Render();
+
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->Render();
 
@@ -79,32 +83,33 @@ void RockBoss::CreateObject()
 	//rockShield = new ModelInstancing("RockShield");
 	//rockShieldColliders = new CapsuleCollider();
 
+	instancing = new ModelInstancing("RockPillar");
+
 	for(int i = 0; i < 4; i++)
 	{
 		RockPillar* rockPillar = new RockPillar();
-		Transform* trf = rockPillar->Add();
-		
+		Transform* trf = instancing->Add();
 		trf->tag = "RockPillar";
-		rockPillar->SetTransform(trf);
 		trf->scale *= 2.1f;
 		trf->isActive = true;
-		rockPillar->GetCollider()->SetParent(trf);
+		rockPillar->SetTransform(trf);
 
+		rockPillar->GetCollider()->SetParent(trf);
 		rockPillares.push_back(rockPillar);
 
 		switch(i)
 		{
 			case 0:
-				trf->position.x += rockShieldDistance;
+				trf->position.x = rockShieldDistance;
 				break;
 			case 1:
-				trf->position.x -= rockShieldDistance;
+				trf->position.x = -rockShieldDistance;
 				break;
 			case 2:
-				trf->position.z += rockShieldDistance;
+				trf->position.z = rockShieldDistance;
 				break; 
 			case 3:
-				trf->position.z -= rockShieldDistance;
+				trf->position.z = -rockShieldDistance;
 				break;
 		}
 	}

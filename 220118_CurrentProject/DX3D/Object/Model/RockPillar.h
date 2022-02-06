@@ -1,15 +1,13 @@
 #pragma once
 
-class RockPillar : public ModelInstancing
+class RockPillar : public Transform
 {
 private:
 	CapsuleCollider* bodyCollider;
-	Transform* transform;
 	Quad* quad;
 	class RockShield* rockShield;
-	
-	// 이관할 것
-	//vector<CapsuleCollider*> bodyCollideres;
+
+	Transform* objTransform;
 
 	Bar* hpBar;
 	float hp = 100.0f;
@@ -35,9 +33,14 @@ public:
 	void HpControll();
 	void LerpHp();
 
-	Transform* GetTransform() { return transform; }
+	void SetTransform(Transform* transform) 
+	{
+		objTransform = transform;
+		objTransform->SetParent(this);
+		//objTransform->Load();
+	}
+	Transform* GetTransform(){return this;}
 	Collider* GetCollider() { return bodyCollider; }
 
-	void SetTransform(Transform* tr){ transform = tr;}
 	void SetQuad(Quad* quad) { this->quad = quad; }
 };

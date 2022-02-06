@@ -1,11 +1,13 @@
 #include "framework.h"
 
 RockPillar::RockPillar()
-	:ModelInstancing("RockPillar")
 {
+	Transform::tag = "RockPillar";
+
 	bodyCollider = new CapsuleCollider(1, 1);
 	bodyCollider->tag = "RockPillarCollider";
-	bodyCollider->Load();
+	//bodyCollider->SetParent(this);
+	//bodyCollider->Load();
 
 	hpBar = new Bar(L"Textures/UI/hp_bar.png", L"Textures/UI/hp_Bar_BG.png");
 	hpBar->tag = "RockPillarHpBar";
@@ -22,21 +24,13 @@ RockPillar::~RockPillar()
 	//	delete col;
 }
 
-void RockPillar::SetParent(Transform* trf)
-{
-	for(Transform* transform : transforms)
-		transform->SetParent(trf);
-}
-
 void RockPillar::Update()
 {
-	if(!transform->isActive) return;
+	if(!Transform::isActive) return;
 
-	ModelInstancing::Update(); 
-
+	UpdateWorld();
 	bodyCollider->UpdateWorld();
 	HpControll();
-
 	// 이관
 	//for(CapsuleCollider* col : bodyCollideres)
 	//	col->UpdateWorld();
@@ -44,9 +38,8 @@ void RockPillar::Update()
 
 void RockPillar::Render()
 {
-	if (!transform->isActive) return;
-	ModelInstancing::Render();
-
+	if (!Transform::isActive) return;
+	
 	bodyCollider->Render();
 	// 이관
 	//for (CapsuleCollider* col : bodyCollideres)
@@ -55,7 +48,7 @@ void RockPillar::Render()
 
 void RockPillar::GUIRender()
 {
-	transform->GUIRender();
+	Transform::GUIRender();
 	bodyCollider->GUIRender();
 	// 이관
 	//for (CapsuleCollider* col : bodyCollideres)
@@ -64,14 +57,14 @@ void RockPillar::GUIRender()
 
 void RockPillar::PostRender()
 {
-	if (!transform->isActive) return;
+	if (!Transform::isActive) return;
 
 	hpBar->Render();
 }
 
 void RockPillar::Init()
 {
-	transform->isActive = true;
+	Transform::isActive = true;
 	bodyCollider->isActive = true;
 
 	hp = 100.0f;
@@ -80,10 +73,10 @@ void RockPillar::Init()
 
 void RockPillar::HpControll()
 {
-	Vector3 barPos = transform->position + Vector3(0, 5.5f, 0);
+	Vector3 barPos = Transform::position + Vector3(0, 5.5f, 0);
 	hpBar->position = CAM->WorldToScreenPoint(barPos);
 
-	float distance = Distance(CAM->position, transform->position);
+	float distance = Distance(CAM->position, Transform::position);
 	hpBar->scale.x = hpBarScaleRate / distance;
 	hpBar->scale.y = hpBarScaleRate / distance;
 

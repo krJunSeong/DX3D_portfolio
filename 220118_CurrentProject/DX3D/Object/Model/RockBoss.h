@@ -12,10 +12,9 @@ private:
 
 	Matrix rightHand;
 
-	Transform* transform;
-
 	vector<RockPillar*> rockPillares;
 	RockShield* rockShield;
+	ModelInstancing* instancing;
 
 	Bar* hpBar;
 
@@ -59,7 +58,6 @@ public:
 
 	//void SetInstancing(ModelInstancing* instancing) { this->rockPillar = instancing; }
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
-	void SetTransform(Transform* transform) { this->transform = transform; }
 
 	void LerpHp();
 
