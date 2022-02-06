@@ -4,10 +4,10 @@ RockPillar::RockPillar()
 {
 	Transform::tag = "RockPillar";
 
-	bodyCollider = new CapsuleCollider(1, 1);
+	bodyCollider = new CapsuleCollider(1, 2);
 	bodyCollider->tag = "RockPillarCollider";
-	//bodyCollider->SetParent(this);
-	//bodyCollider->Load();
+	bodyCollider->SetParent(this);
+	bodyCollider->Load();
 
 	hpBar = new Bar(L"Textures/UI/hp_bar.png", L"Textures/UI/hp_Bar_BG.png");
 	hpBar->tag = "RockPillarHpBar";
@@ -31,6 +31,8 @@ void RockPillar::Update()
 	UpdateWorld();
 	bodyCollider->UpdateWorld();
 	HpControll();
+
+	position.x += DELTA;
 	// ÀÌ°ü
 	//for(CapsuleCollider* col : bodyCollideres)
 	//	col->UpdateWorld();

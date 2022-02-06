@@ -15,6 +15,7 @@ private:
 	vector<RockPillar*> rockPillares;
 	RockShield* rockShield;
 	ModelInstancing* instancing;
+	ModelInstancing* rockShieldInstancing;
 
 	Bar* hpBar;
 

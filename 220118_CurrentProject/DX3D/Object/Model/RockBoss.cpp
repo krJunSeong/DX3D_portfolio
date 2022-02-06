@@ -14,6 +14,10 @@ RockBoss::~RockBoss()
 	for(RockPillar* rockPillar :  rockPillares)
 		delete rockPillar;
 
+	delete hpBar;
+
+	delete rockShieldInstancing;
+	delete rockShield;
 	//delete rockShield;
 
 	//for(CapsuleCollider* col : rockPillarCollideres)
@@ -23,22 +27,22 @@ RockBoss::~RockBoss()
 void RockBoss::Update()
 {
 	instancing->Update();
+	rockShieldInstancing->Update();
 
-	//rockShield->Update();
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->Update();
 
-	//rockShield->Update();
+	rockShield->Update();
 }
 
 void RockBoss::Render()
 {
 	instancing->Render();
-
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->Render();
 
-	//rockShield->Render();
+	rockShieldInstancing->Render();
+	rockShield->Render();
 }
 
 void RockBoss::PostRender()
@@ -51,66 +55,45 @@ void RockBoss::GUIRender()
 {
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->GUIRender();
-	//rockShield->GUIRender();
+	
+	rockShield->GUIRender();
 }
-
-/*
-void RockPillar::CreateObject(int count)
-{
-	for(int i = 0; i < count; i++)
-	{
-		hpBar = new Bar(L"Textures/UI/hp_bar.png", L"Textures/UI/hp_Bar_BG.png");
-		hpBar->tag = "RcokPillarBar";
-		hpBar->Load();
-
-		transform = Add();
-		transform->position = {(float)Random(0, 50), 0.0f, (float)Random(0, 50)};
-
-		CapsuleCollider* collider = new CapsuleCollider();
-		collider->isActive = true;
-		collider->tag = "PillarCollider";
-		collider->scale = {1.5f,1.5f, 1.5f};
-		collider->SetParent(transform);
-
-		bodyCollideres.push_back(collider);
-	}
-}
-*/
 
 void RockBoss::CreateObject()
 {
-	// rock shiled 1°³ = º»Ã¼
-	//rockShield = new ModelInstancing("RockShield");
-	//rockShieldColliders = new CapsuleCollider();
-
 	instancing = new ModelInstancing("RockPillar");
 
 	for(int i = 0; i < 4; i++)
 	{
 		RockPillar* rockPillar = new RockPillar();
-		Transform* trf = instancing->Add();
-		trf->tag = "RockPillar";
-		trf->scale *= 2.1f;
-		trf->isActive = true;
-		rockPillar->SetTransform(trf);
-
-		rockPillar->GetCollider()->SetParent(trf);
+		Transform* insTrf = instancing->Add();
+		insTrf->tag = "RockPillar";
+		insTrf->scale *= 2.1f;
+		insTrf->isActive = true;
+		rockPillar->SetTransform(insTrf);
 		rockPillares.push_back(rockPillar);
 
 		switch(i)
 		{
 			case 0:
-				trf->position.x = rockShieldDistance;
+				rockPillar->position.x = rockShieldDistance;
 				break;
 			case 1:
-				trf->position.x = -rockShieldDistance;
+				rockPillar->position.x = -rockShieldDistance;
 				break;
 			case 2:
-				trf->position.z = rockShieldDistance;
+				rockPillar->position.z = rockShieldDistance;
 				break; 
 			case 3:
-				trf->position.z = -rockShieldDistance;
+				rockPillar->position.z = -rockShieldDistance;
 				break;
 		}
 	}
+
+	rockShieldInstancing = new ModelInstancing("RockShield");
+	rockShield = new RockShield();
+	Transform* temp = rockShieldInstancing->Add();
+	temp->tag = "RockShield";
+	temp->isActive = true;
+	rockShield->SetTransform(temp);
 }

@@ -1,36 +1,57 @@
 #include "framework.h"
 
 RockShield::RockShield()
-	: ModelInstancing("RockShield")
 {
 	CreateObject();
 }
 
 RockShield::~RockShield()
 {
+	delete bodyCollider;
 }
 
 void RockShield::CreateObject()
 {
-	Transform* trf = Add();
+	Transform::tag = "RockShield";
+	Transform::isActive = true;
+
+	floatingSpeed = 2.0f;
 
 	bodyCollider = new SphereCollider();
 	bodyCollider->tag = "RockShieldCollider";
 	bodyCollider->isActive = true;
 	bodyCollider->scale = {1.5f, 1.5f, 1.5f};
-	bodyCollider->SetParent(trf);
+	bodyCollider->SetParent(this);
+	bodyCollider->Load();
 }
 
 void RockShield::Update()
 {
-	ModelInstancing::Update();
-
+	Transform::UpdateWorld();
 	bodyCollider->UpdateWorld();
+	Floating();
 }
 
 void RockShield::Render()
 {
-	ModelInstancing::Render();
-	
 	bodyCollider->Render();
+}
+
+void RockShield::GUIRender()
+{
+	Transform::GUIRender();
+	bodyCollider->GUIRender();
+}
+
+void RockShield::Floating()
+{
+	floatingTime += DELTA;
+		
+	if(floatingTime > FloatingDuration)
+	{
+		floatingTime = 0.0f;
+		floatingSpeed = -floatingSpeed;
+	}
+
+	position.y += floatingSpeed * DELTA;
 }
