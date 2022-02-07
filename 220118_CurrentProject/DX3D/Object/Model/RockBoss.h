@@ -21,8 +21,15 @@ private:
 
 	// phase1 Data
 	const float FloatingDuration = 3.0f;
+	const float LimitPlayTime = 5.0f;
+	const float LimitIdleTime = 5.0f;
 	float floatingSpeed = 2.0f;;
 	float floatingTime = 0.0f;
+	float idleTime = 0.0f;
+
+
+	Vector3 originPlayerPosDir;
+	bool isCrash = false;
 
 	float hp = 100.0f;
 	float lerpHp = 100.0f;
@@ -63,6 +70,7 @@ public:
 	void Damage();
 
 	void Phase1();
+	void Phase1Attack();
 	void Floating();
 
 	//void SetInstancing(ModelInstancing* instancing) { this->rockPillar = instancing; }

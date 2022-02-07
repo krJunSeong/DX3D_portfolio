@@ -67,11 +67,53 @@ void RockBoss::Phase1()
 	{
 		Floating();
 	}
+
+	if(state == ATTACK)
+	{
+		Phase1Attack();
+	}
+}
+
+void RockBoss::Phase1Attack()
+{
+	// Move rockShield --> player
+	if(isCrash)
+	{
+		// move to origin player pos
+		if(rockShield->position.y > quad->position.y + 1.0f)
+		{
+			isCrash = false;
+			state = IDLE;
+		}
+		else
+			rockShield->position += originPlayerPosDir;
+
+		return;
+	}
+
+	// Prepare Attacking, Limit rockShield position.y
+	if(rockShield->position.y >= 7.0f)
+	{
+		//if(player == nullptr) 
+		Vector3 temp = player->position - rockShield->position;
+		originPlayerPosDir = temp.GetNormalized();
+		isCrash = true;
+	}
+	else
+		rockShield->position.y += DELTA;
 }
 
 void RockBoss::Floating()
 {
 	floatingTime += DELTA;
+	idleTime += DELTA;
+
+	if(idleTime >= LimitIdleTime && (rockShield->position.y <= 2.0f))
+	{
+		state = ATTACK;
+		idleTime = 0.0f;
+		return;
+	}
 
 	if (floatingTime > FloatingDuration)
 	{
