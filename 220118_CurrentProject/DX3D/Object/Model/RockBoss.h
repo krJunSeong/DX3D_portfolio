@@ -5,8 +5,8 @@ class RockBoss
 private:
 	enum AnimState
 	{
-		IDLE, RUN, ATTACK, HIT, DEATH
-	} animState;
+		IDLE, ATTACK
+	}state;
 
 	UINT instanceID;
 
@@ -18,6 +18,11 @@ private:
 	ModelInstancing* rockShieldInstancing;
 
 	Bar* hpBar;
+
+	// phase1 Data
+	const float FloatingDuration = 3.0f;
+	float floatingSpeed = 2.0f;;
+	float floatingTime = 0.0f;
 
 	float hp = 100.0f;
 	float lerpHp = 100.0f;
@@ -57,8 +62,12 @@ public:
 	void GUIRender();
 	void Damage();
 
+	void Phase1();
+	void Floating();
+
 	//void SetInstancing(ModelInstancing* instancing) { this->rockPillar = instancing; }
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
+	void SetPlayer(Jean* jean) { player = jean;}
 
 	void LerpHp();
 

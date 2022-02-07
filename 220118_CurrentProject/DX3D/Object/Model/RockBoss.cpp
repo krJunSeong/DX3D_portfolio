@@ -1,6 +1,7 @@
 #include "framework.h"
 
 RockBoss::RockBoss()
+	: state(IDLE)
 {
 	hpBar = new Bar(L"Textures/UI/hp_bar.png", L"Textures/UI/hp_Bar_BG.png");
 	hpBar->tag = "MonsterHpBar";
@@ -18,7 +19,6 @@ RockBoss::~RockBoss()
 
 	delete rockShieldInstancing;
 	delete rockShield;
-	//delete rockShield;
 
 	//for(CapsuleCollider* col : rockPillarCollideres)
 	//	delete col;
@@ -26,6 +26,8 @@ RockBoss::~RockBoss()
 
 void RockBoss::Update()
 {
+	Phase1();
+	
 	instancing->Update();
 	rockShieldInstancing->Update();
 
@@ -57,6 +59,27 @@ void RockBoss::GUIRender()
 		rockPillar->GUIRender();
 	
 	rockShield->GUIRender();
+}
+
+void RockBoss::Phase1()
+{
+	if (state == IDLE)
+	{
+		Floating();
+	}
+}
+
+void RockBoss::Floating()
+{
+	floatingTime += DELTA;
+
+	if (floatingTime > FloatingDuration)
+	{
+		floatingTime = 0.0f;
+		floatingSpeed = -floatingSpeed;
+	}
+
+	rockShield->position.y += floatingSpeed * DELTA;
 }
 
 void RockBoss::CreateObject()

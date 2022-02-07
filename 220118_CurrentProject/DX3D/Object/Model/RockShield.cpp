@@ -30,7 +30,7 @@ void RockShield::Update()
 {
 	Transform::UpdateWorld();
 	bodyCollider->UpdateWorld();
-	Floating();
+	//Floating();
 }
 
 void RockShield::Render()
