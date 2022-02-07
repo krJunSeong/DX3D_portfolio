@@ -32,7 +32,6 @@ void RockPillar::Update()
 	bodyCollider->UpdateWorld();
 	HpControll();
 
-	position.x += DELTA;
 	// ÀÌ°ü
 	//for(CapsuleCollider* col : bodyCollideres)
 	//	col->UpdateWorld();

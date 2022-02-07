@@ -14,6 +14,7 @@ void RockShield::CreateObject()
 {
 	Transform::tag = "RockShield";
 	Transform::isActive = true;
+	Transform::Load();
 
 	floatingSpeed = 2.0f;
 

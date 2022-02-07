@@ -54,7 +54,7 @@ Program::Program()
     // Astar
         //SceneManager::Get()->Create("Astar", new AstarScene());
         //SceneManager::Get()->Add("Astar");
-
+     
     // ReportScene
        SceneManager::Get()->Create("Report", new ReportScene());
        SceneManager::Get()->Add("Report");
