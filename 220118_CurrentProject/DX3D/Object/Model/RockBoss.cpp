@@ -12,7 +12,7 @@ RockBoss::RockBoss()
 RockBoss::~RockBoss()
 {
 	delete instancing;
-	for(RockPillar* rockPillar :  rockPillares)
+	for (RockPillar* rockPillar : rockPillares)
 		delete rockPillar;
 
 	delete hpBar;
@@ -27,7 +27,7 @@ RockBoss::~RockBoss()
 void RockBoss::Update()
 {
 	Phase1();
-	
+
 	instancing->Update();
 	rockShieldInstancing->Update();
 
@@ -57,7 +57,7 @@ void RockBoss::GUIRender()
 {
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->GUIRender();
-	
+
 	rockShield->GUIRender();
 }
 
@@ -68,7 +68,7 @@ void RockBoss::Phase1()
 		Floating();
 	}
 
-	if(state == ATTACK)
+	if (state == ATTACK)
 	{
 		Phase1Attack();
 	}
@@ -77,22 +77,23 @@ void RockBoss::Phase1()
 void RockBoss::Phase1Attack()
 {
 	// Move rockShield --> player
-	if(isCrash)
+	if (isCrash)
 	{
-		// move to origin player pos
-		if(rockShield->position.y > quad->position.y + 1.0f)
+		if (rockShield->position.y < quad->position.y + 1.0f)
 		{
 			isCrash = false;
 			state = IDLE;
+			return;
 		}
-		else
-			rockShield->position += originPlayerPosDir;
 
-		return;
+		// move to origin player pos
+		rockShield->position += originPlayerPosDir * MoveSpeed * DELTA;
+		rockShield->rotation.y += SpinSpeed * DELTA;
+
 	}
 
 	// Prepare Attacking, Limit rockShield position.y
-	if(rockShield->position.y >= 7.0f)
+	if (rockShield->position.y >= 10.0f)
 	{
 		//if(player == nullptr) 
 		Vector3 temp = player->position - rockShield->position;
@@ -108,7 +109,7 @@ void RockBoss::Floating()
 	floatingTime += DELTA;
 	idleTime += DELTA;
 
-	if(idleTime >= LimitIdleTime && (rockShield->position.y <= 2.0f))
+	if (idleTime >= LimitIdleTime && (rockShield->position.y <= 2.0f))
 	{
 		state = ATTACK;
 		idleTime = 0.0f;
@@ -128,7 +129,7 @@ void RockBoss::CreateObject()
 {
 	instancing = new ModelInstancing("RockPillar");
 
-	for(int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		RockPillar* rockPillar = new RockPillar();
 		Transform* insTrf = instancing->Add();
@@ -138,20 +139,20 @@ void RockBoss::CreateObject()
 		rockPillar->SetTransform(insTrf);
 		rockPillares.push_back(rockPillar);
 
-		switch(i)
+		switch (i)
 		{
-			case 0:
-				rockPillar->position.x = rockShieldDistance;
-				break;
-			case 1:
-				rockPillar->position.x = -rockShieldDistance;
-				break;
-			case 2:
-				rockPillar->position.z = rockShieldDistance;
-				break; 
-			case 3:
-				rockPillar->position.z = -rockShieldDistance;
-				break;
+		case 0:
+			rockPillar->position.x = rockShieldDistance;
+			break;
+		case 1:
+			rockPillar->position.x = -rockShieldDistance;
+			break;
+		case 2:
+			rockPillar->position.z = rockShieldDistance;
+			break;
+		case 3:
+			rockPillar->position.z = -rockShieldDistance;
+			break;
 		}
 	}
 

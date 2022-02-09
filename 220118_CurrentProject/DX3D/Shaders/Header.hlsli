@@ -20,6 +20,12 @@ struct VertexUV
     float2 uv : UV;
 };
 
+struct VertexSize
+{
+    float4 pos : POSITION;
+    float2 size : SIZE;
+};
+
 struct VertexUVNormal
 {
     float4 pos : POSITION;

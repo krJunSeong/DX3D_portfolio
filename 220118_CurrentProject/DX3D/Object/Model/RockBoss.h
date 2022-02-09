@@ -23,6 +23,8 @@ private:
 	const float FloatingDuration = 3.0f;
 	const float LimitPlayTime = 5.0f;
 	const float LimitIdleTime = 5.0f;
+	const float MoveSpeed = 10.0f;
+	const float SpinSpeed = 3.0f;
 	float floatingSpeed = 2.0f;;
 	float floatingTime = 0.0f;
 	float idleTime = 0.0f;
@@ -37,7 +39,7 @@ private:
 	float hpBarScaleRate = 20.0f;
 	const float rotSpeed = 10.0f;
 	const float movespeed = 10.0f;
-	
+
 	const float rockShieldDistance = 40.0f;
 	bool isAttack;
 	bool isMove;
@@ -75,7 +77,8 @@ public:
 
 	//void SetInstancing(ModelInstancing* instancing) { this->rockPillar = instancing; }
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
-	void SetPlayer(Jean* jean) { player = jean;}
+	void SetPlayer(Jean* jean) { player = jean; }
+	void SetQuad(Quad* land) { quad = land; }
 
 	void LerpHp();
 

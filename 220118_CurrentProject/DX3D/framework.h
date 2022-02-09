@@ -114,6 +114,7 @@ using namespace Utility;
 #include "Framework/Shader/VertexShader.h"
 #include "Framework/Shader/PixelShader.h"
 #include "Framework/Shader/ComputeShader.h"
+#include "Framework/Shader/GeometryShader.h"
 
 #include "Framework/Buffer/VertexLayouts.h"
 #include "Framework/Buffer/VertexBuffer.h"

@@ -11,6 +11,8 @@ ReportScene::ReportScene()
 	jean = new Jean();
 
 	boss = new RockBoss();
+	boss->SetPlayer(jean);
+	boss->SetQuad(land);
 
 	sky = new Sky(L"Textures/Landscape/Space.dds");
 	//chuchu = new Chuchu();

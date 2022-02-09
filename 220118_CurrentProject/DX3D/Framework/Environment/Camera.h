@@ -35,7 +35,7 @@ public:
     void Update();
     void GUIRender();
 
-    void SetBuffer();
+    void SetBuffer(UINT slot = 1);
 
     Ray ScreenPointToRay(Vector3 screenPos);
     Vector3 WorldToScreenPoint(Vector3 worldPos);

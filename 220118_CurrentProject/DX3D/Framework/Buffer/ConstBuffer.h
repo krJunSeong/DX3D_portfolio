@@ -19,6 +19,7 @@ public:
     void SetVSBuffer(UINT slot);
     void SetPSBuffer(UINT slot);
     void SetCSBuffer(UINT slot);
+    void SetGSBuffer(UINT slot);
 };
 /* 주의사항
 	상수버퍼 넘겨줄 때 16 배수로 넘겨줄 것

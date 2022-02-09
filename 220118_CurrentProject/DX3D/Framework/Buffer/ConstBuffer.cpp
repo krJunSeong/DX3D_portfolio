@@ -42,6 +42,12 @@ void ConstBuffer::SetCSBuffer(UINT slot)
     DC->CSSetConstantBuffers(slot, 1, &buffer);
 }
 
+void ConstBuffer::SetGSBuffer(UINT slot)
+{
+    Update();
+    DC->GSSetConstantBuffers(slot, 1, &buffer);
+}
+
 
 
 

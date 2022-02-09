@@ -38,6 +38,19 @@ struct VertexUV
     {}
 };
 
+struct VertexSize
+{
+    Float3 position;
+    Float2 size;
+
+    VertexSize() : position(0, 0, 0), size(0, 0)
+    {}
+
+    VertexSize(float x, float y, float z, float w, float h)
+        : position(x, y, z), size(w, h)
+    {}
+};
+
 struct VertexUVNormal
 {
     Float3 position;

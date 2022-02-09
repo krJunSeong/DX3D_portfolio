@@ -18,6 +18,7 @@
 #include "Scenes/InstancingScene.h"
 #include "Scenes/ModelAnimatorInstancingScene.h"
 #include "Scenes/DefenceScene.h"
+#include "Scenes/BillboardScene.h"
 
 Program::Program()
 {
@@ -71,6 +72,8 @@ Program::Program()
         //SceneManager::Get()->Create("ModelAnimatorInstancingScene", new ModelAnimatorInstancingScene());
         //SceneManager::Get()->Add("ModelAnimatorInstancingScene");
 
+    //SceneManager::Get()->Create("BillboardScene", new BillboardScene());
+    //SceneManager::Get()->Add("BillboardScene");
 }
 Program::~Program()
 {

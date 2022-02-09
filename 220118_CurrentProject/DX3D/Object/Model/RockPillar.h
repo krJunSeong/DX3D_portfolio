@@ -43,4 +43,5 @@ public:
 	Collider* GetCollider() { return bodyCollider; }
 
 	void SetQuad(Quad* quad) { this->quad = quad; }
+	float GetHp() { return hp; }
 };
