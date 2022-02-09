@@ -79,20 +79,21 @@ void RockBoss::Phase1Attack()
 	// Move rockShield --> player
 	if(isCrash)
 	{
-		// move to origin player pos
-		if(rockShield->position.y > quad->position.y + 1.0f)
+		if (rockShield->position.y < quad->position.y + 1.0f)
 		{
 			isCrash = false;
 			state = IDLE;
+			return;
 		}
-		else
-			rockShield->position += originPlayerPosDir;
-
-		return;
+		
+		// move to origin player pos
+		rockShield->position += originPlayerPosDir * MoveSpeed * DELTA;
+		rockShield->rotation.y += SpinSpeed * DELTA;
+		
 	}
 
 	// Prepare Attacking, Limit rockShield position.y
-	if(rockShield->position.y >= 7.0f)
+	if(rockShield->position.y >= 10.0f)
 	{
 		//if(player == nullptr) 
 		Vector3 temp = player->position - rockShield->position;

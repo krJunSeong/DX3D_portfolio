@@ -41,6 +41,7 @@ public:
 	}
 	Transform* GetTransform(){return this;}
 	Collider* GetCollider() { return bodyCollider; }
+	float GetHp() {return hp;}
 
 	void SetQuad(Quad* quad) { this->quad = quad; }
 };
