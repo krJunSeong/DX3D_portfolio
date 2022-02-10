@@ -3,6 +3,7 @@
 class RockPillar : public Transform
 {
 private:
+	static int PillarCount;
 	CapsuleCollider* bodyCollider;
 	Quad* quad;
 	class RockShield* rockShield;
@@ -45,3 +46,5 @@ public:
 	void SetQuad(Quad* quad) { this->quad = quad; }
 	float GetHp() { return hp; }
 };
+
+int RockPillar::PillarCount = 4;

@@ -63,8 +63,23 @@ void RockPillar::PostRender()
 	hpBar->Render();
 }
 
+void RockPillar::Damaged(float damage)
+{
+	hp -= damage;
+
+	hpBar->SetValue(hp);
+
+	if(hp <= 0.0f)
+	{
+		Transform::isActive = false;
+		PillarCount--;
+	}
+}
+
 void RockPillar::Init()
 {
+	//Spawn, Camera 흔들림 효과 추가?
+
 	Transform::isActive = true;
 	bodyCollider->isActive = true;
 
