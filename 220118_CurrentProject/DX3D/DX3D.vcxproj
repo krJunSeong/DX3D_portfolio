@@ -215,8 +215,9 @@
     <ClInclude Include="Object\Model\Sword.h" />
     <ClInclude Include="Object\Model\Wing.h" />
     <ClInclude Include="Object\Model\Zombie.h" />
-    <ClInclude Include="Object\ReportCamera_211205.h" />
-    <ClInclude Include="Object\ReportCube.h" />
+    <ClInclude Include="Object\Particle\Spark.h" />
+    <ClInclude Include="Object\Report\ReportCamera_211205.h" />
+    <ClInclude Include="Object\Report\ReportCube.h" />
     <ClInclude Include="Framework\Render\Texture.h" />
     <ClInclude Include="Framework\Shader\PixelShader.h" />
     <ClInclude Include="Framework\Shader\Shader.h" />
@@ -226,10 +227,11 @@
     <ClInclude Include="Framework\Utility\BinaryWriter.h" />
     <ClInclude Include="Framework\Utility\Font.h" />
     <ClInclude Include="Framework\Utility\Singleton.h" />
-    <ClInclude Include="Object\ReportGrid.h" />
-    <ClInclude Include="Object\ReportRobot_211201.h" />
-    <ClInclude Include="Object\SKillBall.h" />
+    <ClInclude Include="Object\Report\ReportGrid.h" />
+    <ClInclude Include="Object\Report\ReportRobot_211201.h" />
+    <ClInclude Include="Object\Report\SKillBall.h" />
     <ClInclude Include="Object\UI\Bar.h" />
+    <ClInclude Include="Object\Particle\Particle.h" />
     <ClInclude Include="Programe\Program.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\AstarScene.h" />
@@ -247,6 +249,7 @@
     <ClInclude Include="Scenes\ModelExportScene.h" />
     <ClInclude Include="Scenes\ModelInstancingScene.h" />
     <ClInclude Include="Scenes\ModelRenderScene.h" />
+    <ClInclude Include="Scenes\ParticleScene.h" />
     <ClInclude Include="Scenes\ReportScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SphereScene.h" />
@@ -319,8 +322,10 @@
     <ClCompile Include="Object\Model\Sword.cpp" />
     <ClCompile Include="Object\Model\Wing.cpp" />
     <ClCompile Include="Object\Model\Zombie.cpp" />
-    <ClCompile Include="Object\ReportCamera_211205.cpp" />
-    <ClCompile Include="Object\ReportCube.cpp" />
+    <ClCompile Include="Object\Particle\Particle.cpp" />
+    <ClCompile Include="Object\Particle\Spark.cpp" />
+    <ClCompile Include="Object\Report\ReportCamera_211205.cpp" />
+    <ClCompile Include="Object\Report\ReportCube.cpp" />
     <ClCompile Include="Framework\Render\Texture.cpp" />
     <ClCompile Include="Framework\Shader\PixelShader.cpp" />
     <ClCompile Include="Framework\Shader\Shader.cpp" />
@@ -329,9 +334,9 @@
     <ClCompile Include="Framework\Utility\BinaryReader.cpp" />
     <ClCompile Include="Framework\Utility\BinaryWriter.cpp" />
     <ClCompile Include="Framework\Utility\Font.cpp" />
-    <ClCompile Include="Object\ReportGrid.cpp" />
-    <ClCompile Include="Object\ReportRobot_211201.cpp" />
-    <ClCompile Include="Object\SKillBall.cpp" />
+    <ClCompile Include="Object\Report\ReportGrid.cpp" />
+    <ClCompile Include="Object\Report\ReportRobot_211201.cpp" />
+    <ClCompile Include="Object\Report\SKillBall.cpp" />
     <ClCompile Include="Object\UI\Bar.cpp" />
     <ClCompile Include="Programe\Program.cpp" />
     <ClCompile Include="Scenes\AstarScene.cpp" />
@@ -349,6 +354,7 @@
     <ClCompile Include="Scenes\ModelExportScene.cpp" />
     <ClCompile Include="Scenes\ModelInstancingScene.cpp" />
     <ClCompile Include="Scenes\ModelRenderScene.cpp" />
+    <ClCompile Include="Scenes\ParticleScene.cpp" />
     <ClCompile Include="Scenes\ReportScene.cpp" />
     <ClCompile Include="Scenes\SphereScene.cpp" />
     <ClCompile Include="Scenes\TerrainEditorScene.cpp" />
@@ -408,6 +414,12 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CS</EntryPointName>
     </FxCompile>
     <FxCompile Include="Shaders\Geometry\Billboard.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Geometry\Spark.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

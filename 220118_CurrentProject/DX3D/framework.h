@@ -189,12 +189,15 @@ using namespace GameMath;
 #include "Object/Model/RockShield.h"
 #include "Object/Model/RockBoss.h"
 
+#include "Object/Particle/Particle.h"
+#include "Object/Particle/Spark.h"
+
 // Object Report
-#include "Object/ReportCube.h"
-#include "Object/ReportRobot_211201.h"
-#include "Object/ReportGrid.h"
-#include "Object/ReportCamera_211205.h"
-#include "Object/SKillBall.h"
+#include "Object/Report/ReportCube.h"
+#include "Object/Report/ReportRobot_211201.h"
+#include "Object/Report/ReportGrid.h"
+#include "Object/Report/ReportCamera_211205.h"
+#include "Object/Report/SKillBall.h"
 
 #include "Object/Manager/InstancingMonsterManager.h"
 #include "Object/Manager/MonsterManager.h"
