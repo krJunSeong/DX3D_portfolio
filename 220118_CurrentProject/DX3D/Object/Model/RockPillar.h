@@ -46,5 +46,3 @@ public:
 	void SetQuad(Quad* quad) { this->quad = quad; }
 	float GetHp() { return hp; }
 };
-
-int RockPillar::PillarCount = 4;

@@ -1,5 +1,7 @@
 #include "framework.h"
 
+int RockPillar::PillarCount = 4;
+
 RockPillar::RockPillar()
 {
 	Transform::tag = "RockPillar";
