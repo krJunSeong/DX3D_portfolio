@@ -11,11 +11,14 @@ private:
 	Collider* bodyCollider;
 	Matrix rightHand;
 
+	// --------------- Weapon --------------- 
 	Mistsplitter* mistsplitter;
 	Model* zephyrus;
 	Wing* wing;
 	vector<InstancingChuchu*> chuchus;
+	class RockBoss* boss;
 
+	// ----------------- Status -----------------
 	float hp = 100.0f;
 	float lerpHp = 100.0f;
 	float lerpSpeed = 1.0f;
@@ -23,6 +26,7 @@ private:
 	float rotSpeed;
 	float jumpPower;
 	float gravity;
+	float att = 100.0f;
 
 	Bar* hpBar;
 	class SkillBall* ball;
@@ -32,13 +36,12 @@ private:
 	bool isMove;
 	bool isJumping;
 	bool isAirFloating;
-
+	bool isHit = false;
 private:
 	void Init();
 	void Move();
 	void Attack();
-	void Damaged(float damage);
-
+	
 	void SkillAttack();
 
 	void AttackInit(AnimState state);
@@ -50,7 +53,6 @@ private:
 	void LerpHp();
 
 	void SetRightHand() { rightHand = GetTransformByNode(110) * world;}
-
 public:
 	Jean();
 	~Jean();
@@ -60,7 +62,13 @@ public:
 	void PostRender();
 	void GUIRender();
 
+	void Damaged(float damage);
+	void HitEnd();
+
+	Collider* GetCollider() { return bodyCollider;}
+
 	void SetClip(AnimState state);
+	void SetRockBoss(RockBoss* boss) {this->boss = boss;}
 
 	void EndAttack();
 };

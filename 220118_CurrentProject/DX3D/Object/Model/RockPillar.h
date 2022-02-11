@@ -45,4 +45,5 @@ public:
 
 	void SetQuad(Quad* quad) { this->quad = quad; }
 	float GetHp() { return hp; }
+	static int GetPillarCount() {return PillarCount;}
 };

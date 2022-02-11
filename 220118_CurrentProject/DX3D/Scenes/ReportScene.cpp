@@ -9,8 +9,10 @@ ReportScene::ReportScene()
 	land->Load();
 
 	jean = new Jean();
-
 	boss = new RockBoss();
+
+	jean->SetRockBoss(boss);
+
 	boss->SetPlayer(jean);
 	boss->SetQuad(land);
 
@@ -40,7 +42,7 @@ void ReportScene::Update()
 	land->UpdateWorld();
 	jean->Update();
 	boss->Update();
-	InstancingMonsterManager::Get()->Update();
+	//InstancingMonsterManager::Get()->Update();
 }
 
 void ReportScene::PreRender()
@@ -53,12 +55,12 @@ void ReportScene::Render()
 	land->Render();
 	jean->Render();
 	boss->Render();
-	InstancingMonsterManager::Get()->Render();
+	//InstancingMonsterManager::Get()->Render();
 }
 
 void ReportScene::PostRender()
 {
-	InstancingMonsterManager::Get()->PostRender();
+	//InstancingMonsterManager::Get()->PostRender();
 	boss->PostRender();
 }
 
@@ -68,15 +70,16 @@ void ReportScene::GUIRender()
 	jean->GUIRender();
 	boss->GUIRender();
 	//InstancingMonsterManager::Get()->GUIRender();
+	
 	//boss->GUIRender();
 	//chuchu->GUIRender();
 }
 
 void ReportScene::Start()
 {
-	InstancingMonsterManager::Get()->CreateMonsters(10.0f);
-	InstancingMonsterManager::Get()->SetPlayer(jean);
-	InstancingMonsterManager::Get()->SetQuad(land);
+	//InstancingMonsterManager::Get()->CreateMonsters(10.0f);
+	//InstancingMonsterManager::Get()->SetPlayer(jean);
+	//InstancingMonsterManager::Get()->SetQuad(land);
 }
 
 void ReportScene::End()

@@ -14,8 +14,8 @@ private:
 
 	vector<RockPillar*> rockPillares;
 	RockShield* rockShield;
-	ModelInstancing* instancing;
-	ModelInstancing* rockShieldInstancing;
+	ModelInstancing* instancing;			// rockPillar
+	ModelInstancing* rockShieldInstancing;	// rockShield
 
 	Bar* hpBar;
 
@@ -25,10 +25,13 @@ private:
 	const float LimitIdleTime = 5.0f;
 	const float MoveSpeed = 10.0f;
 	const float SpinSpeed = 3.0f;
+	const float Att = 30.0f;
 	float floatingSpeed = 2.0f;;
 	float floatingTime = 0.0f;
 	float idleTime = 0.0f;
 
+	// phase2 Data
+	const float Phase2Hp = 30.0f;
 
 	Vector3 originPlayerPosDir;
 	bool isCrash = false;
@@ -59,7 +62,6 @@ private:
 	void DeathEnd();
 
 	void CreateObject();
-	void Collision(Collider* collider, float damage);
 public:
 	RockBoss();
 	~RockBoss();
@@ -67,20 +69,18 @@ public:
 	void Update();
 	void Render();
 	void PostRender();
-
 	void GUIRender();
-	void Damage();
+
+	void Collision(Collider* collider, float damage);
 
 	void Phase1();
 	void Phase1Attack();
 	void Floating();
 
+	void Phase2();
+
 	//void SetInstancing(ModelInstancing* instancing) { this->rockPillar = instancing; }
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
 	void SetPlayer(Jean* jean) { player = jean; }
 	void SetQuad(Quad* land) { quad = land; }
-
-	void LerpHp();
-
-	void Collision();
 };

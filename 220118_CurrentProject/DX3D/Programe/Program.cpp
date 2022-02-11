@@ -58,8 +58,8 @@ Program::Program()
         //SceneManager::Get()->Add("Astar");
      
     // ReportScene
-       //SceneManager::Get()->Create("Report", new ReportScene());
-       //SceneManager::Get()->Add("Report");
+       SceneManager::Get()->Create("Report", new ReportScene());
+       SceneManager::Get()->Add("Report");
 
     // Frustum Curing
         //SceneManager::Get()->Create("Frustum", new FrustumScene());
@@ -73,11 +73,13 @@ Program::Program()
         //SceneManager::Get()->Create("ModelAnimatorInstancingScene", new ModelAnimatorInstancingScene());
         //SceneManager::Get()->Add("ModelAnimatorInstancingScene");
 
+    // ºôº¸µå Tree ¾À
     //SceneManager::Get()->Create("BillboardScene", new BillboardScene());
     //SceneManager::Get()->Add("BillboardScene");
 
-    SceneManager::Get()->Create("ParticleScene", new ParticleScene());
-    SceneManager::Get()->Add("ParticleScene");
+    // Particle Scene
+    //SceneManager::Get()->Create("ParticleScene", new ParticleScene());
+    //SceneManager::Get()->Add("ParticleScene");
 
 }
 Program::~Program()

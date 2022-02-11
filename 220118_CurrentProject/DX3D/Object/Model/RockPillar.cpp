@@ -5,6 +5,7 @@ int RockPillar::PillarCount = 4;
 RockPillar::RockPillar()
 {
 	Transform::tag = "RockPillar";
+	Transform::isActive = true;
 
 	bodyCollider = new CapsuleCollider(1, 2);
 	bodyCollider->tag = "RockPillarCollider";
@@ -67,6 +68,8 @@ void RockPillar::PostRender()
 
 void RockPillar::Damaged(float damage)
 {
+	if (!bodyCollider->isActive) return;
+
 	hp -= damage;
 
 	hpBar->SetValue(hp);

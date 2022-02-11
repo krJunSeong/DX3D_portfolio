@@ -17,7 +17,9 @@ Jean::Jean()
 
 	//CAM->SetTarget(this);
 
-	clips[ATTACK]->Events[0.7f] = bind(&Jean::AttackEnd, this);
+	clips[ATTACK]->Events[0.5f] = bind(&Jean::AttackEnd, this);
+	clips[HIT]->Events[0.7f] = bind(&Jean::HitEnd, this);
+
 //	clips[JUMP]->Events[0.7f] = bind(&Jean::JumpEnd, this);
 	
 	bodyCollider = new CapsuleCollider(1, 4.0f);
@@ -26,6 +28,8 @@ Jean::Jean()
 	bodyCollider->Transform::Load();
 
 	mistsplitter = new Mistsplitter(&rightHand);
+	mistsplitter->GetCollider()->isActive = false;
+
 	wing = new Wing();
 	wing->SetParent(this);
 
@@ -57,21 +61,6 @@ void Jean::Update()
 	Jump();
 	Move();
 	Attack();
-
-	if (KEY_DOWN('0'))
-		SetClip(IDLE);
-
-	else if (KEY_DOWN('1'))
-		SetClip(RUN);
-
-	else if (KEY_DOWN('2'))
-		SetClip(JUMP);
-
-	else if (KEY_DOWN('3'))
-		SetClip(ATTACK);
-
-	else if (KEY_DOWN(VK_ESCAPE))
-		StopClip();
 
 	Vector3 barPos = position + Vector3(0, 17, 0);
 	hpBar->position = CAM->WorldToScreenPoint(barPos);
@@ -136,6 +125,7 @@ void Jean::Init()
 void Jean::Move()
 {
 	if (isAttack) return;
+	if (isHit) return;
 	//if (isJumping) return;
 
 	if (KEY_PRESS('W'))
@@ -174,14 +164,16 @@ void Jean::Move()
 // ------------------- Attack ------------------------
 void Jean::Attack()
 {
+	// 점프 중이면 리턴
 	if (isJumping) return;
 
-	InstancingMonsterManager::Get()->Collision(mistsplitter->GetCollider(), 100.0f);
-
-	if (isAttack) return;
-
-
+	// if(마우스 클릭하면) 어택모션 && isAttack = true; 무기 콜라이더 on
 	if (MOUSE_CLICK(0) && !ImGui::GetIO().WantCaptureMouse)  AttackInit(ATTACK);
+
+	if (!isAttack) return;
+
+	InstancingMonsterManager::Get()->Collision(mistsplitter->GetCollider(), att);
+	boss->Collision(mistsplitter->GetCollider(), att); // 문제되는 부분 
 }
 
 void Jean::Damaged(float damage)
@@ -189,23 +181,35 @@ void Jean::Damaged(float damage)
 	hp -= 30.0f;
 	hpBar->SetValue(hp);
 
-	/* if (hp > 0)
-		 SetClip();
+	 if (hp > 0)
+	 {
+		 SetClip(HIT);
+		 isHit = true;
+	 }
 	else
-		SetClip(DEATH);*/
+		SetClip(DEATH);
+}
+
+void Jean::HitEnd()
+{
+	isHit = false;
+	SetClip(IDLE);
 }
 
 void Jean::AttackInit(AnimState state)
 {
 	isAttack = true;
 	isMove = false;
+	mistsplitter->GetCollider()->isActive = true;
 	SetClip(state);
 }
 
 void Jean::AttackEnd()
 {
 	isAttack = false;
+	mistsplitter->GetCollider()->isActive = false;
 	SetClip(IDLE);
+	// 추가: 어택 끝나면 검의 bodyCollider 끌 것
 }
 
 

@@ -20,6 +20,7 @@ Mistsplitter::~Mistsplitter()
 
 void Mistsplitter::Update()
 {
+    if (!isActive) return;
     Transform::UpdateWorld();
     collider->UpdateWorld();
 }

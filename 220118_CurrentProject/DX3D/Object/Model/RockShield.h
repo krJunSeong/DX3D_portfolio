@@ -10,6 +10,11 @@ private:
 	float floatingTime;
 	float floatingSpeed;
 
+	Bar* hpBar;
+	float hp = 100.0f;
+	float lerpHp = 100.0f;
+	float lerpSpeed = 1.0f;
+	float hpBarScaleRate = 20.0f;
 public:
 	RockShield();
 	~RockShield();
@@ -19,6 +24,11 @@ public:
 	void Update();
 	void Render();
 	void GUIRender();
+	void PostRender();
+
+	void HpControll();
+	void LerpHp();
+	void Damaged(float damage);
 
 	void Floating();
 
@@ -28,4 +38,6 @@ public:
 		objTransform->SetParent(this);
 		//objTransform->Load();
 	}
+
+	Collider* GetCollider(){return bodyCollider;}
 };
