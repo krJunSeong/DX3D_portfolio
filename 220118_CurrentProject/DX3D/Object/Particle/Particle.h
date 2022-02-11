@@ -3,30 +3,30 @@
 class Particle
 {
 protected:
-	const UINT MAX_COUNT = 1000;
+    const UINT MAX_COUNT = 1000;
 
-	bool isActive = false;
-	Vector3 position;
+    bool isActive;
+    Vector3 position;
 
-	Material* material;
-	VertexBuffer* vertexBuffer;
+    Material* material;
+    VertexBuffer* vertexBuffer;
 
-	GeometryShader* geometryShader;
+    GeometryShader* geometryShader;
 
-	BlendState* blendState[2];
-	DepthStencilState* depthState[2];
+    BlendState* blendState[2];
+    DepthStencilState* depthState[2];
 
-	UINT particleCount = 0;	// 최대개수
+    UINT particleCount = 0;
 
 public:
-	Particle();
-	~Particle();
+    Particle();
+    ~Particle();
 
-	virtual void Update(){};
-	virtual void Render();
-	virtual void GUIRender(){};
+    virtual void Update() {}
+    virtual void Render();
+    virtual void GUIRender() {}
 
-	virtual void Play(Vector3 position);
+    virtual void Play(Vector3 position);
 
-	void Stop();
+    void Stop();
 };

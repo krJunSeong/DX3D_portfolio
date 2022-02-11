@@ -215,7 +215,10 @@
     <ClInclude Include="Object\Model\Sword.h" />
     <ClInclude Include="Object\Model\Wing.h" />
     <ClInclude Include="Object\Model\Zombie.h" />
+    <ClInclude Include="Object\Particle\Rain.h" />
+    <ClInclude Include="Object\Particle\Snow.h" />
     <ClInclude Include="Object\Particle\Spark.h" />
+    <ClInclude Include="Object\Particle\Sprite.h" />
     <ClInclude Include="Object\Report\ReportCamera_211205.h" />
     <ClInclude Include="Object\Report\ReportCube.h" />
     <ClInclude Include="Framework\Render\Texture.h" />
@@ -323,7 +326,10 @@
     <ClCompile Include="Object\Model\Wing.cpp" />
     <ClCompile Include="Object\Model\Zombie.cpp" />
     <ClCompile Include="Object\Particle\Particle.cpp" />
+    <ClCompile Include="Object\Particle\Rain.cpp" />
+    <ClCompile Include="Object\Particle\Snow.cpp" />
     <ClCompile Include="Object\Particle\Spark.cpp" />
+    <ClCompile Include="Object\Particle\Sprite.cpp" />
     <ClCompile Include="Object\Report\ReportCamera_211205.cpp" />
     <ClCompile Include="Object\Report\ReportCube.cpp" />
     <ClCompile Include="Framework\Render\Texture.cpp" />
@@ -419,7 +425,25 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
+    <FxCompile Include="Shaders\Geometry\Rain.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Geometry\Snow.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
     <FxCompile Include="Shaders\Geometry\Spark.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\Geometry\Sprite.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

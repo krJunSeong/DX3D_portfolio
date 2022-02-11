@@ -33,12 +33,12 @@ Particle::~Particle()
 
 void Particle::Render()
 {
-	if(!isActive) return;
+	if (!isActive) return;
 
 	blendState[1]->SetState();
 	depthState[1]->SetState();
 
-	vertexBuffer->IASet(D3D_PRIMITIVE_TOPOLOGY_POINTLIST); // geometry 사용 시에는 포인트리스트로 넘겨야 함
+	vertexBuffer->IASet(D3D_PRIMITIVE_TOPOLOGY_POINTLIST);
 
 	material->Set();
 	geometryShader->Set();

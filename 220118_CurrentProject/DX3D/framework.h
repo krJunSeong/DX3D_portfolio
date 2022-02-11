@@ -191,6 +191,10 @@ using namespace GameMath;
 
 #include "Object/Particle/Particle.h"
 #include "Object/Particle/Spark.h"
+#include "Object/Particle/Sprite.h"
+#include "Object/Particle/Rain.h"
+#include "Object/Particle/Snow.h"
+
 
 // Object Report
 #include "Object/Report/ReportCube.h"

@@ -269,3 +269,60 @@ public:
     {
     }
 };
+
+class WaterBuffer : public ConstBuffer
+{
+public:
+    struct Data
+    {
+        Float4 color = Float4(1.0f, 1.0f, 1.0f, 1.0f);
+
+        float waveTime = 0.0f;
+        float waveSpeed = 0.1f;
+        float waveScale = 0.1f;
+        float waveShininess = 24.0f;
+
+        float fresnel = 0.5f;
+        float padding[3];
+    }data;
+
+    WaterBuffer() : ConstBuffer(&data, sizeof(Data))
+    {
+    }
+};
+
+class SpriteBuffer : public ConstBuffer
+{
+public:
+    struct Data
+    {
+        Float2 maxFrame = { 0, 0 };
+        Float2 curFrame = { 0, 0 };
+    }data;
+
+    SpriteBuffer() : ConstBuffer(&data, sizeof(Data))
+    {
+    }
+};
+
+class WeatherBuffer : public ConstBuffer
+{
+public:
+    struct Data
+    {
+        Float3 velocity = Float3(0, -1, 0);
+        float distance = 100.0f;
+
+        Float4 color = Float4(1, 1, 1, 1);
+
+        Float3 origin = Float3(0, 0, 0);
+        float time = 0.0f;
+
+        Float3 size = Float3(50, 50, 50);
+        float turbulence = 5.0f;
+    }data;
+
+    WeatherBuffer() : ConstBuffer(&data, sizeof(Data))
+    {
+    }
+};
