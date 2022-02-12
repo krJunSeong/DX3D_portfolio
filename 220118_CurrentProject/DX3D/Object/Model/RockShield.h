@@ -40,4 +40,5 @@ public:
 	}
 
 	Collider* GetCollider(){return bodyCollider;}
+	float GetHp(){return hp;}
 };

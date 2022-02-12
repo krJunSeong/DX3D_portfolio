@@ -19,22 +19,9 @@ private:
 
 	Bar* hpBar;
 
-	// phase1 Data
-	const float FloatingDuration = 3.0f;
-	const float LimitPlayTime = 5.0f;
-	const float LimitIdleTime = 5.0f;
-	const float MoveSpeed = 10.0f;
-	const float SpinSpeed = 3.0f;
-	const float Att = 30.0f;
-	float floatingSpeed = 2.0f;;
-	float floatingTime = 0.0f;
-	float idleTime = 0.0f;
-
-	// phase2 Data
-	const float Phase2Hp = 30.0f;
-
 	Vector3 originPlayerPosDir;
 	bool isCrash = false;
+	
 
 	float hp = 100.0f;
 	float lerpHp = 100.0f;
@@ -52,6 +39,28 @@ private:
 	class Jean* player;
 	Terrain* terrain;
 	Quad* quad;
+
+private:
+	// phase1 Data
+	const float FloatingDuration = 3.0f;
+	const float LimitPlayTime = 5.0f;
+	const float LimitIdleTime = 5.0f;
+	const float MoveSpeed = 10.0f;
+	const float SpinSpeed = 3.0f;
+	const float Att = 30.0f;
+	float floatingSpeed = 2.0f;;
+	float floatingTime = 0.0f;
+	float idleTime = 0.0f;
+	bool isPhase1 = true;
+
+private:
+	// phase2 Data
+	const float Phase2Hp = 30.0f;
+	bool isPillaresInit = false;
+	bool isIniting = false;
+	bool isPhase2 = false;
+
+	void InitRockPillares();
 
 	void ActionIdle();
 	void ActionTrace();

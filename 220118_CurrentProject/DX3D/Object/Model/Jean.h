@@ -26,7 +26,7 @@ private:
 	float rotSpeed;
 	float jumpPower;
 	float gravity;
-	float att = 100.0f;
+	float att = 20.0f;
 
 	Bar* hpBar;
 	class SkillBall* ball;

@@ -15,6 +15,8 @@ private:
 	float lerpHp = 100.0f;
 	float lerpSpeed = 1.0f;
 	float hpBarScaleRate = 20.0f;
+
+	bool isIniting = false;
 public:
 	RockPillar();
 	~RockPillar();

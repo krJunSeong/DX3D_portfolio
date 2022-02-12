@@ -42,6 +42,9 @@ void ReportScene::Update()
 	land->UpdateWorld();
 	jean->Update();
 	boss->Update();
+
+	if(KEY_DOWN(VK_TAB)) Collider::isVisible = !Collider::isVisible;
+	
 	//InstancingMonsterManager::Get()->Update();
 }
 

@@ -8,6 +8,10 @@ private:
     float moveSpeed;
     float rotSpeed;
     float wheelSpeed;
+    float duration = 0.0f;
+    float magnitude;
+
+    Vector3 originPos;
 
     ViewBuffer* viewBuffer;
 
@@ -42,6 +46,9 @@ public:
 
     void SetTarget(Transform* target) { this->target = target; }
     void SetTargetTransform();
+
+    void Shake(float magnitude, float duration);
+    void Shaking();
 
     Matrix GetView() { return view; }
     Vector3* GetFocusOffset() { return &focusOffset; }

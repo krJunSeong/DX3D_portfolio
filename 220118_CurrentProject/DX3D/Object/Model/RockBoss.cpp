@@ -26,7 +26,7 @@ RockBoss::~RockBoss()
 
 void RockBoss::Update()
 {
-	if(hp > Phase2Hp) Phase1();
+	if(isPhase1) Phase1();
 	else Phase2();
 
 	instancing->Update();			// rockshiled
@@ -41,11 +41,10 @@ void RockBoss::Update()
 void RockBoss::Render()
 {
 	instancing->Render();
-	rockShieldInstancing->Render();
-
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->Render();
 
+	rockShieldInstancing->Render();
 	rockShield->Render();
 }
 
@@ -78,6 +77,12 @@ void RockBoss::Collision(Collider* collider, float damage)
 	if(rockShield->GetCollider()->Collision(collider))
 	{
 		rockShield->Damaged(damage);
+
+		if(rockShield->GetHp() < Phase2Hp)
+		{
+			isPhase1 = false;
+			isPhase2 = true;
+		}
 	}
 }
 
@@ -153,10 +158,25 @@ void RockBoss::Floating()
 
 void RockBoss::Phase2()
 {
-	// 이거 데미지 처리시? 딴 곳에서 ㅊ ㅓ리하는 게 좋아보임. 너무 여러번 하니까.
-	if(RockPillar::GetPillarCount() < 4)
+	if(!RockPillar::GetPillarCount()) 
+		isPillaresInit = true;// 0
+
+	if (RockPillar::GetPillarCount() > 0)
+	{
 		rockShield->GetCollider()->isActive = false;
-	else { rockShield->GetCollider()->isActive = true; }
+		Floating();
+	}
+	else rockShield->GetCollider()->isActive = true;
+
+	if(isPillaresInit)
+	{
+		for(RockPillar* pillar : rockPillares)
+			pillar->Init();
+
+		isIniting = true;
+		CAM->Shake(1.0f, 1.0f);
+		isPillaresInit = false;
+	}
 		
 }
 
@@ -198,4 +218,9 @@ void RockBoss::CreateObject()
 	temp->tag = "RockShield";
 	temp->isActive = true;
 	rockShield->SetTransform(temp);
+}
+
+void RockBoss::InitRockPillares()
+{
+
 }

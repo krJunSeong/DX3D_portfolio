@@ -31,6 +31,13 @@ void RockPillar::Update()
 {
 	if(!Transform::isActive) return;
 
+	if (isIniting)
+	{
+		// 기둥의 포지션이 땅보다 낮다면 계속 올려라.
+		if (position.y < 0) position.y += DELTA;
+		else isIniting = false;
+	}
+
 	UpdateWorld();
 	bodyCollider->UpdateWorld();
 	HpControll();
@@ -77,6 +84,11 @@ void RockPillar::Damaged(float damage)
 	if(hp <= 0.0f)
 	{
 		Transform::isActive = false;
+		objTransform->isActive = false;
+		bodyCollider->isActive = false;
+
+		position.y -= 3.0f;
+
 		PillarCount--;
 	}
 }
@@ -86,10 +98,14 @@ void RockPillar::Init()
 	//Spawn, Camera 흔들림 효과 추가?
 
 	Transform::isActive = true;
+	objTransform->isActive = true;
 	bodyCollider->isActive = true;
+	isIniting = true;
 
 	hp = 100.0f;
 	hpBar->SetValue(hp);
+
+	PillarCount++;
 }
 
 void RockPillar::HpControll()

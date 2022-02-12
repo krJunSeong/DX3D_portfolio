@@ -24,6 +24,8 @@ void Camera::Update()
         FollowMode();
     else
         FreeMode();
+
+    Shaking();
 }
 
 void Camera::GUIRender()
@@ -118,6 +120,31 @@ void Camera::SetTargetTransform()
     //position = target->GlobalPos();
     position = forward * -distance + target->GlobalPos();
     position.y += height;
+}
+
+void Camera::Shake(float magnitude, float duration)
+{
+    this->magnitude = magnitude;
+    this->duration = duration;
+
+    originPos = position;
+}
+
+void Camera::Shaking()
+{
+    if (duration <= 0.0f) return;
+
+    duration -= DELTA;
+
+    Float2 temp;
+    temp.x = GameMath::Random(-magnitude, magnitude);
+    temp.y = GameMath::Random(-magnitude, magnitude);
+
+    position.x = originPos.x + temp.x;
+    position.y = originPos.y + temp.y;
+
+    if (duration <= 0.0f)
+        position = originPos;
 }
 
 void Camera::FreeMode()
