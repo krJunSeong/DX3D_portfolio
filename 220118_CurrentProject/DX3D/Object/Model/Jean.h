@@ -18,8 +18,13 @@ private:
 	vector<InstancingChuchu*> chuchus;
 	class RockBoss* boss;
 
+	// ------------ Damage ----------------
+	bool isHit = false;
+	float hitTime = 0.0f;
+	const float LimitHitTime = 1.3f;
+
 	// ----------------- Status -----------------
-	float hp = 100.0f;
+	float hp = 1.0f;
 	float lerpHp = 100.0f;
 	float lerpSpeed = 1.0f;
 	float moveSpeed;
@@ -36,7 +41,7 @@ private:
 	bool isMove;
 	bool isJumping;
 	bool isAirFloating;
-	bool isHit = false;
+	bool isDeath = false;
 private:
 	void Init();
 	void Move();
@@ -71,4 +76,5 @@ public:
 	void SetRockBoss(RockBoss* boss) {this->boss = boss;}
 
 	void EndAttack();
+	void EndDeath();
 };

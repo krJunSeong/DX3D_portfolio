@@ -19,7 +19,7 @@ void RockShield::CreateObject()
 
 	floatingSpeed = 2.0f;
 
-	hpBar = new Bar(L"Textures/UI/hp_bar.png", L"Textures/UI/hp_Bar_BG.png");
+	hpBar = new Bar(L"Textures/UI/hp_bar_yellow.png", L"Textures/UI/hp_Bar_BG.png");
 	hpBar->tag = "RockShieldHpBar";
 	hpBar->Load();
 
@@ -37,6 +37,16 @@ void RockShield::Update()
 	bodyCollider->UpdateWorld();
 	HpControll();
 
+	if(isHit)
+	{
+		hitTime += DELTA;
+		if(hitTime >= LimitHitTime)
+		{
+			bodyCollider->isActive = true;
+			isHit = false;
+			hitTime = 0.0f;
+		}
+	}
 	//Floating();
 }
 
@@ -63,11 +73,12 @@ void RockShield::PostRender()
 void RockShield::HpControll()
 {
 	Vector3 barPos = Transform::position + Vector3(0, 5.5f, 0);
-	hpBar->position = CAM->WorldToScreenPoint(barPos);
+	hpBar->position = Vector3(600.0f, 600.0f, 0);
+	//hpBar->position = CAM->WorldToScreenPoint(barPos);
 
-	float distance = Distance(CAM->position, Transform::position);
-	hpBar->scale.x = hpBarScaleRate / distance;
-	hpBar->scale.y = hpBarScaleRate / distance;
+	//float distance = Distance(CAM->position, Transform::position);
+	hpBar->scale.x = 8.0f;
+	hpBar->scale.y = 2.0f;
 
 	hpBar->SetValue(hp);
 
@@ -85,9 +96,11 @@ void RockShield::LerpHp()
 void RockShield::Damaged(float damage)
 {
 	if(!bodyCollider->isActive) return;
-
+	if(isHit) return;
 	hp -= damage;
 
+	bodyCollider->isActive = false;
+	isHit = true;
 	hpBar->SetValue(hp);
 
 	if (hp <= 0.0f)

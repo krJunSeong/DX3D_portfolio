@@ -19,6 +19,8 @@ Jean::Jean()
 
 	clips[ATTACK]->Events[0.5f] = bind(&Jean::AttackEnd, this);
 	clips[HIT]->Events[0.7f] = bind(&Jean::HitEnd, this);
+	clips[DEATH]->Events[0.7f] = bind(&Jean::EndDeath, this);
+
 
 //	clips[JUMP]->Events[0.7f] = bind(&Jean::JumpEnd, this);
 	
@@ -52,6 +54,7 @@ Jean::~Jean()
 
 void Jean::Update()
 {
+	if(isDeath) return;
 	SetRightHand();
 	ModelAnimator::Update();
 	bodyCollider->UpdateWorld();
@@ -62,6 +65,17 @@ void Jean::Update()
 	Move();
 	Attack();
 
+	if (!bodyCollider->isActive)
+	{
+		hitTime += DELTA;
+		if (hitTime >= LimitHitTime)
+		{
+			bodyCollider->isActive = true;
+			isHit = false;
+			hitTime = 0.0f;
+		}
+	}
+
 	Vector3 barPos = position + Vector3(0, 17, 0);
 	hpBar->position = CAM->WorldToScreenPoint(barPos);
 
@@ -71,6 +85,7 @@ void Jean::Update()
 
 void Jean::Render()
 {
+	if(isDeath) return;
 	ModelAnimator::Render();
 	bodyCollider->Render();
 	mistsplitter->Render();
@@ -104,6 +119,11 @@ void Jean::SetClip(AnimState state)
 void Jean::EndAttack()
 {
 	SetClip(IDLE);
+}
+
+void Jean::EndDeath()
+{
+	isDeath = true;
 }
 
 void Jean::Init()
@@ -178,16 +198,25 @@ void Jean::Attack()
 
 void Jean::Damaged(float damage)
 {
-	hp -= 30.0f;
+	if (!bodyCollider->isActive) return;
+	if (isHit) return;
+
+	hp -= damage;
+
+	bodyCollider->isActive = false;
+	isHit = true;
 	hpBar->SetValue(hp);
 
 	 if (hp > 0)
 	 {
 		 SetClip(HIT);
+		 Transform::isActive = false;
 		 isHit = true;
 	 }
 	else
+	 {
 		SetClip(DEATH);
+	 }
 }
 
 void Jean::HitEnd()

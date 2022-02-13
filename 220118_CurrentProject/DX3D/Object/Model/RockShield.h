@@ -9,6 +9,9 @@ private:
 	const float FloatingDuration = 3.0f;
 	float floatingTime;
 	float floatingSpeed;
+	bool isHit = false;
+	float hitTime = 0.0f;
+	const float LimitHitTime = 1.3f;
 
 	Bar* hpBar;
 	float hp = 100.0f;
@@ -40,5 +43,6 @@ public:
 	}
 
 	Collider* GetCollider(){return bodyCollider;}
+	Bar* GetHpBar() { return hpBar;}
 	float GetHp(){return hp;}
 };

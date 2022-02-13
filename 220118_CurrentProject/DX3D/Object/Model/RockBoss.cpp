@@ -3,9 +3,6 @@
 RockBoss::RockBoss()
 	: state(IDLE)
 {
-	hpBar = new Bar(L"Textures/UI/hp_bar.png", L"Textures/UI/hp_Bar_BG.png");
-	hpBar->tag = "MonsterHpBar";
-
 	CreateObject();
 }
 
@@ -14,8 +11,6 @@ RockBoss::~RockBoss()
 	delete instancing;
 	for (RockPillar* rockPillar : rockPillares)
 		delete rockPillar;
-
-	delete hpBar;
 
 	delete rockShieldInstancing;
 	delete rockShield;
@@ -52,6 +47,8 @@ void RockBoss::PostRender()
 {
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->PostRender();
+
+	rockShield->PostRender();
 }
 
 void RockBoss::GUIRender()
@@ -101,7 +98,7 @@ void RockBoss::Phase1()
 
 void RockBoss::Phase1Attack()
 {
-	// Move rockShield --> player
+	// Move rockShield --> player,
 	if (isCrash)
 	{
 		if (rockShield->position.y < quad->position.y + 1.0f)
@@ -118,7 +115,6 @@ void RockBoss::Phase1Attack()
 		if(rockShield->GetCollider()->Collision(player->GetCollider()))
 		{
 			player->Damaged(Att);
-			rockShield->GetCollider()->isActive = false;
 		}
 	}
 
@@ -138,7 +134,7 @@ void RockBoss::Floating()
 {
 	floatingTime += DELTA;
 	idleTime += DELTA;
-	rockShield->GetCollider()->isActive = true;
+	//rockShield->GetCollider()->isActive = true;
 
 	if (idleTime >= LimitIdleTime && (rockShield->position.y <= 2.0f))
 	{
@@ -158,15 +154,40 @@ void RockBoss::Floating()
 
 void RockBoss::Phase2()
 {
-	if(!RockPillar::GetPillarCount()) 
-		isPillaresInit = true;// 0
+	rockShield->rotation.y += SpinSpeed * DELTA;
+	int count = RockPillar::GetPillarCount();
 
-	if (RockPillar::GetPillarCount() > 0)
+	if(!count)
+	{
+		initTime += DELTA;
+		if(initTime >= LimitInitTime)
+		{
+			isPillaresInit = true;// 0
+			initTime = false;
+		}
+	}
+	else 
+	{	// 기둥이 세워져 있다면
+		attackTime += DELTA;
+
+		if(attackTime >= LimitAttackTime)
+		{
+			player->Damaged(Att);
+			attackTime = 0.0f;
+		}
+	}
+
+	if (count > 0)
 	{
 		rockShield->GetCollider()->isActive = false;
-		Floating();
+		rockShield->GetHpBar()->isActive = false;
+		//Floating();
 	}
-	else rockShield->GetCollider()->isActive = true;
+	else 
+	{
+		rockShield->GetCollider()->isActive = true;
+		rockShield->GetHpBar()->isActive = true;
+	}
 
 	if(isPillaresInit)
 	{
@@ -190,8 +211,8 @@ void RockBoss::CreateObject()
 		Transform* insTrf = instancing->Add();
 		insTrf->tag = "RockPillar";
 		insTrf->scale *= 2.1f;
-		insTrf->isActive = true;
-		rockPillar->isActive = true;
+		insTrf->isActive = false;
+		rockPillar->isActive = false;
 		rockPillar->SetTransform(insTrf);
 		rockPillares.push_back(rockPillar);
 

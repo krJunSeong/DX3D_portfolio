@@ -12,7 +12,7 @@ RockPillar::RockPillar()
 	bodyCollider->SetParent(this);
 	bodyCollider->Load();
 
-	hpBar = new Bar(L"Textures/UI/hp_bar.png", L"Textures/UI/hp_Bar_BG.png");
+	hpBar = new Bar(L"Textures/UI/hp_bar_yellow.png", L"Textures/UI/hp_Bar_BG.png");
 	hpBar->tag = "RockPillarHpBar";
 	hpBar->Load();
 }
@@ -41,6 +41,17 @@ void RockPillar::Update()
 	UpdateWorld();
 	bodyCollider->UpdateWorld();
 	HpControll();
+
+	if(!bodyCollider->isActive)
+	{
+		hitTime += DELTA;
+		if (hitTime >= LimitHitTime)
+		{
+			bodyCollider->isActive = true;
+			isHit = false;
+			hitTime = 0.0f;
+		}
+	}
 
 	// ÀÌ°ü
 	//for(CapsuleCollider* col : bodyCollideres)

@@ -21,7 +21,6 @@ private:
 
 	Vector3 originPlayerPosDir;
 	bool isCrash = false;
-	
 
 	float hp = 100.0f;
 	float lerpHp = 100.0f;
@@ -56,6 +55,10 @@ private:
 private:
 	// phase2 Data
 	const float Phase2Hp = 30.0f;
+	const float LimitInitTime = 5.0f;
+	const float LimitAttackTime = 10.0f; // 제한시간
+	float attackTime = 0.0f;
+	float initTime = 0.0f;
 	bool isPillaresInit = false;
 	bool isIniting = false;
 	bool isPhase2 = false;
