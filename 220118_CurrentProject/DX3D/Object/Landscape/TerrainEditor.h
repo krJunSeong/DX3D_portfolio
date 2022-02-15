@@ -1,12 +1,10 @@
 #pragma once
 
-class ReportRobot_211201;
-
 class TerrainEditor : public Transform
 {
 private:
     const float MIN_HEIGHT = 0.0f;
-    const float MAX_HEIGHT = 10.0f;
+    const float MAX_HEIGHT = 60.0f;
 
     typedef VertexUVNormalTangentAlpha VertexType;
 
@@ -20,17 +18,16 @@ private:
 
     WorldBuffer* worldBuffer;
 
-    vector<ReportRobot_211201*> robots;
-    vector<Cube*> cubes;
-
     Texture* heightMap;
+
     Texture* secondMap;
     Texture* thirdMap;
-    Texture* fourthMap;
 
     RasterizerState* rasterizerState;
 
-    // 211214
+    string selectHeightMap;
+    string selectAlphaMap;
+
     struct InputDesc
     {
         UINT index;
@@ -52,12 +49,10 @@ private:
 
     BrushBuffer* brushBuffer;
 
-    // Terrain Brush
     int editType;
 
     float adjustValue;
     UINT selectMap;
-
 public:
     TerrainEditor(UINT width = 100, UINT height = 100);
     ~TerrainEditor();
@@ -68,26 +63,20 @@ public:
 
     Vector3 Picking();
     Vector3 ComputePicking();
-
 private:
-    void AdjustHeight(); // adjust: 조절하다, 높이조절
-    void AdjustAlpha();   // 
+    void AdjustHeight();
+    void AdjustAlpha();
 
     void InitNormalTangent();
     void CreateMesh();
     void CreateNormal();
     void CreateTangent();
 
-    // ------------------- Texture Out -----------------
+    void CreateComputeData();
+
     void SaveHeightMap();
     void LoadHeightMap();
 
     void SaveAlphaMap();
     void LoadAlphaMap();
-
-    // ---------------------------- REPORT ----------------------------
-    ReportRobot_211201* CreateRobot(Float3 pos);
-
-    void CreateComputeData();
-    // -----------------------------------------------------------------
 };

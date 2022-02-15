@@ -101,7 +101,7 @@ void RockBoss::Phase1Attack()
 	// Move rockShield --> player,
 	if (isCrash)
 	{
-		if (rockShield->position.y < quad->position.y + 1.0f)
+		if (rockShield->position.y < land->GetHeight(rockShield->position) + 1.0f)
 		{
 			isCrash = false;
 			state = IDLE;
@@ -110,6 +110,7 @@ void RockBoss::Phase1Attack()
 
 		// move to origin player pos
 		rockShield->position += originPlayerPosDir * MoveSpeed * DELTA;
+
 		rockShield->rotation.y += SpinSpeed * DELTA;
 
 		if(rockShield->GetCollider()->Collision(player->GetCollider()))
@@ -117,17 +118,18 @@ void RockBoss::Phase1Attack()
 			player->Damaged(Att);
 		}
 	}
+	else
+		rockShield->position.y += MoveSpeed *  DELTA;
 
 	// Prepare Attacking, Limit rockShield position.y
-	if (rockShield->position.y >= 10.0f)
+	if (rockShield->position.y >= 30.0f)
 	{
 		//if(player == nullptr) 
 		Vector3 temp = player->position - rockShield->position;
 		originPlayerPosDir = temp.GetNormalized();
 		isCrash = true;
 	}
-	else
-		rockShield->position.y += DELTA;
+
 }
 
 void RockBoss::Floating()
@@ -157,13 +159,19 @@ void RockBoss::Phase2()
 	rockShield->rotation.y += SpinSpeed * DELTA;
 	int count = RockPillar::GetPillarCount();
 
-	if(!count)
+	// count > 1 : 기둥이 세워져 있어요
+	// count < 1 : 기둥이 없어요.
+	if(count == 0)	// 기둥이 하나도 없다면
 	{
+		if(rockShield->position.y > land->GetHeight(rockShield->position)) 
+			rockShield->position.y -= DELTA;
+
 		initTime += DELTA;
 		if(initTime >= LimitInitTime)
 		{
 			isPillaresInit = true;// 0
-			initTime = false;
+			initTime = 0.0f;
+			attackTime = 0.0f;
 		}
 	}
 	else 
@@ -192,7 +200,7 @@ void RockBoss::Phase2()
 	if(isPillaresInit)
 	{
 		for(RockPillar* pillar : rockPillares)
-			pillar->Init();
+			pillar->Init(land);
 
 		isIniting = true;
 		CAM->Shake(1.0f, 1.0f);
@@ -219,16 +227,16 @@ void RockBoss::CreateObject()
 		switch (i)
 		{
 		case 0:
-			rockPillar->position.x = rockShieldDistance;
+			rockPillar->position.x = rockShield->position.x + rockShieldDistance;
 			break;
 		case 1:
-			rockPillar->position.x = -rockShieldDistance;
+			rockPillar->position.x = rockShield->position.x  -rockShieldDistance;
 			break;
 		case 2:
-			rockPillar->position.z = rockShieldDistance;
+			rockPillar->position.z = rockShield->position.z + rockShieldDistance;
 			break;
 		case 3:
-			rockPillar->position.z = -rockShieldDistance;
+			rockPillar->position.z = rockShield->position.z -rockShieldDistance;
 			break;
 		}
 	}

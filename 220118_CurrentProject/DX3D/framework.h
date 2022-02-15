@@ -188,6 +188,7 @@ using namespace GameMath;
 #include "Object/Model/RockPillar.h"
 #include "Object/Model/RockShield.h"
 #include "Object/Model/RockBoss.h"
+#include "Object/Model/Wall.h"
 
 #include "Object/Particle/Particle.h"
 #include "Object/Particle/Spark.h"

@@ -3,31 +3,21 @@
 
 TerrainEditorScene::TerrainEditorScene()
 {
-    terrain = new TerrainEditor();
-
-    ByteAddress();
+    terrain = new TerrainEditor(200, 200);
+    //player = new Jean();
+    ByteAdrress();
 }
 
 TerrainEditorScene::~TerrainEditorScene()
 {
     delete terrain;
+    //delete player;
 }
 
 void TerrainEditorScene::Update()
 {
-    /*if (MOUSE_CLICK(0))
-    {
-        pickingPos = terrain->Picking();
-        ReportRobot_211201* robot = CreateRobot(pickingPos);
-        robots.push_back(robot);
-    }*/
-
-   // pickingPos = terrain->ComputePicking();
-
-    for (auto robot : robots)
-        robot->Update();
-
     terrain->Update();
+    //player->Update();
 }
 
 void TerrainEditorScene::PreRender()
@@ -37,8 +27,7 @@ void TerrainEditorScene::PreRender()
 void TerrainEditorScene::Render()
 {
     terrain->Render();
-    for (auto robot : robots)
-        robot->Render();
+    //player->Render();
 }
 
 void TerrainEditorScene::PostRender()
@@ -50,9 +39,9 @@ void TerrainEditorScene::GUIRender()
     terrain->GUIRender();
 }
 
-void TerrainEditorScene::ByteAddress()
+void TerrainEditorScene::ByteAdrress()
 {
-    ComputeShader* shader = Shader::AddCS(L"ByteAddress.hlsl");
+    ComputeShader* shader = Shader::AddCS(L"Old/ByteAddress.hlsl");
 
     struct Output
     {
@@ -63,7 +52,7 @@ void TerrainEditorScene::ByteAddress()
     };
 
     UINT groupX = 2;
-    UINT size = 10 * 8 * 3 * groupX;// 쓰레드 개수
+    UINT size = 10 * 8 * 3 * groupX;
 
     Output* output = new Output[size];
     RawBuffer* buffer = new RawBuffer(sizeof(Output) * size);
@@ -74,7 +63,7 @@ void TerrainEditorScene::ByteAddress()
 
     DC->Dispatch(groupX, 1, 1);
 
-    buffer->Copy(output, sizeof(Output)* size);
+    buffer->Copy(output, sizeof(Output) * size);
 
     FILE* file;
     fopen_s(&file, "TextData/RawTest.csv", "w");
@@ -96,11 +85,4 @@ void TerrainEditorScene::ByteAddress()
     }
 
     fclose(file);
-}
-
-ReportRobot_211201* TerrainEditorScene::CreateRobot(Float3 pos)
-{
-    ReportRobot_211201* robot = new ReportRobot_211201(pos);
-
-    return robot;
 }

@@ -175,8 +175,10 @@ void Jean::Move()
 		isMove = false;
 	}
 
+	position.y = land->GetHeight(position);
+
 	//if(isMove && isJumping) return;
-	else if (isMove) SetClip(RUN);
+	if (isMove) SetClip(RUN);
 	else SetClip(IDLE);
 }
 

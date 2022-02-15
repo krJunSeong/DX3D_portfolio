@@ -3,6 +3,7 @@
 class Texture
 {
 private:
+    const float scaleRate = 60.0f;  // 터레인 스케일값
     wstring file;
 
     ScratchImage image;

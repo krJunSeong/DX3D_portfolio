@@ -3,20 +3,39 @@
 
 ReportScene::ReportScene()
 {
-	land = new Quad();
-	land->tag = "land";
-	land->GetMaterial()->SetDiffuseMap(L"Textures/Landscape/Grace.png");
-	land->Load();
+	// -------------------------- Map --------------------
+	land = new Terrain(L"BossMap_Alpha.png", L"BossMap_Height.png");
+	sky = new Sky(L"Textures/Landscape/Space.dds");
 
+	leftWall	= new Wall();
+	leftWall->tag = "leftWall";
+	leftWall->Load();
+
+	upWall		= new Wall();
+	upWall->tag = "upWall";
+	upWall->Load();
+
+	rightWall	= new Wall();
+	rightWall->tag = "rightWall";
+	rightWall->Load();
+
+	downWall	= new Wall();
+	downWall->tag = "downWall";
+	downWall->Load();
+
+	// ----------------------- Character ----------------------
 	jean = new Jean();
+	jean->SetTerrain(land);
+
 	boss = new RockBoss();
+	boss->SetPlayer(jean);
+	boss->SetTerrain(land);
 
 	jean->SetRockBoss(boss);
 
-	boss->SetPlayer(jean);
-	boss->SetQuad(land);
-
-	sky = new Sky(L"Textures/Landscape/Space.dds");
+	// CAM
+	//CAM->SetTarget(jean);
+	
 	//chuchu = new Chuchu();
 
 	//house = new JapanHouse();
@@ -34,6 +53,12 @@ ReportScene::~ReportScene()
 	delete jean;
 	delete boss;
 	delete sky;
+
+	delete leftWall;
+	delete upWall;
+	delete rightWall;
+	delete downWall;
+
 	//delete house;
 }
 
@@ -42,6 +67,12 @@ void ReportScene::Update()
 	land->UpdateWorld();
 	jean->Update();
 	boss->Update();
+
+	leftWall	->Update();
+	upWall		->Update();
+	rightWall	->Update();
+	downWall	->Update();
+
 
 	if(KEY_DOWN(VK_TAB)) Collider::isVisible = !Collider::isVisible;
 	
@@ -58,6 +89,11 @@ void ReportScene::Render()
 	land->Render();
 	jean->Render();
 	boss->Render();
+
+	leftWall->Render();
+	upWall->Render();
+	rightWall->Render();
+	downWall->Render();
 	//InstancingMonsterManager::Get()->Render();
 }
 
@@ -72,6 +108,12 @@ void ReportScene::GUIRender()
 	land->GUIRender();
 	jean->GUIRender();
 	boss->GUIRender();
+
+	leftWall->GUIRender();
+	upWall->GUIRender();
+	rightWall->GUIRender();
+	downWall->GUIRender();
+
 	//InstancingMonsterManager::Get()->GUIRender();
 	
 	//boss->GUIRender();

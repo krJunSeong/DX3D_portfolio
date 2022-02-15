@@ -213,6 +213,7 @@
     <ClInclude Include="Object\Model\RockPillar.h" />
     <ClInclude Include="Object\Model\RockShield.h" />
     <ClInclude Include="Object\Model\Sword.h" />
+    <ClInclude Include="Object\Model\Wall.h" />
     <ClInclude Include="Object\Model\Wing.h" />
     <ClInclude Include="Object\Model\Zombie.h" />
     <ClInclude Include="Object\Particle\Rain.h" />
@@ -253,6 +254,7 @@
     <ClInclude Include="Scenes\ModelInstancingScene.h" />
     <ClInclude Include="Scenes\ModelRenderScene.h" />
     <ClInclude Include="Scenes\ParticleScene.h" />
+    <ClInclude Include="Scenes\QuadTreeScene.h" />
     <ClInclude Include="Scenes\ReportScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SphereScene.h" />
@@ -323,6 +325,7 @@
     <ClCompile Include="Object\Model\RockPillar.cpp" />
     <ClCompile Include="Object\Model\RockShield.cpp" />
     <ClCompile Include="Object\Model\Sword.cpp" />
+    <ClCompile Include="Object\Model\Wall.cpp" />
     <ClCompile Include="Object\Model\Wing.cpp" />
     <ClCompile Include="Object\Model\Zombie.cpp" />
     <ClCompile Include="Object\Particle\Particle.cpp" />
@@ -361,6 +364,7 @@
     <ClCompile Include="Scenes\ModelInstancingScene.cpp" />
     <ClCompile Include="Scenes\ModelRenderScene.cpp" />
     <ClCompile Include="Scenes\ParticleScene.cpp" />
+    <ClCompile Include="Scenes\QuadTreeScene.cpp" />
     <ClCompile Include="Scenes\ReportScene.cpp" />
     <ClCompile Include="Scenes\SphereScene.cpp" />
     <ClCompile Include="Scenes\TerrainEditorScene.cpp" />

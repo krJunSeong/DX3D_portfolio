@@ -4,12 +4,7 @@ class TerrainEditorScene : public Scene
 {
 private:
     TerrainEditor* terrain;
-
-    vector<ReportRobot_211201*> robots;
-
-    bool isCreate = false;
-
-
+    //Jean* player;
 public:
     TerrainEditorScene();
     ~TerrainEditorScene();
@@ -21,6 +16,5 @@ public:
     virtual void GUIRender() override;
 
 private:
-    void ByteAddress();
-    ReportRobot_211201* CreateRobot(Float3 pos);
+    void ByteAdrress();
 };

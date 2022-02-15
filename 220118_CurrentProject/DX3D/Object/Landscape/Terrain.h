@@ -3,44 +3,60 @@
 class Terrain : public Transform
 {
 private:
-	// r값이 1인 것을 50으로 잡음.
-	const float MAX_HEIGHT = 10.0f;
+    const float MAX_HEIGHT = 10.0f;
 
-	typedef VertexUVNormal VertexType;
+    typedef VertexUVNormal VertexType;
 
-	Material* material;
-	Mesh* mesh;
+    Material* material;
+    Mesh* mesh;
 
-	vector<VertexType> vertices;
-	vector<UINT> indices;
+    vector<VertexType> vertices;
+    vector<UINT> indices;
 
-	UINT width, height; // 정점갯수
+    UINT width, height;
 
-	WorldBuffer* worldBuffer;
+    WorldBuffer* worldBuffer;
 
-	Texture* heightMap; // 높이맵 로드
-	Texture* alphaMap;
+    Texture* heightMap;
+    Texture* alphaMap;
 
-	Texture* secondMap;
-	Texture* thirdMap;
+    Texture* secondMap;
+    Texture* thirdMap;
 
-	RasterizerState* rasterizerState;
+    RasterizerState* rasterizerState;
+
+    struct InputDesc
+    {
+        UINT index;
+        Float3 v0, v1, v2;
+    };
+    struct OutputDesc
+    {
+        int picked;
+        float distance;
+    };
+
+    ComputeShader* computeShader;
+    RayBuffer* rayBuffer;
+    StructuredBuffer* structuredBuffer;
+    InputDesc* input;
+    OutputDesc* output;
+
+    UINT size;
 public:
-	Terrain();
+	Terrain(wstring alphaMapName = L"TestAlpha.png",
+		wstring heightMapName = L"HeightMap.png");
 	~Terrain();
 
-	void Render();
+    void Render();
 
+    float GetHeight(Vector3 position = {0,0,0});
 
-	vector<VertexType> GetVertices(){return vertices;}
+    Vector3 Picking();
 
-	float GetHeight(Vector3 position);
-
-	UINT GetWidth() {return width;}
-	UINT GetHeight() { return height; }
-
-	Float2 GetSize() {return Float2(width, height);}
+    Float2 GetSize() { return Float2(width, height); }
 private:
-	void CreateMesh();
-	void CreateNormal();
+    void CreateMesh();
+    void CreateNormal();
+    void CreateCompute();
 };

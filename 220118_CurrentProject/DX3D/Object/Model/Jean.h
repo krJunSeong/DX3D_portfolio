@@ -24,18 +24,19 @@ private:
 	const float LimitHitTime = 1.3f;
 
 	// ----------------- Status -----------------
-	float hp = 1.0f;
+	float hp = 100.0f;
 	float lerpHp = 100.0f;
 	float lerpSpeed = 1.0f;
 	float moveSpeed;
 	float rotSpeed;
 	float jumpPower;
 	float gravity;
-	float att = 20.0f;
+	float att = 30.0f;
 
 	Bar* hpBar;
 	class SkillBall* ball;
 	Quad* skillUI;
+	Terrain* land;
 
 	bool isAttack;
 	bool isMove;
@@ -74,6 +75,7 @@ public:
 
 	void SetClip(AnimState state);
 	void SetRockBoss(RockBoss* boss) {this->boss = boss;}
+	void SetTerrain(Terrain* terrain) {this->land = terrain;}
 
 	void EndAttack();
 	void EndDeath();

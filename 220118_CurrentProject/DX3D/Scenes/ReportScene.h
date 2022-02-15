@@ -10,8 +10,13 @@ private:
 	Jean* jean;
 	JapanHouse* house;
 	RockBoss* boss;
-	Quad* land;
+	Terrain* land;
 	Sky* sky;
+
+	Wall* leftWall;
+	Wall* upWall;
+	Wall* rightWall;
+	Wall* downWall;
 
 	// Scene을(를) 통해 상속됨
 	virtual void Update() override;

@@ -3,7 +3,7 @@
 
 ModelExportScene::ModelExportScene()
 {
-    string name = "RockShield"; // ¿Ã∏ß πŸ≤‹ ∞Õ
+    string name = "Wall"; // ¿Ã∏ß πŸ≤‹ ∞Õ
     string clipName;
     string file;
 

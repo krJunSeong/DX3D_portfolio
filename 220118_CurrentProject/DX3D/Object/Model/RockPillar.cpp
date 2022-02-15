@@ -1,6 +1,6 @@
 #include "framework.h"
 
-int RockPillar::PillarCount = 4;
+int RockPillar::PillarCount = 0;
 
 RockPillar::RockPillar()
 {
@@ -34,7 +34,7 @@ void RockPillar::Update()
 	if (isIniting)
 	{
 		// 기둥의 포지션이 땅보다 낮다면 계속 올려라.
-		if (position.y < 0) position.y += DELTA;
+		if (position.y < land->GetHeight(position)) position.y += DELTA;
 		else isIniting = false;
 	}
 
@@ -104,10 +104,11 @@ void RockPillar::Damaged(float damage)
 	}
 }
 
-void RockPillar::Init()
+void RockPillar::Init(Terrain* terrain)
 {
 	//Spawn, Camera 흔들림 효과 추가?
 
+	SetTerrain(terrain);
 	Transform::isActive = true;
 	objTransform->isActive = true;
 	bodyCollider->isActive = true;

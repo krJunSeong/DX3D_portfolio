@@ -3,7 +3,7 @@
 
 ModelRenderScene::ModelRenderScene()
 {
-    string name = "RockShield"; 
+    string name = "Wall"; 
 
     model = new Model(name);
     model->GetReader()->SetShader(L"Lighting.hlsl");

@@ -345,6 +345,12 @@
     <ClInclude Include="Object\Particle\Snow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\QuadTreeScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Model\Wall.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX3D.cpp">
@@ -651,6 +657,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\Particle\Snow.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\QuadTreeScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Model\Wall.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

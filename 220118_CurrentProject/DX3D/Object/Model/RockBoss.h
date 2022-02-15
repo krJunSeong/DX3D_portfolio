@@ -36,8 +36,7 @@ private:
 	bool isHit;
 
 	class Jean* player;
-	Terrain* terrain;
-	Quad* quad;
+	Terrain* land;
 
 private:
 	// phase1 Data
@@ -58,7 +57,7 @@ private:
 	const float LimitInitTime = 5.0f;
 	const float LimitAttackTime = 10.0f; // 제한시간
 	float attackTime = 0.0f;
-	float initTime = 0.0f;
+	float initTime = 5.0f;
 	bool isPillaresInit = false;
 	bool isIniting = false;
 	bool isPhase2 = false;
@@ -92,7 +91,7 @@ public:
 	void Phase2();
 
 	//void SetInstancing(ModelInstancing* instancing) { this->rockPillar = instancing; }
-	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
+	void SetTerrain(Terrain* terrain) { this->land = terrain; }
 	void SetPlayer(Jean* jean) { player = jean; }
-	void SetQuad(Quad* land) { quad = land; }
+	//void SetQuad(Quad* land) { quad = land; }
 };

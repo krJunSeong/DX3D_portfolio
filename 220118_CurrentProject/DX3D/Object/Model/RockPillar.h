@@ -6,6 +6,7 @@ private:
 	static int PillarCount;
 	CapsuleCollider* bodyCollider;
 	Quad* quad;
+	Terrain* land;
 	class RockShield* rockShield;
 
 	Transform* objTransform;
@@ -37,7 +38,7 @@ public:
 
 	void Damaged(float damage);
 
-	void Init();
+	void Init(Terrain* terrain);
 	void HpControll();
 	void LerpHp();
 
@@ -51,6 +52,8 @@ public:
 	Collider* GetCollider() { return bodyCollider; }
 
 	void SetQuad(Quad* quad) { this->quad = quad; }
+	void SetTerrain(Terrain* terrain) { land = terrain;}
+
 	float GetHp() { return hp; }
 	static int GetPillarCount() {return PillarCount;}
 };

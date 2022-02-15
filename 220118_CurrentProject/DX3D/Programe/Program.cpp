@@ -20,6 +20,7 @@
 #include "Scenes/DefenceScene.h"
 #include "Scenes/BillboardScene.h"
 #include "Scenes/ParticleScene.h"
+#include "Scenes/QuadTreeScene.h"
 
 Program::Program()
 {
@@ -29,8 +30,13 @@ Program::Program()
     SceneManager::Get()->Add("Grid");
 
     // 터레인
-    //SceneManager::Get()->Create("Terrain", new TerrainEditorScene());
+       //SceneManager::Get()->Create("Terrain", new TerrainEditorScene());
+       //SceneManager::Get()->Add("Terrain");
 
+    // Report Scene
+       SceneManager::Get()->Create("Report", new ReportScene());
+       SceneManager::Get()->Add("Report");
+      
     // 모델, 애니메이션 뽑는 것, ModelData/FBX/  파일넣기
         //SceneManager::Get()->Create("Export", new ModelExportScene());
         //SceneManager::Get()->Create("ModelRender", new ModelRenderScene());
@@ -57,9 +63,6 @@ Program::Program()
         //SceneManager::Get()->Create("Astar", new AstarScene());
         //SceneManager::Get()->Add("Astar");
      
-    // ReportScene
-       SceneManager::Get()->Create("Report", new ReportScene());
-       SceneManager::Get()->Add("Report");
 
     // Frustum Curing
         //SceneManager::Get()->Create("Frustum", new FrustumScene());
