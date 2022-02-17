@@ -29,7 +29,7 @@ private:
 	const float rotSpeed = 10.0f;
 	const float movespeed = 10.0f;
 
-	const float rockShieldDistance = 40.0f;
+	const float rockShieldDistance = 100.0f;
 	bool isAttack;
 	bool isMove;
 	bool isJumping;

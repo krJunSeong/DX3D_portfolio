@@ -13,7 +13,7 @@ private:
     float spawnDelayTime = 0.0f;
     float playTime = 0.0f;
 
-    Terrain* terrain;
+    Terrain* land;
     Quad* quad;
     Jean* player;
 
@@ -29,7 +29,7 @@ public:
     void CreateMonsters(UINT poolCount = 20);
     void Collision(Collider* collider, float damage);
 
-    void SetTerrain(Terrain* terrain);
+    void SetTerrain(Terrain* land);
     void SetQuad(Quad* quad);
     void SetPlayer(Jean* player);
 

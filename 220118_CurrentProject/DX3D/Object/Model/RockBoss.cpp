@@ -21,6 +21,8 @@ RockBoss::~RockBoss()
 
 void RockBoss::Update()
 {
+	if(!rockShield->isActive) return;
+
 	if(isPhase1) Phase1();
 	else Phase2();
 
@@ -35,6 +37,8 @@ void RockBoss::Update()
 
 void RockBoss::Render()
 {
+	if (!rockShield->isActive) return;
+
 	instancing->Render();
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->Render();
@@ -45,6 +49,8 @@ void RockBoss::Render()
 
 void RockBoss::PostRender()
 {
+	if (!rockShield->isActive) return;
+
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->PostRender();
 
@@ -53,6 +59,8 @@ void RockBoss::PostRender()
 
 void RockBoss::GUIRender()
 {
+	if (!rockShield->isActive) return;
+
 	for (RockPillar* rockPillar : rockPillares)
 	{
 		rockPillar->GUIRender();
@@ -199,8 +207,34 @@ void RockBoss::Phase2()
 
 	if(isPillaresInit)
 	{
+		int i = 0;
 		for(RockPillar* pillar : rockPillares)
+		{
 			pillar->Init(land);
+
+			pillar->position.x = Random(land->position.x + 3.0f, land->GetSize().x);
+			pillar->position.z = Random(land->position.y + 3.0f, land->GetSize().y);
+			/*switch (i)
+			{
+			case 0:
+				pillar->position.x = rockShield->position.x + Random(land->position.x, rockShieldDistance);
+				pillar->position.z = rockShield->position.z + Random(0.0f, rockShieldDistance);
+				break;
+			case 1:
+				pillar->position.x = rockShield->position.x - Random(0.0f, rockShieldDistance);
+				pillar->position.z = rockShield->position.z - Random(0.0f, rockShieldDistance);
+				break;
+			case 2:
+				pillar->position.x = rockShield->position.x + Random(0.0f, rockShieldDistance);
+				pillar->position.z = rockShield->position.z + Random(0.0f, rockShieldDistance);
+				break;
+			case 3:
+				pillar->position.x = rockShield->position.x - Random(0.0f, rockShieldDistance);
+				pillar->position.z = rockShield->position.z - Random(0.0f, rockShieldDistance);
+				break;
+			}
+			i++;*/
+		}
 
 		isIniting = true;
 		CAM->Shake(1.0f, 1.0f);
@@ -224,21 +258,7 @@ void RockBoss::CreateObject()
 		rockPillar->SetTransform(insTrf);
 		rockPillares.push_back(rockPillar);
 
-		switch (i)
-		{
-		case 0:
-			rockPillar->position.x = rockShield->position.x + rockShieldDistance;
-			break;
-		case 1:
-			rockPillar->position.x = rockShield->position.x  -rockShieldDistance;
-			break;
-		case 2:
-			rockPillar->position.z = rockShield->position.z + rockShieldDistance;
-			break;
-		case 3:
-			rockPillar->position.z = rockShield->position.z -rockShieldDistance;
-			break;
-		}
+
 	}
 
 	rockShieldInstancing = new ModelInstancing("RockShield");

@@ -33,9 +33,16 @@ ReportScene::ReportScene()
 
 	jean->SetRockBoss(boss);
 
+	// -------------------------------------------------------
+	startPos = new BoxCollider();
+	startPos->tag = "bossRoomStartPos";
+	startPos->Load();
+
 	// CAM
-	//CAM->SetTarget(jean);
-	
+	CAM->SetTarget(jean);
+	CAM->position.y += 500.0f;
+	CAM->position.z += 500.0f;
+
 	//chuchu = new Chuchu();
 
 	//house = new JapanHouse();
@@ -59,6 +66,7 @@ ReportScene::~ReportScene()
 	delete rightWall;
 	delete downWall;
 
+	delete startPos;
 	//delete house;
 }
 
@@ -72,7 +80,6 @@ void ReportScene::Update()
 	upWall		->Update();
 	rightWall	->Update();
 	downWall	->Update();
-
 
 	if(KEY_DOWN(VK_TAB)) Collider::isVisible = !Collider::isVisible;
 	
@@ -94,6 +101,7 @@ void ReportScene::Render()
 	upWall->Render();
 	rightWall->Render();
 	downWall->Render();
+
 	//InstancingMonsterManager::Get()->Render();
 }
 
@@ -109,10 +117,11 @@ void ReportScene::GUIRender()
 	jean->GUIRender();
 	boss->GUIRender();
 
-	leftWall->GUIRender();
-	upWall->GUIRender();
-	rightWall->GUIRender();
-	downWall->GUIRender();
+	//leftWall->GUIRender();
+	//upWall->GUIRender();
+	//rightWall->GUIRender();
+	//downWall->GUIRender();
+	startPos->GUIRender();
 
 	//InstancingMonsterManager::Get()->GUIRender();
 	
@@ -124,7 +133,9 @@ void ReportScene::Start()
 {
 	//InstancingMonsterManager::Get()->CreateMonsters(10.0f);
 	//InstancingMonsterManager::Get()->SetPlayer(jean);
-	//InstancingMonsterManager::Get()->SetQuad(land);
+	InstancingMonsterManager::Get()->SetTerrain(land);
+
+	jean->position = startPos->position;
 }
 
 void ReportScene::End()

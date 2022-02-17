@@ -40,6 +40,9 @@ void InstancingChuchu::Update()
 
 	if(animState == DEATH) return;
 	if(animState == HIT) return;
+
+	transform->position.y = terrain->GetHeight(transform->position);
+
 	ActionIdle();
 	ActionTrace();
 }

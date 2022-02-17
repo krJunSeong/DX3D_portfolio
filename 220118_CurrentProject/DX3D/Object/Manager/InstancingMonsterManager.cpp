@@ -78,13 +78,13 @@ void InstancingMonsterManager::Collision(Collider* collider, float damage)
     }
 }
 
-void InstancingMonsterManager::SetTerrain(Terrain* terrain)
+void InstancingMonsterManager::SetTerrain(Terrain* land)
 {
-    this->terrain = terrain;
+    this->land = land;
 
     for (InstancingChuchu* chuchu : chuchus)
     {
-        chuchu->SetTerrain(terrain);
+        chuchu->SetTerrain(land);
     }
 }
 
@@ -126,8 +126,8 @@ void InstancingMonsterManager::Spawn()
     if (playTime < spawnDelayTime) return;
 
     Vector3 pos;
-    pos.x = Random(-quad->GetSizeScale().x, quad->GetSizeScale().x);
-    pos.z = Random(-quad->GetSizeScale().y, quad->GetSizeScale().y);
+    //pos.x = Random(-land->.x, land->GetSizeScale().x);
+    //pos.z = Random(-land->.y, land->GetSizeScale().y);
     pos.y = quad->position.y;
 
     for (InstancingChuchu* chuchu : chuchus)
