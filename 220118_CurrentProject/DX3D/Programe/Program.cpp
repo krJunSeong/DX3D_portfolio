@@ -21,6 +21,7 @@
 #include "Scenes/BillboardScene.h"
 #include "Scenes/ParticleScene.h"
 #include "Scenes/QuadTreeScene.h"
+#include "Scenes/TestScene.h"
 
 Program::Program()
 {
@@ -34,8 +35,8 @@ Program::Program()
        //SceneManager::Get()->Add("Terrain");
 
     // Report Scene
-       SceneManager::Get()->Create("Report", new ReportScene());
-       SceneManager::Get()->Add("Report");
+       //SceneManager::Get()->Create("Report", new ReportScene());
+       //SceneManager::Get()->Add("Report");
       
     // 모델, 애니메이션 뽑는 것, ModelData/FBX/  파일넣기
         //SceneManager::Get()->Create("Export", new ModelExportScene());
@@ -83,6 +84,9 @@ Program::Program()
     // Particle Scene
     //SceneManager::Get()->Create("ParticleScene", new ParticleScene());
     //SceneManager::Get()->Add("ParticleScene");
+
+    SceneManager::Get()->Create("TestScene", new TestScene());
+    SceneManager::Get()->Add("TestScene");
 
 }
 Program::~Program()

@@ -11,6 +11,27 @@ BoxCollider::~BoxCollider()
 {
 }
 
+bool BoxCollider::IsPointCollision(Vector2 point)
+{
+    Vector3 halfSize;
+    halfSize = size * globalScale * 0.5f ;
+
+    Vector2 p[5];
+    p[1] = {(globalPosition.x - halfSize.x ), (globalPosition.y + halfSize.y)};
+    p[2] = {(globalPosition.x - halfSize.x ), (globalPosition.y - halfSize.y)};
+    p[3] = {(globalPosition.x + halfSize.x ), (globalPosition.y + halfSize.y)};
+    p[4] = {(globalPosition.x + halfSize.x ), (globalPosition.y - halfSize.y)};
+
+    float tempPointY = WIN_HEIGHT - point.y;
+    bool chX = (p[1].x <= point.x) && (p[3].x >= point.x);// 1131 1148 1164
+    bool chY = (p[2].y <= tempPointY) && (p[3].y >= tempPointY);
+
+    if(chX && chY) 
+        return true;
+    //if(checkP[1] && checkP[2] && checkP[3] && checkP[4]) return true;
+    else return false;
+}
+
 bool BoxCollider::RayCollision(IN Ray ray, OUT Contact* contact)
 {
     UpdateWorld();

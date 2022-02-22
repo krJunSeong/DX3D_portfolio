@@ -34,7 +34,7 @@ public:
 
     void SetImGui();
 
-    Camera* GetCamrea() { return camera; }
+    Camera* GetCamera() { return camera; }
     Frustum* GetFrustum() { return frustum; }
     Matrix GetProjection() { return projection; }
 

@@ -13,9 +13,11 @@ private:
 	Terrain* land;
 	Sky* sky;
 
-	// --------------------- Wall ---------------------
+	// --------------------- pos ---------------------
 	BoxCollider* startPos;
 	BoxCollider* bossPos;
+
+	BoxCollider* uitest;
 
 
 	// --------------------- Wall ---------------------

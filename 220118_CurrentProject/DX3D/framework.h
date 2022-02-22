@@ -39,7 +39,7 @@
 #define MOUSE_DBCLICK(k) ImGui::IsMouseDoubleClicked(k)
 #define MOUSE_UP(k) ImGui::IsMouseReleased(k)
 
-#define CAM Environment::Get()->GetCamrea()
+#define CAM Environment::Get()->GetCamera()
 #define FRUSTUM Environment::Get()->GetFrustum()
 
 #include <windows.h>
@@ -128,6 +128,7 @@ using namespace Utility;
 #include "Framework/Render/Material.h"
 #include "Framework/Render/Mesh.h"
 
+#include "Framework/Math/Vector2.h"
 #include "Framework/Math/Vector3.h"
 #include "Framework/Math/GameMath.h"
 #include "Framework/Math/Transform.h"
@@ -167,8 +168,18 @@ using namespace GameMath;
 #include "Object/Basic/Grid.h"
 #include "Object/Basic/Sphere.h"
 
-#include "Object/UI/Bar.h"
+// DataManager
+#include "Object/Manager/DataManager.h"
 
+// UI
+#include "Object/UI/Bar.h"
+#include "Object/UI/UIPanel.h"
+#include "Object/UI/Button.h"
+//#include "Object/UI/Item.h"
+//#include "Object/UI/Store.h"
+//#include "Object/UI/Inventory.h"
+
+// Land
 #include "Object/Landscape/Terrain.h"
 #include "Object/Landscape/Terraineditor.h"
 #include "Object/Landscape/Sky.h"

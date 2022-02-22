@@ -12,13 +12,14 @@ public:
     };
 
 private:
-    Vector3 size;
 
+    Vector3 size;
     Obb obb;
 public:
     BoxCollider(Vector3 size = Vector3(1, 1, 1));
     ~BoxCollider();
 
+    bool IsPointCollision(Vector2 point);
     virtual bool RayCollision(IN Ray ray, OUT Contact* contact = nullptr) override;
     virtual bool BoxCollision(BoxCollider* collider) override;
     virtual bool SphereCollision(SphereCollider* collider) override;

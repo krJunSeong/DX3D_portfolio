@@ -38,6 +38,10 @@ ReportScene::ReportScene()
 	startPos->tag = "bossRoomStartPos";
 	startPos->Load();
 
+	uitest = new BoxCollider();
+	uitest->tag = "uitest";
+
+
 	// CAM
 	CAM->SetTarget(jean);
 	CAM->position.y += 500.0f;
@@ -67,6 +71,7 @@ ReportScene::~ReportScene()
 	delete downWall;
 
 	delete startPos;
+	delete uitest;
 	//delete house;
 }
 
@@ -81,6 +86,7 @@ void ReportScene::Update()
 	rightWall	->Update();
 	downWall	->Update();
 
+	uitest->UpdateWorld();
 	if(KEY_DOWN(VK_TAB)) Collider::isVisible = !Collider::isVisible;
 	
 	//InstancingMonsterManager::Get()->Update();
@@ -109,6 +115,7 @@ void ReportScene::PostRender()
 {
 	//InstancingMonsterManager::Get()->PostRender();
 	boss->PostRender();
+	uitest->Render();
 }
 
 void ReportScene::GUIRender()
@@ -122,7 +129,7 @@ void ReportScene::GUIRender()
 	//rightWall->GUIRender();
 	//downWall->GUIRender();
 	startPos->GUIRender();
-
+	uitest->GUIRender();
 	//InstancingMonsterManager::Get()->GUIRender();
 	
 	//boss->GUIRender();
