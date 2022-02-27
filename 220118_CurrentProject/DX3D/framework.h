@@ -178,6 +178,7 @@ using namespace GameMath;
 //#include "Object/UI/Item.h"
 //#include "Object/UI/Store.h"
 //#include "Object/UI/Inventory.h"
+#include "Object/UI/PlayerUI.h"
 
 // Land
 #include "Object/Landscape/Terrain.h"

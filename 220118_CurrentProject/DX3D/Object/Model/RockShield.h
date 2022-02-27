@@ -13,11 +13,15 @@ private:
 	float hitTime = 0.0f;
 	const float LimitHitTime = 1.3f;
 
+	// ------------ UI hp -------------------
 	Bar* hpBar;
 	float hp = 100.0f;
 	float lerpHp = 100.0f;
 	float lerpSpeed = 1.0f;
 	float hpBarScaleRate = 20.0f;
+
+	Quad* header;
+	Quad* shiledCount[4];
 public:
 	RockShield();
 	~RockShield();

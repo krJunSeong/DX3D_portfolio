@@ -3,7 +3,7 @@
 
 ModelRenderScene::ModelRenderScene()
 {
-    string name = "Wall"; 
+    string name = "Siro-Stagenum-008_1"; 
 
     model = new Model(name);
     model->GetReader()->SetShader(L"Lighting.hlsl");

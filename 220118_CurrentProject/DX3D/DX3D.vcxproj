@@ -200,6 +200,7 @@
     <ClInclude Include="Object\Landscape\Sky.h" />
     <ClInclude Include="Object\Landscape\Terrain.h" />
     <ClInclude Include="Object\Landscape\TerrainEditor.h" />
+    <ClInclude Include="Object\Manager\DataManager.h" />
     <ClInclude Include="Object\Manager\InstancingMonsterManager.h" />
     <ClInclude Include="Object\Manager\MonsterManager.h" />
     <ClInclude Include="Object\Model\Amber.h" />
@@ -237,6 +238,8 @@
     <ClInclude Include="Object\Report\SKillBall.h" />
     <ClInclude Include="Object\UI\Bar.h" />
     <ClInclude Include="Object\Particle\Particle.h" />
+    <ClInclude Include="Object\UI\Button.h" />
+    <ClInclude Include="Object\UI\PlayerUI.h" />
     <ClInclude Include="Object\UI\UIPanel.h" />
     <ClInclude Include="Programe\Program.h" />
     <ClInclude Include="Resource.h" />
@@ -263,6 +266,7 @@
     <ClInclude Include="Scenes\TerrainEditorScene.h" />
     <ClInclude Include="Scenes\TerrainScene.h" />
     <ClInclude Include="Scenes\TestScene.h" />
+    <ClInclude Include="Scenes\TownScene.h" />
     <ClInclude Include="Scenes\TutorialScene.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -315,6 +319,7 @@
     <ClCompile Include="Object\Landscape\Sky.cpp" />
     <ClCompile Include="Object\Landscape\Terrain.cpp" />
     <ClCompile Include="Object\Landscape\TerrainEditor.cpp" />
+    <ClCompile Include="Object\Manager\DataManager.cpp" />
     <ClCompile Include="Object\Manager\InstancingMonsterManager.cpp" />
     <ClCompile Include="Object\Manager\MonsterManager.cpp" />
     <ClCompile Include="Object\Model\Amber.cpp" />
@@ -351,6 +356,8 @@
     <ClCompile Include="Object\Report\ReportRobot_211201.cpp" />
     <ClCompile Include="Object\Report\SKillBall.cpp" />
     <ClCompile Include="Object\UI\Bar.cpp" />
+    <ClCompile Include="Object\UI\Button.cpp" />
+    <ClCompile Include="Object\UI\PlayerUI.cpp" />
     <ClCompile Include="Object\UI\UIPanel.cpp" />
     <ClCompile Include="Programe\Program.cpp" />
     <ClCompile Include="Scenes\AstarScene.cpp" />
@@ -375,6 +382,7 @@
     <ClCompile Include="Scenes\TerrainEditorScene.cpp" />
     <ClCompile Include="Scenes\TerrainScene.cpp" />
     <ClCompile Include="Scenes\TestScene.cpp" />
+    <ClCompile Include="Scenes\TownScene.cpp" />
     <ClCompile Include="Scenes\TutorialScene.cpp" />
   </ItemGroup>
   <ItemGroup>

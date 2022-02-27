@@ -75,6 +75,10 @@ void Environment::SetImGui()
         ImGui::SameLine();
         if (ImGui::Button("Remove"))
             lightBuffer->data.lightCount--;
+        ImGui::SameLine();
+        if (ImGui::Button("Save")) Save();
+        ImGui::SameLine();
+        if (ImGui::Button("Load")) Load();
 
         for (UINT i = 0; i < lightBuffer->data.lightCount; i++)
         {

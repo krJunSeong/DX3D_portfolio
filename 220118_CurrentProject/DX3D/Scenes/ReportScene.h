@@ -7,6 +7,8 @@ public:
 	~ReportScene();
 
 private:
+	map<UINT, string> data;
+
 	Jean* jean;
 	JapanHouse* house;
 	RockBoss* boss;

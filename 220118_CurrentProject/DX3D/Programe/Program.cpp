@@ -22,13 +22,15 @@
 #include "Scenes/ParticleScene.h"
 #include "Scenes/QuadTreeScene.h"
 #include "Scenes/TestScene.h"
+#include "Scenes/TownScene.h"
+
 
 Program::Program()
 {
     Create();
 
-    SceneManager::Get()->Create("Grid", new GridScene());
-    SceneManager::Get()->Add("Grid");
+    //SceneManager::Get()->Create("Grid", new GridScene());
+    //SceneManager::Get()->Add("Grid");
 
     // 터레인
        //SceneManager::Get()->Create("Terrain", new TerrainEditorScene());
@@ -37,7 +39,11 @@ Program::Program()
     // Report Scene
        //SceneManager::Get()->Create("Report", new ReportScene());
        //SceneManager::Get()->Add("Report");
-      
+    
+    // Town Scene
+       SceneManager::Get()->Create("TownScene", new TownScene());
+       SceneManager::Get()->Add("TownScene");
+
     // 모델, 애니메이션 뽑는 것, ModelData/FBX/  파일넣기
         //SceneManager::Get()->Create("Export", new ModelExportScene());
         //SceneManager::Get()->Create("ModelRender", new ModelRenderScene());
@@ -85,8 +91,8 @@ Program::Program()
     //SceneManager::Get()->Create("ParticleScene", new ParticleScene());
     //SceneManager::Get()->Add("ParticleScene");
 
-    SceneManager::Get()->Create("TestScene", new TestScene());
-    SceneManager::Get()->Add("TestScene");
+    //SceneManager::Get()->Create("TestScene", new TestScene());
+    //SceneManager::Get()->Add("TestScene");
 
 }
 Program::~Program()

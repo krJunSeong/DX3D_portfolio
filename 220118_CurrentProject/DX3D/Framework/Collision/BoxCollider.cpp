@@ -28,8 +28,10 @@ bool BoxCollider::IsPointCollision(Vector2 point)
 
     if(chX && chY) 
         return true;
-    //if(checkP[1] && checkP[2] && checkP[3] && checkP[4]) return true;
+    
     else return false;
+
+    //if(checkP[1] && checkP[2] && checkP[3] && checkP[4]) return true;
 }
 
 bool BoxCollider::RayCollision(IN Ray ray, OUT Contact* contact)

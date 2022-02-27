@@ -1,23 +1,16 @@
 #include "Framework.h"
 
 Button::Button(wstring textureFile)
-	: Quad(textureFile), state(NONE), Event(nullptr), IntEvent(nullptr),
+	: state(NONE), Event(nullptr), IntEvent(nullptr),
 	isDownCheck(false), intParam(0), VoidEvent(nullptr)
 {
-	collider = new BoxCollider();
-	collider->SetParent(this);
+	tag = "Button";
+	GetMaterial()->SetShader(L"Texture.hlsl");
+	GetMaterial()->SetDiffuseMap(textureFile);
+	SetParent(this);
 
-	noneColor = Float4(1, 1, 1, 1);
-	downColor = Float4(0.5f, 0.5f, 0.5f, 1.0f);
-	overColor = Float4(0.9f, 0.9f, 0.9f, 1.0f);
-}
-
-Button::Button(wstring textureFile, Vector2 maxFrame, UINT frame)
-	: Quad(textureFile, maxFrame, frame), state(NONE), Event(nullptr), IntEvent(nullptr),
-	isDownCheck(false), intParam(0), VoidEvent(nullptr)
-{
-	//Vector2 size(Size().x / maxFrame.x, Size().y / maxFrame.y);
 	collider = new BoxCollider();
+	collider->tag = "ButtonCollider";
 	collider->SetParent(this);
 
 	noneColor = Float4(1, 1, 1, 1);
@@ -33,17 +26,17 @@ Button::~Button()
 void Button::Update()
 {
 	// isPointColision
-	if (collider->RayCollision(mousePos))
+	if (collider->IsPointCollision({mousePos.x, mousePos.y}))
 	{
-		if (KEY_DOWN(VK_LBUTTON))
+		if (MOUSE_CLICK(0))
 			isDownCheck = true;
 
-		if (KEY_PRESS(VK_LBUTTON))
+		if (MOUSE_PRESS(0))
 			state = DOWN;
 		else
 			state = OVER;
 
-		if (isDownCheck && KEY_UP(VK_LBUTTON))
+		if (isDownCheck && MOUSE_UP(0))
 		{
 			if (Event != nullptr)
 				Event();
@@ -61,20 +54,23 @@ void Button::Update()
 	{
 		state = NONE;
 
-		if (KEY_UP(VK_LBUTTON))
+		if (MOUSE_UP(0))
 			isDownCheck = false;
 	}
 
 	switch (state)
 	{
 	case Button::NONE:
-		colorBuffer->data.color = noneColor;
+		Quad::SetColor(noneColor);
+		collider->SetColor(noneColor);
 		break;
 	case Button::DOWN:
-		colorBuffer->data.color = downColor;
+		Quad::SetColor(downColor);
+		collider->SetColor(downColor);
 		break;
 	case Button::OVER:
-		colorBuffer->data.color = overColor;
+		Quad::SetColor(overColor);
+		collider->SetColor(overColor);
 		break;	
 	}
 
@@ -86,6 +82,13 @@ void Button::Render()
 {
 	Quad::Render();
 	collider->Render();
-	Font::Get()->RenderText(text, "default", GlobalPos(), Size());
+	//Font::Get()->RenderText(text, "default", GlobalPos(), Size());
+}
+
+void Button::GUIRender()
+{
+	Transform::GUIRender();
+	collider->GUIRender();
+	GetMaterial()->GUIRender();
 }
 

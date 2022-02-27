@@ -33,10 +33,12 @@ private:
 	float gravity;
 	float att = 30.0f;
 
-	Bar* hpBar;
 	class SkillBall* ball;
 	Quad* skillUI;
 	Terrain* land;
+	
+	// -------------------- UI ---------------------
+	PlayerUI* playerUI;
 
 	bool isAttack;
 	bool isMove;

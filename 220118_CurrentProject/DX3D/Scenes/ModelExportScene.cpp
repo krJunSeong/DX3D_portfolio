@@ -3,7 +3,7 @@
 
 ModelExportScene::ModelExportScene()
 {
-    string name = "Wall"; // ¿Ã∏ß πŸ≤‹ ∞Õ
+    string name = "Siro-Stagenum-008_1"; // ¿Ã∏ß πŸ≤‹ ∞Õ
     string clipName;
     string file;
 

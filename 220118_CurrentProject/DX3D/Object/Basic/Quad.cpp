@@ -7,6 +7,7 @@ Quad::Quad(Float2 size) : size(size)
     CreateMesh();
 
     worldBuffer = new WorldBuffer();
+    colorBuffer = new ColorBuffer();
 }
 
 Quad::~Quad()
@@ -14,12 +15,15 @@ Quad::~Quad()
     delete material;
     delete mesh;
     delete worldBuffer;
+    delete colorBuffer;
 }
 
 void Quad::Render()
 {
     worldBuffer->Set(world);
     worldBuffer->SetVSBuffer(0);
+
+    colorBuffer->SetPSBuffer(6);
 
     mesh->IASet();
     material->Set();

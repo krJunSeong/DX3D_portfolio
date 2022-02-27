@@ -35,21 +35,21 @@ Jean::Jean()
 	wing = new Wing();
 	wing->SetParent(this);
 
-	hpBar = new Bar(L"Textures/UI/hp_bar.png", L"Textures/UI/hp_Bar_BG.png");
-
 	skillUI = new Quad();
 	skillUI->tag = "skillUI";
 	skillUI->Load();
 	skillUI->GetMaterial()->SetDiffuseMap(L"Textures/Star.png");
+
+	playerUI = new PlayerUI();
 }
 
 Jean::~Jean()
 {
 	delete bodyCollider;
-	delete hpBar;
 	delete skillUI;
 	delete mistsplitter;
 	delete wing;
+	delete playerUI;
 }
 
 void Jean::Update()
@@ -77,10 +77,10 @@ void Jean::Update()
 	}
 
 	Vector3 barPos = position + Vector3(0, 17, 0);
-	hpBar->position = CAM->WorldToScreenPoint(barPos);
 
 	LerpHp();
-	hpBar->Update();
+
+	playerUI->Update();
 }
 
 void Jean::Render()
@@ -94,7 +94,7 @@ void Jean::Render()
 
 void Jean::PostRender()
 {
-	hpBar->Render();
+	playerUI->Render();
 }
 
 void Jean::GUIRender()
@@ -105,6 +105,7 @@ void Jean::GUIRender()
 	mistsplitter->GetCollider()->GUIRender();
 	wing->GUIRender();
 	wing->GetReader()->GUIRender();
+	playerUI->GUIRender();
 }
 
 void Jean::SetClip(AnimState state)
@@ -207,7 +208,7 @@ void Jean::Damaged(float damage)
 
 	bodyCollider->isActive = false;
 	isHit = true;
-	hpBar->SetValue(hp);
+	playerUI->SetHp(hp);
 
 	 if (hp > 0)
 	 {
@@ -224,6 +225,7 @@ void Jean::Damaged(float damage)
 void Jean::HitEnd()
 {
 	isHit = false;
+	isAttack = false;
 	SetClip(IDLE);
 }
 
@@ -296,8 +298,6 @@ void Jean::JumpEnd()
 void Jean::LerpHp()
 {
 	lerpHp = LERP(lerpHp, hp, lerpSpeed * DELTA);
-
-	hpBar->SetLerpValue(lerpHp);
 }
 
 void Jean::SkillAttack()

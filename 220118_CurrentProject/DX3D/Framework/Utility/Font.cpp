@@ -119,7 +119,7 @@ void Font::RenderText(string text, string key, Float2 pos)
 
 	wstring temp = ToWString(text);
 
-	context->DrawTextW(temp.c_str(), text.size(), fonts[key]->format,
+	context->DrawTextW(temp.c_str(), temp.size(), fonts[key]->format,
 		&rectF, fonts[key]->brush);
 }
 
@@ -137,7 +137,7 @@ void Font::RenderText(string text, string key, Float2 pos, Float2 size)
 
 	wstring temp = ToWString(text);
 
-	context->DrawTextW(temp.c_str(), text.size(), fonts[key]->format,
+	context->DrawTextW(temp.c_str(), temp.size(), fonts[key]->format,
 		&rectF, fonts[key]->brush);
 }
 

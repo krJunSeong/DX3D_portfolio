@@ -8,7 +8,7 @@ protected:
 		NONE, DOWN, OVER
 	}state;
 
-	Collider* collider;
+	BoxCollider* collider;
 
 	function<void()> Event;
 	function<void(int)> IntEvent;
@@ -26,11 +26,11 @@ protected:
 	wstring text;	
 public:
 	Button(wstring textureFile);
-	Button(wstring textureFile, Vector2 maxFrame, UINT frame);
 	~Button();
 
 	void Update();
 	void Render();
+	void GUIRender();
 
 	void SetEvent(function<void()> Event) { this->Event = Event; }
 	void SetIntEvent(function<void(int)> Event) { IntEvent = Event; }

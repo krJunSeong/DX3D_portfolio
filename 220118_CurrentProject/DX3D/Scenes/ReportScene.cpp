@@ -41,12 +41,10 @@ ReportScene::ReportScene()
 	uitest = new BoxCollider();
 	uitest->tag = "uitest";
 
-
 	// CAM
 	CAM->SetTarget(jean);
-	CAM->position.y += 500.0f;
-	CAM->position.z += 500.0f;
-
+	//CAM->position.y += 50.0f;
+	//CAM->position.z += 500.0f;
 	//chuchu = new Chuchu();
 
 	//house = new JapanHouse();
@@ -103,8 +101,8 @@ void ReportScene::Render()
 	jean->Render();
 	boss->Render();
 
-	leftWall->Render();
-	upWall->Render();
+	//leftWall->Render();
+	//upWall->Render();
 	rightWall->Render();
 	downWall->Render();
 
@@ -115,7 +113,8 @@ void ReportScene::PostRender()
 {
 	//InstancingMonsterManager::Get()->PostRender();
 	boss->PostRender();
-	uitest->Render();
+	jean->PostRender();
+	//uitest->Render();
 }
 
 void ReportScene::GUIRender()

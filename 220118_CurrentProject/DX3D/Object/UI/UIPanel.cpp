@@ -24,26 +24,27 @@ UIPanel::~UIPanel()
 
 void UIPanel::Update()
 {
-	if (MOUSE_PRESS(0))
+	if(MOUSE_CLICK(0))  //if (MOUSE_PRESS(0))
 	{
-		//Vector2 temp = { mousePos.x, WIN_HEIGHT - mousePos.y };
-
 		if(collider->IsPointCollision({mousePos.x, mousePos.y}))
 		{
-			//offset = mousePos - position;
+			Vector3 tempMouse = {mousePos.x, WIN_HEIGHT - mousePos.y, mousePos.z };
+			offset = tempMouse - position;
 			isDrag = true;
 		}
 
-		if (isDrag)
-		{
-			Vector2 temp = { mousePos.x, WIN_HEIGHT - mousePos.y };
-			position.x = temp.x;// + offset.x;
-			position.y = temp.y;// + offset.y;
-		}
+		else isDrag = false;
 	}
-	else
-		isDrag = false;
 
+	// press 누르고 있으면
+	if (isDrag && MOUSE_PRESS(0)) // 마우스 콜라이더 처리되고, press 되면 이동
+	{
+		//Vector2 temp = { mousePos.x, WIN_HEIGHT - mousePos.y };
+		position.x = mousePos.x - offset.x;
+		position.y = WIN_HEIGHT - mousePos.y - offset.y;
+	}
+
+	if(MOUSE_UP(0)) isDrag = false;
 	UpdateWorld();
 	panel->UpdateWorld();
 	collider->UpdateWorld();

@@ -18,9 +18,14 @@ PixelInput VS(VertexUV input)
     return output;
 }
 
-float4 PS(PixelInput input) : SV_Target
+cbuffer Color : register(b6)
 {
-    return diffuseMap.Sample(samp, input.uv);
+    float4 color;
+}
+
+float4 PS(PixelInput input) : SV_Target
+{ 
+    return diffuseMap.Sample(samp, input.uv);// * color;
 }
 
 /*

@@ -36,6 +36,7 @@ public:
 
     Camera* GetCamera() { return camera; }
     Frustum* GetFrustum() { return frustum; }
+    LightBuffer* GetLightBuffer() { return lightBuffer;}
     Matrix GetProjection() { return projection; }
 
     LightBuffer::Light* AddLight();
