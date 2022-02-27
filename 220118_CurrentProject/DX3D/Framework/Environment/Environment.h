@@ -40,12 +40,13 @@ public:
     Matrix GetProjection() { return projection; }
 
     LightBuffer::Light* AddLight();
+
+    void Save(string name = "Light.info");
+    void Load(string name = "Light.info");
 private:
     void SetViewport();
     void CreateProjection();
 
     void SetLight(UINT index);
 
-    void Save();
-    void Load();
 };

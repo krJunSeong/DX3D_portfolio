@@ -168,9 +168,6 @@ using namespace GameMath;
 #include "Object/Basic/Grid.h"
 #include "Object/Basic/Sphere.h"
 
-// DataManager
-#include "Object/Manager/DataManager.h"
-
 // UI
 #include "Object/UI/Bar.h"
 #include "Object/UI/UIPanel.h"
@@ -202,12 +199,14 @@ using namespace GameMath;
 #include "Object/Model/RockBoss.h"
 #include "Object/Model/Wall.h"
 
+// DataManager
+#include "Object/Manager/DataManager.h"
+
 #include "Object/Particle/Particle.h"
 #include "Object/Particle/Spark.h"
 #include "Object/Particle/Sprite.h"
 #include "Object/Particle/Rain.h"
 #include "Object/Particle/Snow.h"
-
 
 // Object Report
 #include "Object/Report/ReportCube.h"

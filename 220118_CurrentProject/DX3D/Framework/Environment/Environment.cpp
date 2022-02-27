@@ -149,9 +149,9 @@ void Environment::SetLight(UINT index)
     }
 }
 
-void Environment::Save()
+void Environment::Save(string name)
 {
-    BinaryWriter w("TextData/OptionData/Light.info");
+    BinaryWriter w("TextData/OptionData/" + name);
 
     int lightCount = lightBuffer->data.lightCount;
 
@@ -185,9 +185,9 @@ void Environment::Save()
     }
 }
 
-void Environment::Load()
+void Environment::Load(string name)
 {
-    BinaryReader r("TextData/OptionData/Light.info");
+    BinaryReader r("TextData/OptionData/" + name);
 
     if (r.IsFailed()) return;
 

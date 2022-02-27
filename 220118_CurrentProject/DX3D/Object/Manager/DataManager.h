@@ -33,10 +33,13 @@ struct MonsterStatus
 	UINT Def;
 };
 
+class Jean;
+
 class DataManager : public Singleton<DataManager>
 {
 private:
 	friend class Singleton;
+
 	struct EquitStatus
 	{
 		UINT attack;
@@ -47,6 +50,8 @@ private:
 	map<UINT, PlayerStatus> playerDatas;
 	map<UINT, MonsterStatus> monsterDatas;
 
+	Jean* player = nullptr;
+
 	DataManager();
 	~DataManager();
 public:
@@ -54,6 +59,14 @@ public:
 	PlayerStatus GetPlayerData(UINT key) { return playerDatas[key]; }
 	MonsterStatus GetMonsterData(UINT key) { return monsterDatas[key]; }
 	EquitStatus GetPlayerEquit() { return playerEquit; }
+
+	Jean* GetJean()
+	{
+		if(player == nullptr) player = new Jean();
+		
+		return player;
+	}
+
 	void AddplayerEquit(UINT att = 0, UINT def = 0) 
 	{
 		playerEquit.attack += att;

@@ -3,7 +3,7 @@
 class TownScene : public Scene
 {
 private:
-	Model* Siro_Stagenum_008;
+	Model* Siro_Stagenum_008_1;
 
 public:
 	TownScene();
