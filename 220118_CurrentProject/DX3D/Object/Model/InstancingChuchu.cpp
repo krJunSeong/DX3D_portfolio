@@ -1,9 +1,13 @@
 #include "framework.h"
 
+int InstancingChuchu::deathCount = 0;
 InstancingChuchu::InstancingChuchu(UINT instanceID)
-	:instanceID(instanceID),
-	actionState(ActionState::IDLE), animState(AnimState::IDLE),
-	isAttack(false), isMove(false), isJumping(false) //moveSpeed(30.0f),
+	:instanceID(instanceID)
+	,actionState(ActionState::IDLE)
+	,animState(AnimState::IDLE)
+	,isAttack(false)
+	,isMove(false)
+	,isJumping(false) //moveSpeed(30.0f),
 {
 	bodyCollider = new CapsuleCollider(1, 3);
 	bodyCollider->tag = "ChuchuBodyCollider";
@@ -86,6 +90,7 @@ void InstancingChuchu::HitEnd()
 void InstancingChuchu::DeathEnd()
 {
 	transform->isActive = false;
+	deathCount++;
 }
 
 void InstancingChuchu::SetClip(AnimState state, float speed)

@@ -10,16 +10,19 @@ private:
 
 	UINT instanceID;
 
+	// Class Instance
 	vector<RockPillar*> rockPillares;
 	RockShield* rockShield;
 	ModelInstancing* instancing;			// rockPillar
 	ModelInstancing* rockShieldInstancing;	// rockShield
 
 	Bar* hpBar;
+	Particle* effect;
 
 	Vector3 originPlayerPosDir;
 	bool isCrash = false;
 
+private:
 	float hp = 100.0f;
 	float lerpHp = 100.0f;
 	float lerpSpeed = 1.0f;
@@ -35,7 +38,6 @@ private:
 
 	class Jean* player;
 	Terrain* land;
-
 private:
 	// phase1 Data
 	const float FloatingDuration = 3.0f;
@@ -62,15 +64,8 @@ private:
 
 	void InitRockPillares();
 
-	void ActionIdle();
-	void ActionTrace();
-	void HpControl();
-
-	void AttackEnd();
-	void HitEnd();
-	void DeathEnd();
-
 	void CreateObject();
+	void PhaseCheck();
 public:
 	RockBoss();
 	~RockBoss();
@@ -91,6 +86,7 @@ public:
 	//void SetInstancing(ModelInstancing* instancing) { this->rockPillar = instancing; }
 	void SetTerrain(Terrain* terrain) { this->land = terrain; }
 	void SetPlayer(Jean* jean) { player = jean; }
+	bool GetIsPhase2(){return isPhase2;}
 	//void SetQuad(Quad* land) { quad = land; }
 
 	vector<RockPillar*> GetRockPillares(){return rockPillares;}

@@ -48,9 +48,6 @@ ReportScene::ReportScene()
 
 	//CAM->position.y += 50.0f;
 	//CAM->position.z += 500.0f;
-
-	//CAM->SetTarget(gumdramon);
-
 	// -------------------- Test Particle
 }
 
@@ -71,14 +68,12 @@ ReportScene::~ReportScene()
 	delete backLand;
 }
 
-void ReportScene::Update() 
+void ReportScene::Phase2MapSetting()
 {
-	//if(KEY_DOWN('O'))
-	//	Environment::Get()->Save("ReportScene.info");
-	//
-	//if (KEY_DOWN('P'))
-	//	Environment::Get()->Load("ReportScene.info");
+}
 
+void ReportScene::Update()
+{
 	land->UpdateWorld();
 	jean->Update();
 	boss->Update();
@@ -93,9 +88,6 @@ void ReportScene::Update()
 	bossStartPos->UpdateWorld();
 
 	if(KEY_DOWN(VK_TAB)) Collider::isVisible = !Collider::isVisible;
-
-	//if (MOUSE_CLICK(0)) 
-	//	ParticleManager::Get()->Play("UpStar", jean->position, 0);
 
 	LightContorll();
 
@@ -114,12 +106,9 @@ void ReportScene::Update()
 	//if (MOUSE_CLICK(1))   CAM->SetTarget(nullptr);
 	//else if (MOUSE_UP(1)) CAM->SetTarget(jean);
 
-	if(KEY_PRESS('0')) CAM->SetTarget(nullptr);
-
 	ParticleManager::Get()->Update();
-
-
-	//InstancingMonsterManager::Get()->Update();
+	
+	InstancingMonsterManager::Get()->Update();
 }
 
 void ReportScene::PreRender()
@@ -133,7 +122,7 @@ void ReportScene::Render()
 	
 	jean->Render();
 	boss->Render();
-	//backLand->Render();
+	backLand->Render();
 	
 	// ---------------- wall ----------------
 	leftWall->Render();
@@ -147,12 +136,12 @@ void ReportScene::Render()
 
 	// ---------------- Particle --------------------
 	ParticleManager::Get()->Render();	
-	//InstancingMonsterManager::Get()->Render();
+	InstancingMonsterManager::Get()->Render();
 }
 
 void ReportScene::PostRender()
 {
-	//InstancingMonsterManager::Get()->PostRender();
+	InstancingMonsterManager::Get()->PostRender();
 	boss->PostRender();
 	jean->PostRender();
 }
@@ -180,9 +169,9 @@ void ReportScene::Start()
 {
 	srand(time(NULL));
 
-	//InstancingMonsterManager::Get()->CreateMonsters(10.0f);
-	//InstancingMonsterManager::Get()->SetPlayer(jean);
-	//InstancingMonsterManager::Get()->SetTerrain(land);
+	InstancingMonsterManager::Get()->CreateMonsters(10);
+	InstancingMonsterManager::Get()->SetPlayer(jean);
+	InstancingMonsterManager::Get()->SetTerrain(land);
 
 	jean->position = startPos->position;
 	CAM->SetTarget(jean);

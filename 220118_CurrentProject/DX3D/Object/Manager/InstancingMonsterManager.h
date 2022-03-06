@@ -29,6 +29,8 @@ public:
     void CreateMonsters(UINT poolCount = 20);
     void Collision(Collider* collider, float damage);
 
+    int GetKillCount(){return chuchus[0]->GetDeathCount();}
+
     void SetTerrain(Terrain* land);
     void SetQuad(Quad* quad);
     void SetPlayer(Jean* player);

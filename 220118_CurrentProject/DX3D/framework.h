@@ -183,6 +183,15 @@ using namespace GameMath;
 #include "Object/Landscape/Sky.h"
 #include "Object/Landscape/Box.h"
 
+// Particle
+#include "Object/Particle/Particle.h"
+#include "Object/Particle/Spark.h"
+#include "Object/Particle/Sprite.h"
+#include "Object/Particle/Rain.h"
+#include "Object/Particle/Snow.h"
+#include "Object/Particle/ParticleSystem.h"
+
+// Model
 #include "Object/Model/Sword.h"
 #include "Object/Model/Zombie.h"
 #include "Object/Model/horse.h"
@@ -201,13 +210,6 @@ using namespace GameMath;
 
 // DataManager
 #include "Object/Manager/DataManager.h"
-
-#include "Object/Particle/Particle.h"
-#include "Object/Particle/Spark.h"
-#include "Object/Particle/Sprite.h"
-#include "Object/Particle/Rain.h"
-#include "Object/Particle/Snow.h"
-#include "Object/Particle/ParticleSystem.h"
 
 // Object Report
 #include "Object/Report/ReportCube.h"

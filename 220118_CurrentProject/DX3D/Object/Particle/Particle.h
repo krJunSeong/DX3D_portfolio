@@ -18,6 +18,7 @@ protected:
 
     UINT particleCount = 0;
 
+    Float2 size;
 public:
     Particle();
     ~Particle();
@@ -29,4 +30,7 @@ public:
     virtual void Play(Vector3 position);
 
     void Stop();
+
+    Float2 GetSize(){return size;}
+    void SetSize(Float2 input){ size = input;}
 };

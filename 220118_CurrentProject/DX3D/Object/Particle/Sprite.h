@@ -12,8 +12,6 @@ private:
 	UINT curFrameCount;	// 스프라이트: 2x2 배열형태, 돌릴 떄는 1차원 0 ~ 1
 	UINT maxFrameCount;
 
-	Float2 size;
-
 public:
 	Sprite(wstring imageFile, Float2 maxFrame, bool isAdditive = false);
 	~Sprite();

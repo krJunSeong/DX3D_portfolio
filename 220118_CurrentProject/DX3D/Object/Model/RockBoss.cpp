@@ -14,7 +14,7 @@ RockBoss::~RockBoss()
 
 	delete rockShieldInstancing;
 	delete rockShield;
-
+	delete effect;
 	//for(CapsuleCollider* col : rockPillarCollideres)
 	//	delete col;
 }
@@ -23,16 +23,22 @@ void RockBoss::Update()
 {
 	if(!rockShield->isActive) return;
 
+	PhaseCheck();
+	
 	if(isPhase1) Phase1();
-	else Phase2();
+	else if(isPhase2) Phase2();
 
-	instancing->Update();			// rockshiled
+	// ----------------------- Update ----------------------
+	instancing->Update();			// rockPillar
 	rockShieldInstancing->Update();
 
+	rockShield->Update();
 	for (RockPillar* rockPillar : rockPillares)
 		rockPillar->Update();
 
-	rockShield->Update();
+	// ---------------------- Particle --------------------------
+	effect->Play(rockShield->position + Vector3(0,10.0f, 0));
+	effect->Update();
 }
 
 void RockBoss::Render()
@@ -45,6 +51,7 @@ void RockBoss::Render()
 
 	rockShieldInstancing->Render();
 	rockShield->Render();
+	effect->Render();
 }
 
 void RockBoss::PostRender()
@@ -82,12 +89,6 @@ void RockBoss::Collision(Collider* collider, float damage)
 	if(rockShield->GetCollider()->Collision(collider))
 	{
 		rockShield->Damaged(damage);
-
-		if(rockShield->GetHp() < Phase2Hp)
-		{
-			isPhase1 = false;
-			isPhase2 = true;
-		}
 	}
 }
 
@@ -258,6 +259,23 @@ void RockBoss::CreateObject()
 	temp->tag = "RockShield";
 	temp->isActive = true;
 	rockShield->SetTransform(temp);
+
+	effect = new Sprite(L"Textures/Particle/project2_4x4.png", Float2(4, 4), true);
+	
+}
+
+void RockBoss::PhaseCheck()
+{
+	if (rockShield->GetHp() < Phase2Hp)
+	{
+		isPhase1 = false;
+		isPhase2 = true;
+	}
+	else
+	{
+		isPhase1 = true;
+		isPhase2 = false;
+	}
 }
 
 void RockBoss::InitRockPillares()

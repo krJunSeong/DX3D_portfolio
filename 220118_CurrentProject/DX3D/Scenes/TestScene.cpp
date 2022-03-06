@@ -27,8 +27,8 @@ TestScene::TestScene()
 	particleSystem->Load("TextData/Particles/Test.fx");
 	particleSystem->Play({0,0,0});
 
-	particle = new Sprite(L"Textures/Particle/fire_8x2.png", Float2(8, 2), true);
-	
+	particle = new Sprite(L"Textures/Particle/project2_4x4.png", Float2(4, 4), true);
+
 	ParticleManager::Get();
 
 	//bar->scale *= 1.0f;
@@ -77,7 +77,8 @@ void TestScene::Update()
 
 	if(MOUSE_CLICK(0))
 	{
-		ParticleManager::Get()->Play("HorizonStar", tempPos, 0);
+		particle->Play(tempPos);
+		//ParticleManager::Get()->Play("HorizonStar", tempPos, 0);
 		tempPos.x += 10;
 		tempPos.z += 10;
 	}
@@ -110,13 +111,13 @@ void TestScene::PostRender()
 
 void TestScene::GUIRender()
 {
-	ui->GUIRender();
-	button->GUIRender();
-	ImGui::DragFloat3("mousePos", (float*)&mousePos, 1408.f);
-	hpBar->GUIRender();
-	staminaBar->GUIRender();
-	icon->GUIRender();
+	//ui->GUIRender();
+	//button->GUIRender();
+	//ImGui::DragFloat3("mousePos", (float*)&mousePos, 1408.f);
+	//hpBar->GUIRender();
+	//staminaBar->GUIRender();
+	//icon->GUIRender();
 
-	particleSystem->GUIRender();
+	//particleSystem->GUIRender();
 	particle->GUIRender();
 }

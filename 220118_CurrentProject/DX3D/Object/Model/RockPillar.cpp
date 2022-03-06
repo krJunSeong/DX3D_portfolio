@@ -22,10 +22,6 @@ RockPillar::~RockPillar()
 {
 	delete bodyCollider;
 	delete hpBar;
-
-	// 이관
-	//for(CapsuleCollider* col : bodyCollideres)
-	//	delete col;
 }
 
 void RockPillar::Update()
@@ -58,9 +54,6 @@ void RockPillar::Update()
 		}
 	}
 
-	// 이관
-	//for(CapsuleCollider* col : bodyCollideres)
-	//	col->UpdateWorld();
 }
 
 void RockPillar::Render()
@@ -69,18 +62,13 @@ void RockPillar::Render()
 	
 	bodyCollider->Render();
 
-	// 이관
-	//for (CapsuleCollider* col : bodyCollideres)
-	//	col->Render();
 }
 
 void RockPillar::GUIRender()
 {
 	Transform::GUIRender();
 	bodyCollider->GUIRender();
-	// 이관
-	//for (CapsuleCollider* col : bodyCollideres)
-	//	col->GUIRender();
+
 }
 
 void RockPillar::PostRender()
@@ -112,8 +100,6 @@ void RockPillar::Damaged(float damage)
 
 void RockPillar::Init(Terrain* terrain)
 {
-	//Spawn, Camera 흔들림 효과 추가?
-
 	SetTerrain(terrain);
 	Transform::isActive = true;
 	objTransform->isActive = true;

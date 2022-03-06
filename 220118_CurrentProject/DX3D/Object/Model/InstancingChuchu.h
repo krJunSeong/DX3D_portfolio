@@ -30,6 +30,8 @@ private:
 	const float rotSpeed = 10.0f;
 	const float movespeed = 10.0f;
 
+	static int deathCount;
+
 	bool isAttack;
 	bool isMove;
 	bool isJumping;
@@ -66,6 +68,7 @@ public:
 
 	Transform* GetTransform() { return transform; }
 	Collider* GetCollider(){return bodyCollider;}
+	int GetDeathCount(){return deathCount;}
 
 	void SetRightHand(){rightHand = instancing->GetTransformByNode(instanceID, 110) * transform->GetWorld();};
 	void SetClip(AnimState state, float speed = 1.0f);

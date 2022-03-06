@@ -17,15 +17,23 @@ private:
 	Quad* backLand;
 
 	// --------------------- pos ---------------------
+private:
 	BoxCollider* startPos;
 	BoxCollider* bossStartPos;
 
 	// --------------------- Wall ---------------------
+private:
 	Wall* leftWall;
 	Wall* upWall;
 	Wall* rightWall;
 	Wall* downWall;
 
+private:
+	bool isPhase2Setting = false;
+	
+	void Phase2MapSetting();
+
+private:
 	// Scene을(를) 통해 상속됨
 	virtual void Update() override;
 	virtual void PreRender() override;

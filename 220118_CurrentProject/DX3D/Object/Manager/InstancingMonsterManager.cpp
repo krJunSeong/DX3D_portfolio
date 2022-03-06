@@ -126,9 +126,9 @@ void InstancingMonsterManager::Spawn()
     if (playTime < spawnDelayTime) return;
 
     Vector3 pos;
-    //pos.x = Random(-land->.x, land->GetSizeScale().x);
-    //pos.z = Random(-land->.y, land->GetSizeScale().y);
-    pos.y = quad->position.y;
+    pos.x = Random(land->position.x + 3.0f, land->GetSize().x);
+    pos.z = Random(land->position.y + 3.0f, land->GetSize().y);
+    pos.y = land->GetHeight(pos);
 
     for (InstancingChuchu* chuchu : chuchus)
     {

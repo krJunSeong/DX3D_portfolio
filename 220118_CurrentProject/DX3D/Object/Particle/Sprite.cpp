@@ -1,8 +1,12 @@
 #include "framework.h"
 
 Sprite::Sprite(wstring imageFile, Float2 maxFrame, bool isAdditive)
-    : time(0.0f), speed(1.0f), curFrameCount(0), size(10, 10)
+    : time(0.0f)
+    , speed(1.0f)
+    , curFrameCount(0)
 {
+    size = {30,30};
+
     material->SetShader(L"Geometry/Sprite.hlsl");
     material->SetDiffuseMap(imageFile);
 
@@ -52,21 +56,25 @@ void Sprite::Render()
 void Sprite::GUIRender()
 {
     ImGui::Text("Sprite Option");
-    ImGui::SliderFloat("Speed", &speed, 0.1f, 10.0f);
-    ImGui::SliderFloat2("Size", (float*)&size, 0.1f, 10.0f);
+    ImGui::SliderFloat("Speed", &speed, 0.1f, 30.0f);
+    ImGui::SliderFloat2("Size", (float*)&size, 0.1f, 30.0f);
+    
 }
 
 void Sprite::Play(Vector3 position)
 {
+    vertices->position = position;
+    vertexBuffer->Update(vertices, particleCount);
+
+    if(isActive) return;
+
     isActive = true;
 
     time = 0.0f;
     curFrameCount = 0;
 
-    vertices->position = position;
     vertices->size = size;
 
-    vertexBuffer->Update(vertices, particleCount);
 }
 
 void Sprite::Create()
