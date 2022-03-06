@@ -65,6 +65,7 @@ void Jean::Update()
 	Move();
 	Attack();
 
+
 	if (!bodyCollider->isActive)
 	{
 		hitTime += DELTA;
@@ -75,6 +76,7 @@ void Jean::Update()
 			hitTime = 0.0f;
 		}
 	}
+
 
 	Vector3 barPos = position + Vector3(0, 17, 0);
 
@@ -130,7 +132,7 @@ void Jean::EndDeath()
 void Jean::Init()
 {
 	state = IDLE;
-	moveSpeed = 30.0f;
+	moveSpeed = 100.0f;
 	gravity = 9.8f;
 	jumpPower = 30.0f;
 	rotSpeed = 5.0f;
@@ -213,12 +215,12 @@ void Jean::Damaged(float damage)
 	 if (hp > 0)
 	 {
 		 SetClip(HIT);
-		 Transform::isActive = false;
 		 isHit = true;
 	 }
 	else
 	 {
 		SetClip(DEATH);
+		 //Transform::isActive = false;
 	 }
 }
 

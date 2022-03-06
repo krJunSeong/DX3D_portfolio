@@ -4,7 +4,7 @@ class TerrainEditor : public Transform
 {
 private:
     const float MIN_HEIGHT = 0.0f;
-    const float MAX_HEIGHT = 60.0f;
+    const float MAX_HEIGHT = 100.0f;
 
     typedef VertexUVNormalTangentAlpha VertexType;
 

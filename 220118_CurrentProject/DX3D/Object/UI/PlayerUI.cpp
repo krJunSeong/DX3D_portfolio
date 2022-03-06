@@ -20,14 +20,8 @@ void PlayerUI::Update()
 	ui->Update();
 	button->Update();
 
-	if (KEY_DOWN(VK_SPACE))
-	{
-		hp -= 10;
-		stamina -= 10;
-	}
-
-	hp += DELTA;
-	stamina += DELTA;
+	if(hp <= 100) hp += DELTA;
+	if(stamina <= 100) stamina += DELTA;
 
 	lerpHp = LERP(lerpHp, hp, lerpSpeed * DELTA);
 	lerpStamina = LERP(lerpStamina, stamina, lerpSpeed * DELTA);

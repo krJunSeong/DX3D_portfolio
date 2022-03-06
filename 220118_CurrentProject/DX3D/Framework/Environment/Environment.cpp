@@ -70,14 +70,15 @@ void Environment::SetImGui()
 
     if (ImGui::TreeNode("LightOption"))
     {
-        if (ImGui::Button("Add"))
-            lightBuffer->data.lightCount++;
+        if (ImGui::Button("Add")) lightBuffer->data.lightCount++;
         ImGui::SameLine();
-        if (ImGui::Button("Remove"))
-            lightBuffer->data.lightCount--;
+
+        if (ImGui::Button("Remove"))lightBuffer->data.lightCount--;
         ImGui::SameLine();
+
         if (ImGui::Button("Save")) Save();
         ImGui::SameLine();
+
         if (ImGui::Button("Load")) Load();
 
         for (UINT i = 0; i < lightBuffer->data.lightCount; i++)

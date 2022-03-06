@@ -23,6 +23,7 @@ private:
 	float hpBarScaleRate = 20.0f;
 
 	bool isIniting = false;
+	bool isEffect = false;
 public:
 	RockPillar();
 	~RockPillar();

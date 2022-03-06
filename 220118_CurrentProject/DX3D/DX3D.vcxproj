@@ -203,6 +203,7 @@
     <ClInclude Include="Object\Manager\DataManager.h" />
     <ClInclude Include="Object\Manager\InstancingMonsterManager.h" />
     <ClInclude Include="Object\Manager\MonsterManager.h" />
+    <ClInclude Include="Object\Manager\ParticleManager.h" />
     <ClInclude Include="Object\Model\Amber.h" />
     <ClInclude Include="Object\Model\Chuchu.h" />
     <ClInclude Include="Object\Model\Gumdramon.h" />
@@ -218,6 +219,7 @@
     <ClInclude Include="Object\Model\Wall.h" />
     <ClInclude Include="Object\Model\Wing.h" />
     <ClInclude Include="Object\Model\Zombie.h" />
+    <ClInclude Include="Object\Particle\ParticleSystem.h" />
     <ClInclude Include="Object\Particle\Rain.h" />
     <ClInclude Include="Object\Particle\Snow.h" />
     <ClInclude Include="Object\Particle\Spark.h" />
@@ -259,6 +261,7 @@
     <ClInclude Include="Scenes\ModelInstancingScene.h" />
     <ClInclude Include="Scenes\ModelRenderScene.h" />
     <ClInclude Include="Scenes\ParticleScene.h" />
+    <ClInclude Include="Scenes\ParticleToolScene.h" />
     <ClInclude Include="Scenes\QuadTreeScene.h" />
     <ClInclude Include="Scenes\ReportScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
@@ -322,6 +325,7 @@
     <ClCompile Include="Object\Manager\DataManager.cpp" />
     <ClCompile Include="Object\Manager\InstancingMonsterManager.cpp" />
     <ClCompile Include="Object\Manager\MonsterManager.cpp" />
+    <ClCompile Include="Object\Manager\ParticleManager.cpp" />
     <ClCompile Include="Object\Model\Amber.cpp" />
     <ClCompile Include="Object\Model\Chuchu.cpp" />
     <ClCompile Include="Object\Model\Gumdramon.cpp" />
@@ -338,6 +342,7 @@
     <ClCompile Include="Object\Model\Wing.cpp" />
     <ClCompile Include="Object\Model\Zombie.cpp" />
     <ClCompile Include="Object\Particle\Particle.cpp" />
+    <ClCompile Include="Object\Particle\ParticleSystem.cpp" />
     <ClCompile Include="Object\Particle\Rain.cpp" />
     <ClCompile Include="Object\Particle\Snow.cpp" />
     <ClCompile Include="Object\Particle\Spark.cpp" />
@@ -376,6 +381,7 @@
     <ClCompile Include="Scenes\ModelInstancingScene.cpp" />
     <ClCompile Include="Scenes\ModelRenderScene.cpp" />
     <ClCompile Include="Scenes\ParticleScene.cpp" />
+    <ClCompile Include="Scenes\ParticleToolScene.cpp" />
     <ClCompile Include="Scenes\QuadTreeScene.cpp" />
     <ClCompile Include="Scenes\ReportScene.cpp" />
     <ClCompile Include="Scenes\SphereScene.cpp" />
@@ -487,6 +493,9 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shaders\ParticleSystem.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\Sky.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>

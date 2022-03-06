@@ -31,6 +31,15 @@ void Quad::Render()
     DC->DrawIndexed(indices.size(), 0, 0);
 }
 
+void Quad::SetRender()
+{
+    worldBuffer->Set(world);
+    worldBuffer->SetVSBuffer(0);
+
+    mesh->IASet();
+    material->Set();
+}
+
 void Quad::CreateMesh()
 {
     float x = size.x * 0.5f;

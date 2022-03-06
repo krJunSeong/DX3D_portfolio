@@ -372,6 +372,15 @@
     <ClInclude Include="Scenes\TownScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\Particle\ParticleSystem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\ParticleToolScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Manager\ParticleManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX3D.cpp">
@@ -707,6 +716,15 @@
     <ClCompile Include="Scenes\TownScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\Particle\ParticleSystem.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\ParticleToolScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Manager\ParticleManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX3D.rc">
@@ -797,6 +815,7 @@
     <FxCompile Include="Shaders\Geometry\Sprite.hlsl" />
     <FxCompile Include="Shaders\Geometry\Rain.hlsl" />
     <FxCompile Include="Shaders\Geometry\Snow.hlsl" />
+    <FxCompile Include="Shaders\ParticleSystem.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Header.hlsli" />

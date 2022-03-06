@@ -10,8 +10,6 @@ private:
 
 	UINT instanceID;
 
-	Matrix rightHand;
-
 	vector<RockPillar*> rockPillares;
 	RockShield* rockShield;
 	ModelInstancing* instancing;			// rockPillar
@@ -43,8 +41,8 @@ private:
 	const float FloatingDuration = 3.0f;
 	const float LimitPlayTime = 5.0f;
 	const float LimitIdleTime = 5.0f;
-	const float MoveSpeed = 10.0f;
-	const float SpinSpeed = 3.0f;
+	const float MoveSpeed = 30.0f;
+	const float SpinSpeed = 5.0f;
 	const float Att = 30.0f;
 	float floatingSpeed = 2.0f;;
 	float floatingTime = 0.0f;
@@ -54,8 +52,8 @@ private:
 private:
 	// phase2 Data
 	const float Phase2Hp = 30.0f;
-	const float LimitInitTime = 5.0f;
-	const float LimitAttackTime = 10.0f; // 제한시간
+	const float LimitInitTime = 10.0f;
+	const float LimitAttackTime = 15.0f; // 제한시간
 	float attackTime = 0.0f;
 	float initTime = 5.0f;
 	bool isPillaresInit = false;
@@ -94,4 +92,9 @@ public:
 	void SetTerrain(Terrain* terrain) { this->land = terrain; }
 	void SetPlayer(Jean* jean) { player = jean; }
 	//void SetQuad(Quad* land) { quad = land; }
+
+	vector<RockPillar*> GetRockPillares(){return rockPillares;}
+	RockShield* GetRcokShield() {return rockShield;}
+
+	void SetBossPosition(Vector3 pos){rockShield->position = pos;}
 };

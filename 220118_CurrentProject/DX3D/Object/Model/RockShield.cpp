@@ -17,8 +17,6 @@ void RockShield::CreateObject()
 	Transform::isActive = true;
 	Transform::Load();
 
-	floatingSpeed = 2.0f;
-
 	bodyCollider = new SphereCollider();
 	bodyCollider->tag = "RockShieldCollider";
 	bodyCollider->isActive = true;

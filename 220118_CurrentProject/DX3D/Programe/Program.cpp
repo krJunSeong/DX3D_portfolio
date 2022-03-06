@@ -23,26 +23,35 @@
 #include "Scenes/QuadTreeScene.h"
 #include "Scenes/TestScene.h"
 #include "Scenes/TownScene.h"
+#include "Scenes/ParticleToolScene.h"
 
 
 Program::Program()
 {
     Create();
 
-    //SceneManager::Get()->Create("Grid", new GridScene());
-    //SceneManager::Get()->Add("Grid");
+    SceneManager::Get()->Create("Grid", new GridScene());
+    SceneManager::Get()->Add("Grid");
 
     // 터레인
        //SceneManager::Get()->Create("Terrain", new TerrainEditorScene());
        //SceneManager::Get()->Add("Terrain");
 
     // Report Scene
-       //SceneManager::Get()->Create("Report", new ReportScene());
-       //SceneManager::Get()->Add("Report");
+       SceneManager::Get()->Create("Report", new ReportScene());
+       SceneManager::Get()->Add("Report");
     
+    // Particle Create Tool
+       //SceneManager::Get()->Create("ParticleToolScene", new ParticleToolScene());
+       //SceneManager::Get()->Add("ParticleToolScene");
+
+    // Test Scene
+        //SceneManager::Get()->Create("TestScene", new TestScene());
+        //SceneManager::Get()->Add("TestScene");
+
     // Town Scene
-       SceneManager::Get()->Create("TownScene", new TownScene());
-       SceneManager::Get()->Add("TownScene");
+       //SceneManager::Get()->Create("TownScene", new TownScene());
+       //SceneManager::Get()->Add("TownScene");
 
     // 모델, 애니메이션 뽑는 것, ModelData/FBX/  파일넣기
         //SceneManager::Get()->Create("Export", new ModelExportScene());
@@ -70,7 +79,6 @@ Program::Program()
         //SceneManager::Get()->Create("Astar", new AstarScene());
         //SceneManager::Get()->Add("Astar");
      
-
     // Frustum Curing
         //SceneManager::Get()->Create("Frustum", new FrustumScene());
         //SceneManager::Get()->Add("Frustum");
@@ -91,8 +99,7 @@ Program::Program()
     //SceneManager::Get()->Create("ParticleScene", new ParticleScene());
     //SceneManager::Get()->Add("ParticleScene");
 
-    //SceneManager::Get()->Create("TestScene", new TestScene());
-    //SceneManager::Get()->Add("TestScene");
+
 
 }
 Program::~Program()

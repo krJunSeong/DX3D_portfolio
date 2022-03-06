@@ -15,6 +15,7 @@ RockPillar::RockPillar()
 	hpBar = new Bar(L"Textures/UI/hp_bar_yellow.png", L"Textures/UI/hp_Bar_BG.png");
 	hpBar->tag = "RockPillarHpBar";
 	hpBar->Load();
+
 }
 
 RockPillar::~RockPillar()
@@ -30,12 +31,16 @@ RockPillar::~RockPillar()
 void RockPillar::Update()
 {
 	if(!Transform::isActive) return;
-
+	
 	if (isIniting)
 	{
 		// 기둥의 포지션이 땅보다 낮다면 계속 올려라.
-		if (position.y < land->GetHeight(position)) position.y += DELTA;
-		else isIniting = false;
+		if (position.y < land->GetHeight(position)) position.y += 3.0f * DELTA;
+		else 
+		{
+			isIniting = false;
+			isEffect = true;
+		}
 	}
 
 	UpdateWorld();
@@ -63,6 +68,7 @@ void RockPillar::Render()
 	if (!Transform::isActive) return;
 	
 	bodyCollider->Render();
+
 	// 이관
 	//for (CapsuleCollider* col : bodyCollideres)
 	//	col->Render();

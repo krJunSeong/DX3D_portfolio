@@ -31,7 +31,7 @@ private:
 	float rotSpeed;
 	float jumpPower;
 	float gravity;
-	float att = 30.0f;
+	float att = 80.0f;
 
 	class SkillBall* ball;
 	Quad* skillUI;

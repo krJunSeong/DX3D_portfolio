@@ -3,9 +3,9 @@
 
 TerrainEditorScene::TerrainEditorScene()
 {
-    terrain = new TerrainEditor(200, 200);
+    terrain = new TerrainEditor(1500, 1500);
     //player = new Jean();
-    ByteAdrress();
+    //ByteAdrress();
 }
 
 TerrainEditorScene::~TerrainEditorScene()

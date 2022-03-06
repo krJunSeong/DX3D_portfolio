@@ -52,9 +52,10 @@ public:
 
     Matrix GetView() { return view; }
     Vector3* GetFocusOffset() { return &focusOffset; }
-private:
+
     void FreeMode();
     void FollowMode();
+private:
 
     void SetView();
 

@@ -14,13 +14,11 @@ private:
 	RockBoss* boss;
 	Terrain* land;
 	Sky* sky;
+	Quad* backLand;
 
 	// --------------------- pos ---------------------
 	BoxCollider* startPos;
-	BoxCollider* bossPos;
-
-	BoxCollider* uitest;
-
+	BoxCollider* bossStartPos;
 
 	// --------------------- Wall ---------------------
 	Wall* leftWall;
@@ -37,4 +35,7 @@ private:
 
 	virtual void Start() override;
 	virtual void End() override;
+
+private:
+	void LightContorll();
 };

@@ -172,7 +172,7 @@ void RockBoss::Phase2()
 	if(count == 0)	// 기둥이 하나도 없다면
 	{
 		if(rockShield->position.y > land->GetHeight(rockShield->position)) 
-			rockShield->position.y -= DELTA;
+			rockShield->position.y -= 3.0f * DELTA;
 
 		initTime += DELTA;
 		if(initTime >= LimitInitTime)
@@ -183,13 +183,24 @@ void RockBoss::Phase2()
 		}
 	}
 	else 
-	{	// 기둥이 세워져 있다면
+	{	// 2페이즈 공격
+		// 기둥이 세워져 있다면
 		attackTime += DELTA;
 
 		if(attackTime >= LimitAttackTime)
 		{
-			player->Damaged(Att);
+			player->Damaged(count * Att);
 			attackTime = 0.0f;
+
+			ParticleManager::Get()->Play("HorizonStar", rockShield->position + Vector3(0, 20.0f, 0));
+
+			for (RockPillar* pillar : rockPillares)
+			{
+				if(!pillar->isActive) continue;
+				ParticleManager::Get()->Play("UpStar", pillar->position);
+			}
+
+			CAM->Shake(2.0f, 2.0f);
 		}
 	}
 
@@ -214,30 +225,12 @@ void RockBoss::Phase2()
 
 			pillar->position.x = Random(land->position.x + 3.0f, land->GetSize().x);
 			pillar->position.z = Random(land->position.y + 3.0f, land->GetSize().y);
-			/*switch (i)
-			{
-			case 0:
-				pillar->position.x = rockShield->position.x + Random(land->position.x, rockShieldDistance);
-				pillar->position.z = rockShield->position.z + Random(0.0f, rockShieldDistance);
-				break;
-			case 1:
-				pillar->position.x = rockShield->position.x - Random(0.0f, rockShieldDistance);
-				pillar->position.z = rockShield->position.z - Random(0.0f, rockShieldDistance);
-				break;
-			case 2:
-				pillar->position.x = rockShield->position.x + Random(0.0f, rockShieldDistance);
-				pillar->position.z = rockShield->position.z + Random(0.0f, rockShieldDistance);
-				break;
-			case 3:
-				pillar->position.x = rockShield->position.x - Random(0.0f, rockShieldDistance);
-				pillar->position.z = rockShield->position.z - Random(0.0f, rockShieldDistance);
-				break;
-			}
-			i++;*/
+
+			ParticleManager::Get()->Play("UpStar", pillar->position);
 		}
 
 		isIniting = true;
-		CAM->Shake(1.0f, 1.0f);
+		CAM->Shake(2.0f, 2.0f);
 		isPillaresInit = false;
 	}
 		
@@ -257,8 +250,6 @@ void RockBoss::CreateObject()
 		rockPillar->isActive = false;
 		rockPillar->SetTransform(insTrf);
 		rockPillares.push_back(rockPillar);
-
-
 	}
 
 	rockShieldInstancing = new ModelInstancing("RockShield");

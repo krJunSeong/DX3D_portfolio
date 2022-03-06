@@ -7,6 +7,8 @@ private:
 	Button* button;
 	Quad* icon;
 
+	ParticleSystem* particleSystem;
+	Particle* particle;
 	Bar* hpBar;
 	Bar* staminaBar;
 
@@ -16,6 +18,8 @@ private:
 
 	float stamina = 100.0f;
 	float lerpStamina = 100.0f;
+
+	Vector3 tempPos = {};
 public:
 	TestScene();
 	~TestScene();

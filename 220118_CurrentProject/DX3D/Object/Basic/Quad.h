@@ -26,6 +26,7 @@ public:
     Float2 GetSizeScale() { return Float2(size.x * scale.x * 0.5, size.y * scale.y * 0.5); }
 
     void SetColor(Float4 color) { colorBuffer->data.color = color; }
+    void SetRender();
 private:
     void CreateMesh();
 };

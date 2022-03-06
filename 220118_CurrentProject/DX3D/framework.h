@@ -207,6 +207,7 @@ using namespace GameMath;
 #include "Object/Particle/Sprite.h"
 #include "Object/Particle/Rain.h"
 #include "Object/Particle/Snow.h"
+#include "Object/Particle/ParticleSystem.h"
 
 // Object Report
 #include "Object/Report/ReportCube.h"
@@ -217,6 +218,7 @@ using namespace GameMath;
 
 #include "Object/Manager/InstancingMonsterManager.h"
 #include "Object/Manager/MonsterManager.h"
+#include "Object/Manager/ParticleManager.h"
 
 //Manager Header
 #include "Manager/SceneManager.h"
