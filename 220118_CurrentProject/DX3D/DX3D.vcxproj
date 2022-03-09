@@ -200,6 +200,7 @@
     <ClInclude Include="Object\Landscape\Sky.h" />
     <ClInclude Include="Object\Landscape\Terrain.h" />
     <ClInclude Include="Object\Landscape\TerrainEditor.h" />
+    <ClInclude Include="Object\Manager\Audio.h" />
     <ClInclude Include="Object\Manager\DataManager.h" />
     <ClInclude Include="Object\Manager\InstancingMonsterManager.h" />
     <ClInclude Include="Object\Manager\MonsterManager.h" />
@@ -322,6 +323,7 @@
     <ClCompile Include="Object\Landscape\Sky.cpp" />
     <ClCompile Include="Object\Landscape\Terrain.cpp" />
     <ClCompile Include="Object\Landscape\TerrainEditor.cpp" />
+    <ClCompile Include="Object\Manager\Audio.cpp" />
     <ClCompile Include="Object\Manager\DataManager.cpp" />
     <ClCompile Include="Object\Manager\InstancingMonsterManager.cpp" />
     <ClCompile Include="Object\Manager\MonsterManager.cpp" />

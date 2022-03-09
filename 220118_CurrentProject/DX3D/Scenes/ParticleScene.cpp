@@ -4,8 +4,8 @@
 ParticleScene::ParticleScene()
 {
 	//particle = new Spark(L"Textures/Particle/Star.png", true);
-    particle = new Sprite(L"Textures/Particle/fire_8x2.png", Float2(8, 2), true);
-    //particle = new Rain();
+    //particle = new Sprite(L"Textures/Particle/fire_8x2.png", Float2(8, 2), true);
+    particle = new Rain();
     //particle = new Snow();
 
     particle->Play(Vector3(0,0,0));
@@ -21,7 +21,7 @@ ParticleScene::~ParticleScene()
 
 void ParticleScene::Update()
 {
-    if (MOUSE_CLICK(0))
+    /*if (MOUSE_CLICK(0))
     {
         Contact contact;
         Ray ray = CAM->ScreenPointToRay(mousePos);
@@ -30,7 +30,7 @@ void ParticleScene::Update()
             particle->Play(contact.hitPoint);
         }
     }
-
+    */
     particle->Update();
     collider->UpdateWorld();
 }

@@ -20,6 +20,7 @@ Rain::~Rain()
 
 void Rain::Update()
 {
+    buffer->data.origin = CAM->position;
     buffer->data.time += DELTA;
 }
 

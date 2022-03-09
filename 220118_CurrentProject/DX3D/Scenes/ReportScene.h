@@ -2,9 +2,7 @@
 
 class ReportScene : public Scene
 {
-public:
-	ReportScene();
-	~ReportScene();
+
 
 private:
 	map<UINT, string> data;
@@ -15,6 +13,9 @@ private:
 	Terrain* land;
 	Sky* sky;
 	Quad* backLand;
+
+	// TODO:: 1. 화면 레인 작업 2. 몬스터 -> boss 페이즈 넘김 작성
+	Particle* rain;
 
 	// --------------------- pos ---------------------
 private:
@@ -30,8 +31,13 @@ private:
 
 private:
 	bool isPhase2Setting = false;
-	
+	bool isBossPhase = false;
+
 	void Phase2MapSetting();
+
+public:
+	ReportScene();
+	~ReportScene();
 
 private:
 	// Scene을(를) 통해 상속됨

@@ -40,6 +40,8 @@ void InstancingChuchu::Update()
 	bodyCollider->UpdateWorld();
 	attackCollider->UpdateWorld();
 
+	if(attackCollider->Collision(player->GetCollider())) player->Damaged(att);
+
 	HpControl();
 
 	if(animState == DEATH) return;

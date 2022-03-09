@@ -72,6 +72,11 @@
 
 #pragma comment(lib, "DirectXTex.lib")
 
+//FMOD
+#include <inc/fmod.hpp>
+
+#pragma comment(lib, "fmod_lib/x64/fmod_vc.lib")
+
 //DirectWrite
 #include <d2d1_2.h>
 #include <dwrite.h>
@@ -89,6 +94,7 @@
 using namespace std;
 using namespace DirectX; // float3
 using namespace DirectX::TriangleTests;
+using namespace FMOD;
 
 typedef XMFLOAT4 Float4;
 typedef XMFLOAT3 Float3;
@@ -208,8 +214,9 @@ using namespace GameMath;
 #include "Object/Model/RockBoss.h"
 #include "Object/Model/Wall.h"
 
-// DataManager
+// Manager
 #include "Object/Manager/DataManager.h"
+#include "Object/Manager/Audio.h"
 
 // Object Report
 #include "Object/Report/ReportCube.h"
@@ -218,6 +225,7 @@ using namespace GameMath;
 #include "Object/Report/ReportCamera_211205.h"
 #include "Object/Report/SKillBall.h"
 
+// Object Manager
 #include "Object/Manager/InstancingMonsterManager.h"
 #include "Object/Manager/MonsterManager.h"
 #include "Object/Manager/ParticleManager.h"

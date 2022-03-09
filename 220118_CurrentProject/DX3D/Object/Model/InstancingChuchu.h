@@ -24,6 +24,7 @@ private:
 	Bar* hpBar;
 
 	float hp = 100.0f;
+	float att = 10.0f;
 	float lerpHp = 100.0f;
 	float lerpSpeed = 1.0f;
 	float hpBarScaleRate = 20.0f;

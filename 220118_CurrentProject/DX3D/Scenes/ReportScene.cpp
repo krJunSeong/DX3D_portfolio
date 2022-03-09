@@ -6,6 +6,7 @@ ReportScene::ReportScene()
 	// -------------------------- Map --------------------
 	land = new Terrain(L"BossMap_Alpha.png", L"BossMap_Height.png");
 	sky = new Sky(L"Textures/Landscape/Space.dds");
+	rain = new Rain();
 
 	leftWall	= new Wall();
 	leftWall->tag = "leftWall";
@@ -37,7 +38,7 @@ ReportScene::ReportScene()
 
 	jean->SetRockBoss(boss);
 
-	// -------------------------------------------------------
+	// -------------------- position ----------------------
 	startPos = new BoxCollider();
 	startPos->tag = "bossRoomStartPos";
 	startPos->Load();
@@ -57,6 +58,7 @@ ReportScene::~ReportScene()
 	delete jean;
 	delete boss;
 	delete sky;
+	delete rain;
 
 	delete leftWall;
 	delete upWall;
@@ -76,7 +78,6 @@ void ReportScene::Update()
 {
 	land->UpdateWorld();
 	jean->Update();
-	boss->Update();
 	backLand->UpdateWorld();
 
 	leftWall	->Update();
@@ -89,26 +90,21 @@ void ReportScene::Update()
 
 	if(KEY_DOWN(VK_TAB)) Collider::isVisible = !Collider::isVisible;
 
-	LightContorll();
+	if (MOUSE_CLICK(1))   CAM->SetTarget(nullptr);
+	else if (MOUSE_UP(1)) CAM->SetTarget(jean);
+	
+	if(InstancingMonsterManager::Get()->GetKillCount() > 3) isBossPhase = true;
+	
+	if(isBossPhase)
+	{
+		LightContorll();
+		rain->Update();
+		boss->Update();
+	}
 
-	//int count = 0;
-	//for (auto pillar : boss->GetRockPillares())
-	//{
-	//	if (pillar->isActive)
-	//		ParticleManager::Get()->Play("UpStar", pillar->position, count);
-	//
-	//	//else
-	//	//	ParticleManager::Get()->Stop("UpStar", count);
-	//
-	//	count++;
-	//}
-
-	//if (MOUSE_CLICK(1))   CAM->SetTarget(nullptr);
-	//else if (MOUSE_UP(1)) CAM->SetTarget(jean);
+	else InstancingMonsterManager::Get()->Update();
 
 	ParticleManager::Get()->Update();
-	
-	InstancingMonsterManager::Get()->Update();
 }
 
 void ReportScene::PreRender()
@@ -119,9 +115,9 @@ void ReportScene::Render()
 {
 	sky->Render();
 	land->Render();
-	
+
 	jean->Render();
-	boss->Render();
+	
 	backLand->Render();
 	
 	// ---------------- wall ----------------
@@ -136,19 +132,23 @@ void ReportScene::Render()
 
 	// ---------------- Particle --------------------
 	ParticleManager::Get()->Render();	
-	InstancingMonsterManager::Get()->Render();
+
+	if (isBossPhase) {rain->Render(); boss->Render();}
+	else InstancingMonsterManager::Get()->Render();
 }
 
 void ReportScene::PostRender()
 {
-	InstancingMonsterManager::Get()->PostRender();
-	boss->PostRender();
+	if (isBossPhase) boss->PostRender(); 
+	else InstancingMonsterManager::Get()->PostRender();
+
 	jean->PostRender();
 }
 
 void ReportScene::GUIRender()
 {
 	land->GUIRender();
+	rain->GUIRender();
 	jean->GUIRender();
 	boss->GUIRender();
 
@@ -174,7 +174,7 @@ void ReportScene::Start()
 	InstancingMonsterManager::Get()->SetTerrain(land);
 
 	jean->position = startPos->position;
-	CAM->SetTarget(jean);
+	//CAM->SetTarget(jean);
 
 	boss->SetBossPosition(bossStartPos->position);
 
@@ -195,6 +195,7 @@ void ReportScene::Start()
 	}
 
 	ParticleManager::Get()->CreateParticle();
+	rain->Play({0,0,0});
 }
 
 void ReportScene::End()
