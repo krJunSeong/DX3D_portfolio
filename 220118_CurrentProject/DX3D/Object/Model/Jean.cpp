@@ -5,22 +5,19 @@ Jean::Jean()
 {
 	Init();
 
-	ReadClip("Idle");
-	ReadClip("Run");
-	ReadClip("Attack");
-	ReadClip("Hit");
-	ReadClip("Death");
+	ReadClip("Idle");		//	Idle	Animation Load
+	ReadClip("Run");		//	Run		Animation Load
+	ReadClip("Attack");		//	Attack	Animation Load
+	ReadClip("Hit");		//	Hit		Animation Load
+	ReadClip("Death");		//	Death	Animation Load
 
-	PlayClip(0);
+	PlayClip(0);			// 첫 시작시 기본 애니메이션 세팅
 
-	Transform::Load(); // transform->load()
+	Transform::Load();		// 세팅된 트랜스폼 로드
 
-	//CAM->SetTarget(this);
-
-	clips[ATTACK]->Events[0.5f] = bind(&Jean::AttackEnd, this);
-	clips[HIT]->Events[0.7f] = bind(&Jean::HitEnd, this);
-	clips[DEATH]->Events[0.7f] = bind(&Jean::EndDeath, this);
-
+	clips[ATTACK]->Events[0.5f] = bind(&Jean::AttackEnd, this);	// 어택 종료시 처리 함수
+	clips[HIT]->Events[0.7f] = bind(&Jean::HitEnd, this);		// 피격 종료시 처리 함수
+	clips[DEATH]->Events[0.7f] = bind(&Jean::EndDeath, this);	// 데스 종료시 처리 함수
 
 //	clips[JUMP]->Events[0.7f] = bind(&Jean::JumpEnd, this);
 	

@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "ReportScene.h"
 
+// Todo: DataManager : 1. input the monster State, Create SCV and See LSVScene
+//
 ReportScene::ReportScene()
 {
 	// -------------------------- Map --------------------
@@ -113,7 +115,7 @@ void ReportScene::PreRender()
 
 void ReportScene::Render()
 {
-	sky->Render();
+	//sky->Render();
 	land->Render();
 
 	jean->Render();
@@ -174,13 +176,13 @@ void ReportScene::Start()
 	InstancingMonsterManager::Get()->SetTerrain(land);
 
 	jean->position = startPos->position;
-	//CAM->SetTarget(jean);
+	CAM->SetTarget(jean);
 
 	boss->SetBossPosition(bossStartPos->position);
 
 	// --------------- Map Light -------------------------
-	float temp = 50.0f / 255;
-	Environment::Get()->GetLightBuffer()->data.ambient = {temp, temp, temp};
+	float temp = 180.0f / 255;
+	Environment::Get()->GetLightBuffer()->data.ambient = { temp, temp, temp };
 
 	// --------------------- AddLight shield, pillar4, Player
 	Environment::Get()->GetLightBuffer()->data.lightCount++;
@@ -227,4 +229,7 @@ void ReportScene::LightContorll()
 	Environment::Get()->GetLightBuffer()->data.lights[count].position = jean->position;
 	Environment::Get()->GetLightBuffer()->data.lights[count].position.y = jean->position.y + 4.0f;
 	count++;
+
+	float temp = 50.0f / 255;
+	Environment::Get()->GetLightBuffer()->data.ambient = { temp, temp, temp };
 }

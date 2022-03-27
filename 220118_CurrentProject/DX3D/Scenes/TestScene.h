@@ -12,6 +12,8 @@ private:
 	Bar* hpBar;
 	Bar* staminaBar;
 
+	Jean* jean;
+
 	float hp = 200.0f;
 	float lerpHp = 200.0f;
 	float lerpSpeed = 1.0f;
